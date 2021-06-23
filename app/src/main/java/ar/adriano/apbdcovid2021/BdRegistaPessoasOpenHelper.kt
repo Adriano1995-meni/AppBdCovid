@@ -13,7 +13,9 @@ class BdRegistaPessoasOpenHelper (context: Context?)
      * @param db The database.
      */
     override fun onCreate(db: SQLiteDatabase?) {
-
+        if (db != null) {
+            TabelaDestrito(db).cria()
+        }
     }
 
     /**
