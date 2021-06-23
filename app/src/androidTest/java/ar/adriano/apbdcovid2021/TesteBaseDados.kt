@@ -1,7 +1,9 @@
 package ar.adriano.apbdcovid2021
 
+import android.provider.BaseColumns
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import org.junit.Assert
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -19,6 +21,13 @@ class TesteBaseDados {
     private fun getAppContext() = InstrumentationRegistry.getInstrumentation().targetContext
     private fun getBdPessoasOpenHelper() = BdRegistaPessoasOpenHelper(getAppContext())
 
+
+    private fun insereDestritos(tabela: TabelaDestrito, destritos: Destritos): Long {
+        val id = tabela.insert(destritos.toContentValues())
+        Assert.assertNotEquals(-1, id)
+
+        return id
+    }
 
     @Before
     fun apagaBaseDados() {
@@ -38,10 +47,37 @@ class TesteBaseDados {
         val db = getBdPessoasOpenHelper().writableDatabase
         val tabelaDestritos = TabelaDestrito(db)
 
-        tabelaDestritos.insert(Destritos(nome = "Guarda"))
+        val id = tabelaDestritos.insert(Destritos(nome = "Drama").toContentValues())
+
+        Assert.assertNotEquals(-1, id)
 
         db.close()
     }
+
+
+    @Test
+    fun ConsegueAlterarDestritos() {
+
+        // Alterar
+        val db = getBdPessoasOpenHelper().writableDatabase
+
+        val tabelaDestrito = TabelaDestrito(db)
+        val destrito = Destritos(nome = "Lisboa")
+        destrito.id = insereDestritos(tabelaDestrito, destrito)
+
+        // Alterar para
+        destrito.nome = "Vila Real"
+
+        val AlterarRegistos = tabelaDestrito.update(
+            destrito.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf(destrito.id.toString())
+        )
+        Assert.assertEquals(1, AlterarRegistos)
+        db.close()
+    }
+
+
 }
 
 

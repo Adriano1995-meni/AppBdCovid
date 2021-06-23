@@ -17,6 +17,8 @@ class BdRegistaPessoasOpenHelper (context: Context?)
             TabelaDestrito(db).cria()
             TabelaPessoas(db).cria()
             TabelaEnfermeiro(db).cria()
+            TabelaVacina(db).cria()
+
         }
     }
 
