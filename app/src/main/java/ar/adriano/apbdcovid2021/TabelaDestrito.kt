@@ -17,7 +17,7 @@ class TabelaDestrito(db: SQLiteDatabase) {
         )
     }
 
-    fun insert(values: ContentValues): Long {
+    fun insert(values: Destritos): Long {
         return db.insert(NOME_TABELA, null, values)
     }
 

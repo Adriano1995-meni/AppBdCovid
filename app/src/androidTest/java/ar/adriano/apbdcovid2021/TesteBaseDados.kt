@@ -6,7 +6,6 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Test
 import org.junit.runner.RunWith
 
-import org.junit.Assert.*
 import org.junit.Before
 
 /**
@@ -18,7 +17,7 @@ import org.junit.Before
 class TesteBaseDados {
 
     private fun getAppContext() = InstrumentationRegistry.getInstrumentation().targetContext
-
+    private fun getBdPessoasOpenHelper() = BdRegistaPessoasOpenHelper(getAppContext())
 
 
     @Before
@@ -33,4 +32,16 @@ class TesteBaseDados {
         assert(db.isOpen)
         db.close()
     }
+
+    @Test
+    fun consegueInserirDestrito() {
+        val db = getBdPessoasOpenHelper().writableDatabase
+        val tabelaDestritos = TabelaDestrito(db)
+
+        tabelaDestritos.insert(Destritos(nome = "Guarda"))
+
+        db.close()
+    }
 }
+
+
