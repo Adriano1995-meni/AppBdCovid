@@ -607,8 +607,68 @@ class TesteBaseDados {
 
 
 
+    @Test
+    fun consegueAlterarVacinas() {
+        val db = getBdPessoasOpenHelper().writableDatabase
+
+        val tabelaDestrito = TabelaDestrito(db)
+        val destrito= Destritos(nome = "Leria")
+        destrito.id = insereDestritos(tabelaDestrito, destrito)
+
+        val tabelaEnfermeiro = TabelaEnfermeiro(db)
+        val enfermeiro = Enfermeiro(
+            nome = "Amilcar Morreira",
+            contacto="Contacto :" +
+                    "912224715",
+            sexo = "Sexo: M",
+            Morada = "Beco do Sacrifício",
+            data = Date(2020,7,15),
+            idDestrito = destrito.id,
+            Mail = "meni@gmail.com")
+
+        //nomeCategoria =  destrito.nome
+
+        enfermeiro.id = insereEnfermeiro(tabelaEnfermeiro, enfermeiro)
 
 
+        val tabelaPessoas = TabelaPessoas(db)
+        val pessoas =  Pessoas(
+            nome ="Carlos Matus Da Silva",
+            sexo ="Sexo: M",
+            Morada = "Beco do Sacrifício",
+            NumeroUtente = "251789657",
+            dataNascimento =Date(1995,7,5),
+            Contacto="Contacto: " +
+                    "923557788",
+            dataTeste =Date(2020,10,15),
+            idDestrito = destrito.id,
+            idEnfermeio =enfermeiro.id)
+        pessoas.id= inserePessoas(tabelaPessoas,pessoas)
+
+        val tabelaVacina = TabelaVacina(db)
+        val vacinas =  Vacinas(
+            nome ="AstraZeneca",
+            data_da_Proxima_Doce =Date(2021,4,5),
+            idDestrito = destrito.id,
+            idPaciente = pessoas.id)
+        vacinas.id= insereVacina(tabelaVacina,vacinas)
+
+        vacinas.idPaciente = pessoas.id
+        vacinas.data_da_Proxima_Doce=Date(2020,7,15)
+
+
+
+        val AlteradosVacinas = tabelaVacina.update(
+            vacinas.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf(vacinas.id.toString())
+        )
+
+        Assert.assertEquals(1, AlteradosVacinas)
+        assertEquals(vacinas, getVacinaBaseDados(tabelaVacina,vacinas.id))
+
+        db.close()
+    }
 
 
 }
