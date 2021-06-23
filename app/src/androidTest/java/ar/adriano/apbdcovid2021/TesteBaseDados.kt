@@ -45,6 +45,12 @@ class TesteBaseDados {
         return id
     }
 
+    private fun insereVacina(tabela: TabelaVacina, vacinas: Vacinas): Long {
+        val id = tabela.insert(vacinas.toContentValues())
+        Assert.assertNotEquals(-1, id)
+
+        return id
+    }
 
 
     private fun getDestritosBaseDados(tabela: TabelaDestrito, id: Long): Destritos {
@@ -89,6 +95,24 @@ class TesteBaseDados {
 
         return Pessoas.fromCursor(cursor)
     }
+
+
+    private fun getVacinaBaseDados(tabela: TabelaVacina, id: Long): Vacinas {
+        val cursor = tabela.query(
+            TabelaVacina.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf(id.toString()),
+            null, null, null
+        )
+
+        Assert.assertNotNull(cursor)
+        assert(cursor!!.moveToNext())
+
+        return Vacinas.fromCursor(cursor)
+    }
+
+
+
 
 
     @Before
@@ -525,6 +549,61 @@ class TesteBaseDados {
     }
 
 
+
+
+
+    @Test
+    fun consegueInserirVacinas() {
+        val db = getBdPessoasOpenHelper().writableDatabase
+
+        val tabelaDestrito = TabelaDestrito(db)
+        val destrito= Destritos(nome = "Leria")
+        destrito.id = insereDestritos(tabelaDestrito, destrito)
+
+        val tabelaEnfermeiro = TabelaEnfermeiro(db)
+        val enfermeiro = Enfermeiro(
+            nome = "Amilcar Morreira",
+            contacto="Contacto :" +
+                    "912224715",
+            sexo = "Sexo: M",
+            Morada = "Beco do Sacrifício",
+            data = Date(2020,7,15),
+            idDestrito = destrito.id,
+            Mail = "meni@gmail.com")
+
+            //nomeCategoria =  destrito.nome
+
+
+
+        enfermeiro.id = insereEnfermeiro(tabelaEnfermeiro, enfermeiro)
+
+
+        val tabelaPessoas = TabelaPessoas(db)
+        val pessoas =  Pessoas(
+            nome ="Carlos Matus Da Silva",
+            sexo ="Sexo: M",
+            Morada = "Beco do Sacrifício",
+            NumeroUtente = "251789657",
+            dataNascimento =Date(1995,7,5),
+            Contacto="Contacto: " +
+                    "923557788",
+            dataTeste =Date(2020,10,15),
+            idDestrito = destrito.id,
+            idEnfermeio =enfermeiro.id)
+        pessoas.id= inserePessoas(tabelaPessoas,pessoas)
+
+        val tabelaVacina = TabelaVacina(db)
+        val vacinas =  Vacinas(
+            nome ="AstraZeneca",
+            data_da_Proxima_Doce =Date(2021,4,5),
+            idDestrito = destrito.id,
+            idPaciente = pessoas.id)
+        vacinas.id= insereVacina(tabelaVacina,vacinas)
+        assertEquals(vacinas, getVacinaBaseDados(tabelaVacina,vacinas.id))
+
+        db.close()
+
+    }
 
 
 
