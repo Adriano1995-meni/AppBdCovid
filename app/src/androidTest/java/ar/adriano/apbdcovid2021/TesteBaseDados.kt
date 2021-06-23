@@ -10,6 +10,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 import org.junit.Before
+import java.util.*
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -30,10 +31,17 @@ class TesteBaseDados {
         return id
     }
 
+    private fun insereEnfermeiro(tabela: TabelaEnfermeiro, enfermeiro: Enfermeiro): Long {
+        val id = tabela.insert(enfermeiro.toContentValues())
+        Assert.assertNotEquals(-1, id)
+        return id
+    }
+
+
     private fun getDestritosBaseDados(tabela: TabelaDestrito, id: Long): Destritos {
         val cursor = tabela.query(
             TabelaDestrito.TODAS_COLUNAS,
-            "${TabelaDestrito.NOME_TABELA}.${BaseColumns._ID}=?",
+            "${BaseColumns._ID}=?",
             arrayOf(id.toString()),
             null, null, null
         )
@@ -43,6 +51,21 @@ class TesteBaseDados {
 
         return Destritos.fromCursor(cursor)
     }
+
+    private fun getEnfemeiroBaseDados(tabela: TabelaEnfermeiro, id: Long): Enfermeiro {
+        val cursor = tabela.query(
+            TabelaEnfermeiro.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf(id.toString()),
+            null, null, null
+        )
+
+        Assert.assertNotNull(cursor)
+        assert(cursor!!.moveToNext())
+
+        return Enfermeiro.fromCursor(cursor)
+    }
+
 
     @Before
     fun apagaBaseDados() {
@@ -62,7 +85,7 @@ class TesteBaseDados {
         val db = getBdPessoasOpenHelper().writableDatabase
         val tabelaDestritos = TabelaDestrito(db)
 
-        val destritos = Destritos(nome = "Drama")
+        val destritos = Destritos(nome = "Viseu")
         destritos.id = insereDestritos(tabelaDestritos,destritos )
 
         assertEquals(destritos, getDestritosBaseDados(tabelaDestritos, destritos.id))
@@ -129,6 +152,89 @@ class TesteBaseDados {
 
         db.close()
     }
+
+
+
+
+    @Test
+    fun consegueInserirEnfermeiros() {
+        val db = getBdPessoasOpenHelper().writableDatabase
+
+        // Categoria Actual
+
+        val tabelaDestrito = TabelaDestrito(db)
+        val destrito = Destritos(nome = "Porto")
+        destrito.id = insereDestritos(tabelaDestrito, destrito)
+
+
+        val tabelaEnfermeiro = TabelaEnfermeiro(db)
+        val enfermeiro = Enfermeiro(
+            nome = "Francisco Mendes",
+            contacto="Contacto :" +
+                    "96558887",
+            sexo = "Sexo: M",
+            Morada = "Rua Santa Catarina",
+            data = Date(1990,7,5),
+            idDestrito = destrito.id,
+            Mail = "@adrigmail.com")
+        enfermeiro.id = insereEnfermeiro(tabelaEnfermeiro, enfermeiro)
+        assertEquals(enfermeiro, getEnfemeiroBaseDados(tabelaEnfermeiro, enfermeiro.id))
+
+        db.close()
+    }
+
+
+
+    @Test
+    fun consegueAlterarEnfermeio() {
+        val db = getBdPessoasOpenHelper().writableDatabase
+
+
+        // Categoria Actual
+
+        val tabelaDestrito = TabelaDestrito(db)
+        val destrito = Destritos(nome = "Castelo Branco")
+        destrito.id = insereDestritos(tabelaDestrito, destrito)
+
+        // Altera Para
+
+        val AlterarDestrito = Destritos(nome = "Viseu")
+        AlterarDestrito.id = insereDestritos(tabelaDestrito, AlterarDestrito)
+
+        val tabelaEnfermeiro = TabelaEnfermeiro(db)
+        val enfermeiro = Enfermeiro(
+            nome = "João  Almeida",
+            contacto="Contacto :" +
+                    "925572030",
+            data = Date(2021,4,15),
+            sexo = "Sexo:M",
+            Morada = "Edifício Atrium, Praça Dom João",
+            idDestrito = destrito.id,
+            Mail = "@adrigmail.com")
+
+        enfermeiro.id = insereEnfermeiro(tabelaEnfermeiro, enfermeiro)
+
+        enfermeiro.contacto = "962227161"
+        enfermeiro.idDestrito = AlterarDestrito.id
+       // enfermeiro.nomeCategoria = AlterarDestrito.nome // só é necessário nos testes
+
+
+        val registosAlterados = tabelaEnfermeiro.update(
+            enfermeiro.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf(enfermeiro.id.toString())
+        )
+
+        Assert.assertEquals(1, registosAlterados)
+        assertEquals(enfermeiro, getEnfemeiroBaseDados(tabelaEnfermeiro, enfermeiro.id))
+
+        db.close()
+    }
+
+
+
+
+
 
 
 
