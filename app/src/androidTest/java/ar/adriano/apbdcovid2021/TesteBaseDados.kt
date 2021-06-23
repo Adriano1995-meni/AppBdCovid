@@ -727,6 +727,68 @@ class TesteBaseDados {
         db.close()
     }
 
+
+
+    @Test
+    fun consegueLerVacinas() {
+        val db = getBdPessoasOpenHelper().writableDatabase
+
+        val tabelaDestrito = TabelaDestrito(db)
+        val destrito= Destritos(nome = "Açores")
+        destrito.id = insereDestritos(tabelaDestrito, destrito)
+
+        val tabelaEnfermeiro = TabelaEnfermeiro(db)
+        val enfermeiro = Enfermeiro(
+            nome = "Anibal João Morreira",
+            contacto="Contacto: " +
+                    " 962224715",
+            sexo ="Sexo :M",
+            Morada = "Ponta da Serra das Lajes",
+            data = Date(2020,7,15),
+            idDestrito = destrito.id,
+            Mail = "@aureliogmail.com"
+         //   nomeCategoria =  destrito.nome
+
+        )
+
+        enfermeiro.id = insereEnfermeiro(tabelaEnfermeiro, enfermeiro)
+
+        val tabelaPacientes = TabelaPessoas(db)
+        val pessoas =  Pessoas(
+            nome ="Junior Correia",
+            sexo ="Sexo :M",
+            Morada = "Ponta da Serra das Lajes",
+            NumeroUtente = "254789657",
+            dataNascimento =Date(1995,7,5),
+            Contacto="Contacto: " +
+                    "925557788",
+            dataTeste =Date(2020,10,15),
+            idDestrito = destrito.id,
+            idEnfermeio =enfermeiro.id)
+
+
+        pessoas.id= inserePessoas(tabelaPacientes,pessoas)
+
+        val tabelaVacina = TabelaVacina(db)
+        val vacina =  Vacinas(
+            nome ="AstraZeneca",
+            data_da_Proxima_Doce =Date(2021,4,5),
+            idDestrito = destrito.id,
+            idPaciente = pessoas.id)
+        vacina.id= insereVacina(tabelaVacina,vacina)
+        assertEquals(vacina, getVacinaBaseDados(tabelaVacina,vacina.id))
+
+
+        db.close()
+    }
+
+
+
+
+
+
+
+
 }
 
 
