@@ -3,6 +3,7 @@ package ar.adriano.apbdcovid2021
 import android.provider.BaseColumns
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import junit.framework.Assert.assertEquals
 import org.junit.Assert
 
 import org.junit.Test
@@ -29,6 +30,20 @@ class TesteBaseDados {
         return id
     }
 
+    private fun getDestritosBaseDados(tabela: TabelaDestrito, id: Long): Destritos {
+        val cursor = tabela.query(
+            TabelaDestrito.TODAS_COLUNAS,
+            "${TabelaDestrito.NOME_TABELA}.${BaseColumns._ID}=?",
+            arrayOf(id.toString()),
+            null, null, null
+        )
+
+        Assert.assertNotNull(cursor)
+        assert(cursor!!.moveToNext())
+
+        return Destritos.fromCursor(cursor)
+    }
+
     @Before
     fun apagaBaseDados() {
         getAppContext().deleteDatabase( BdRegistaPessoasOpenHelper.NOME_BASE_DADOS)
@@ -47,12 +62,14 @@ class TesteBaseDados {
         val db = getBdPessoasOpenHelper().writableDatabase
         val tabelaDestritos = TabelaDestrito(db)
 
-        val id = tabelaDestritos.insert(Destritos(nome = "Drama").toContentValues())
+        val destritos = Destritos(nome = "Drama")
+        destritos.id = insereDestritos(tabelaDestritos,destritos )
 
-        Assert.assertNotEquals(-1, id)
-
+        assertEquals(destritos, getDestritosBaseDados(tabelaDestritos, destritos.id))
         db.close()
     }
+
+
 
 
     @Test
@@ -73,7 +90,9 @@ class TesteBaseDados {
             "${BaseColumns._ID}=?",
             arrayOf(destrito.id.toString())
         )
-        Assert.assertEquals(1, AlterarRegistos)
+         assertEquals(1, AlterarRegistos)
+        assertEquals(destrito, getDestritosBaseDados(tabelaDestrito, destrito.id))
+
         db.close()
     }
 
@@ -97,6 +116,20 @@ class TesteBaseDados {
 
         db.close()
     }
+
+
+    @Test
+    fun consegueLerDestritos() {
+        val db = getBdPessoasOpenHelper().writableDatabase
+        val tabelaDestritos = TabelaDestrito(db)
+        val destritos = Destritos(nome = "Vila Nova De Gaia")
+        destritos.id = insereDestritos(tabelaDestritos, destritos)
+
+        assertEquals(destritos, getDestritosBaseDados(tabelaDestritos, destritos.id))
+
+        db.close()
+    }
+
 
 
 }

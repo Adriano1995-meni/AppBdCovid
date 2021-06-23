@@ -31,11 +31,11 @@ class TabelaDestrito(db: SQLiteDatabase) {
 
     fun query(
         columns: Array<String>,
-        selection: String,
-        selectionArgs: Array<String>,
-        groupBy: String,
-        having: String,
-        orderBy: String
+        selection: String?,
+        selectionArgs: Array<String>?,
+        groupBy: String?,
+        having: String?,
+        orderBy: String?
     ): Cursor? {
         return db.query(NOME_TABELA, columns, selection, selectionArgs, groupBy, having, orderBy)
     }
@@ -46,6 +46,7 @@ class TabelaDestrito(db: SQLiteDatabase) {
     companion object {
         const val NOME_TABELA = "Destito"
         const val CAMPO_NOME = "nome_Destrito"
+        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, CAMPO_NOME)
     }
 
 }
