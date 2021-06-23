@@ -78,6 +78,27 @@ class TesteBaseDados {
     }
 
 
+
+    @Test
+    fun ConsegueEliminarDestritos() {
+
+        val db =getBdPessoasOpenHelper().writableDatabase
+        val tabelaDestrito = TabelaDestrito(db)
+
+        val destrito = Destritos(nome = "Guarda")
+        destrito.id = insereDestritos(tabelaDestrito, destrito)
+
+        val registosEliminados = tabelaDestrito.delete(
+
+            "${BaseColumns._ID}=?",
+            arrayOf(destrito.id.toString())
+        )
+        Assert.assertEquals(1, registosEliminados)
+
+        db.close()
+    }
+
+
 }
 
 
