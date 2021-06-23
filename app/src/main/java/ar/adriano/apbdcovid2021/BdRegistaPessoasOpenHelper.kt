@@ -15,6 +15,8 @@ class BdRegistaPessoasOpenHelper (context: Context?)
     override fun onCreate(db: SQLiteDatabase?) {
         if (db != null) {
             TabelaDestrito(db).cria()
+            TabelaPessoas(db).cria()
+            TabelaEnfermeiro(db).cria()
         }
     }
 
