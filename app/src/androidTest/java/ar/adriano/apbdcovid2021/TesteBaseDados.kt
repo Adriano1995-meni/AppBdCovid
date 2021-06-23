@@ -372,6 +372,69 @@ class TesteBaseDados {
 
 
 
+
+
+    @Test
+    fun consegueAlterarPaciente() {
+
+        val db = getBdPessoasOpenHelper().writableDatabase
+
+        val tabelaDestrito = TabelaDestrito(db)
+        val destrito= Destritos(nome = "Santarem")
+        destrito.id = insereDestritos(tabelaDestrito, destrito)
+
+        val tabelaEnfermeiro = TabelaEnfermeiro(db)
+        val enfermeiro = Enfermeiro(
+            nome = "Amilcar Morreira",
+            contacto="Contacto :" +
+                    "912224715",
+            sexo = "Sexo: M",
+            Morada = "Beco do Sacrifício",
+            data = Date(2020,7,15),
+            idDestrito = destrito.id,
+            Mail = "meni@gmail.com")
+            //nomeCategoria =  destrito.nome)
+
+        enfermeiro.id = insereEnfermeiro(tabelaEnfermeiro, enfermeiro)
+
+        val tabelaPessoas = TabelaPessoas(db)
+        val pessoas =  Pessoas(
+            nome ="Carlos Matus Da Silva",
+            sexo ="Sexo: M",
+            Morada = "Beco do Sacrifício",
+            NumeroUtente = "251789657",
+            dataNascimento =Date(1995,7,5),
+            Contacto="Contacto: " +
+                    "923557788",
+            dataTeste =Date(2020,10,15),
+            idDestrito = destrito.id,
+            idEnfermeio =enfermeiro.id)
+
+
+        pessoas.id= inserePessoas(tabelaPessoas,pessoas)
+
+        pessoas.Contacto = "967557744"
+        pessoas.idEnfermeio= enfermeiro.id
+        pessoas.dataTeste=Date(2021,3,16)
+        pessoas.dataNascimento=Date(1987,7,18)
+
+
+        val AlteradosPacientes = tabelaPessoas.update(
+            pessoas.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf(pessoas.id.toString())
+        )
+
+        Assert.assertEquals(1, AlteradosPacientes)
+
+        db.close()
+    }
+
+
+
+
+
+
 }
 
 
