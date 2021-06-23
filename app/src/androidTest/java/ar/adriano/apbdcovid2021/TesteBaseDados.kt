@@ -272,6 +272,37 @@ class TesteBaseDados {
 
 
 
+    @Test
+    fun consegueLerEnfermeiro() {
+        val db = getBdPessoasOpenHelper().writableDatabase
+
+        val tabelaDestrito = TabelaDestrito(db)
+        val destrito = Destritos(nome = "Aveiro")
+        destrito.id = insereDestritos(tabelaDestrito, destrito)
+
+        val tabelaEnfermeiro = TabelaEnfermeiro(db)
+        val enfermeiro = Enfermeiro(
+            nome = "Natalia Perez",
+            contacto="Contacto :" +
+                    "96666717",
+            data = Date(2021,3,15),
+            sexo = "sexo:F",
+            Morada = " Viela Arrocheiras de Cima",
+            idDestrito = destrito.id ,
+            Mail = "jfd@gmail.com"
+            //nomeCategoria = destrito.nome
+
+        )
+        enfermeiro.id = insereEnfermeiro(tabelaEnfermeiro, enfermeiro)
+
+        assertEquals(enfermeiro, getEnfemeiroBaseDados(tabelaEnfermeiro, enfermeiro.id))
+
+        db.close()
+    }
+
+
+
+
 }
 
 
