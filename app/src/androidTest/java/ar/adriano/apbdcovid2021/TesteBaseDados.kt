@@ -234,7 +234,40 @@ class TesteBaseDados {
 
 
 
+    @Test
+    fun ConsegueEliminarEnfermeiro() {
 
+        val db = getBdPessoasOpenHelper().writableDatabase
+
+        val tabelaDestrito = TabelaDestrito(db)
+        val destrito = Destritos(nome = "Viana de Castelo")
+        destrito.id = insereDestritos(tabelaDestrito, destrito)
+
+        val tabelaEnfermeiro = TabelaEnfermeiro(db)
+        val enfermeiro = Enfermeiro(
+            nome = "Armando correia  Co",
+            contacto="Contacto :" +
+                    "925888721",
+            sexo ="Sexo :M",
+            Morada = "Avenida General Humberto Delgado",
+            data = Date(2020,7,15),
+            idDestrito = destrito.id ,
+            Mail = "fpv@gmail"
+            //   nomeCategoria =  destrito.nome
+        )
+        enfermeiro.id = insereEnfermeiro(tabelaEnfermeiro, enfermeiro)
+
+        // Eliminar Enfermeiro
+
+        val EliminadosEnfermeiro = tabelaEnfermeiro.delete(
+            "${BaseColumns._ID}=?",
+            arrayOf(enfermeiro.id.toString())
+        )
+        Assert.assertEquals(1, EliminadosEnfermeiro)
+
+
+        db.close()
+    }
 
 
 
