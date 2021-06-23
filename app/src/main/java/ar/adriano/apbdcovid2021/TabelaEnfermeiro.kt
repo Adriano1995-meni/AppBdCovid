@@ -13,9 +13,9 @@ class TabelaEnfermeiro(db: SQLiteDatabase) {
             "CREATE TABLE $NOME_TABELA " + "(${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "$NOME_ENFERMEIRO TEXT NOT NULL," +
                     "$CONTACTO TEXT NOT NULL," +
-                    "$DATA," +
-                    "$MAIL," +
-                    "$SEXO," +
+                    "$DATA  DATA NOT NULL," +
+                    "$MAIL  TEXT NOT NULL," +
+                    "$SEXO  TEXT NOT NULL," +
                     "$MORADA TEXT NOT NULL," +
                     "$CAMPO_ID_DESTRITO INTEGER NOT NULL," +
                     "FOREIGN KEY($CAMPO_ID_DESTRITO) REFERENCES ${TabelaDestrito.NOME_TABELA})"
