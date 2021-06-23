@@ -671,6 +671,62 @@ class TesteBaseDados {
     }
 
 
+    @Test
+    fun ConsegueEliminarVacinas() {
+
+        val db = getBdPessoasOpenHelper().writableDatabase
+
+        val tabelaDestrito = TabelaDestrito(db)
+        val destrito= Destritos(nome = "Madeira")
+        destrito.id = insereDestritos(tabelaDestrito, destrito)
+
+        val tabelaEnfermeiro = TabelaEnfermeiro(db)
+        val enfermeiro = Enfermeiro(
+            nome = "Amindo Vaz Conselho",
+            contacto="Contacto: " +
+                    " 962224715",
+            sexo ="Sexo :M",
+            Morada = " Entrada Nº 1 do Caminho do Pico",
+            data = Date(2020,7,15),
+            idDestrito = destrito.id,
+            Mail = "@abinelgmwil.com"
+        //    nomeCategoria =  destrito.nome
+        )
+        enfermeiro.id = insereEnfermeiro(tabelaEnfermeiro, enfermeiro)
+
+        val tabelaPessoas = TabelaPessoas(db)
+        val pessoas =  Pessoas(
+            nome ="Leiticia Monteiro",
+            sexo ="Sexo :F",
+            Morada = "Entrada Nº 1 do Caminho do Pico",
+            NumeroUtente = "254789657",
+            dataNascimento =Date(1995,7,5),
+            Contacto="Contacto: " +
+                    "925557788",
+            dataTeste =Date(2020,10,15),
+            idDestrito = destrito.id,
+            idEnfermeio =enfermeiro.id)
+
+
+        pessoas.id= inserePessoas(tabelaPessoas,pessoas)
+
+        val tabelaVacina = TabelaVacina(db)
+        val vacinas =  Vacinas(
+            nome ="AstraZeneca",
+            data_da_Proxima_Doce =Date(2021,4,5),
+            idDestrito = destrito.id,
+            idPaciente = pessoas.id)
+        vacinas.id= insereVacina(tabelaVacina,vacinas)
+
+        val EliminadosVacinas = tabelaVacina.delete(
+            "${BaseColumns._ID}=?",
+            arrayOf(vacinas.id.toString())
+        )
+        Assert.assertEquals(1, EliminadosVacinas)
+
+        db.close()
+    }
+
 }
 
 
