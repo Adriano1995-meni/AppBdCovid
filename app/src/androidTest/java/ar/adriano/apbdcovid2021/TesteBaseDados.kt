@@ -375,7 +375,7 @@ class TesteBaseDados {
 
 
     @Test
-    fun consegueAlterarPaciente() {
+    fun consegueAlterarPessoas() {
 
         val db = getBdPessoasOpenHelper().writableDatabase
 
@@ -429,6 +429,103 @@ class TesteBaseDados {
 
         db.close()
     }
+
+
+
+
+    @Test
+    fun ConsegueEliminarPessoas() {
+
+        val db = getBdPessoasOpenHelper().writableDatabase
+
+        val tabelaDestrito = TabelaDestrito(db)
+        val destrito= Destritos(nome = "Bombaral")
+        destrito.id = insereDestritos(tabelaDestrito, destrito)
+
+        val tabelaEnfermeiro = TabelaEnfermeiro(db)
+        val enfermeiro = Enfermeiro(
+            nome = "Amilcar Morreira",
+            contacto="Contacto :" +
+                    "912224715",
+            sexo = "Sexo: M",
+            Morada = "Beco do Sacrifício",
+            data = Date(2020,7,15),
+            idDestrito = destrito.id,
+            Mail = "meni@gmail.com")
+        //nomeCategoria =  destrito.nome)
+
+        enfermeiro.id = insereEnfermeiro(tabelaEnfermeiro, enfermeiro)
+
+        val tabelaPessoas = TabelaPessoas(db)
+        val pessoas =  Pessoas(
+            nome ="Carlos Matus Da Silva",
+            sexo ="Sexo: M",
+            Morada = "Beco do Sacrifício",
+            NumeroUtente = "251789657",
+            dataNascimento =Date(1995,7,5),
+            Contacto="Contacto: " +
+                    "923557788",
+            dataTeste =Date(2020,10,15),
+            idDestrito = destrito.id,
+            idEnfermeio =enfermeiro.id)
+        pessoas.id= inserePessoas(tabelaPessoas,pessoas)
+
+        val EliminadosPaciente = tabelaPessoas.delete(
+            "${BaseColumns._ID}=?",
+            arrayOf(pessoas.id.toString())
+        )
+        Assert.assertEquals(1, EliminadosPaciente)
+
+
+        db.close()
+    }
+
+
+    @Test
+    fun consegueLerPessoas() {
+        val db = getBdPessoasOpenHelper().writableDatabase
+
+
+        val tabelaDestrito = TabelaDestrito(db)
+        val destrito= Destritos(nome = "Coimbra")
+        destrito.id = insereDestritos(tabelaDestrito, destrito)
+
+        val tabelaEnfermeiro = TabelaEnfermeiro(db)
+        val enfermeiro = Enfermeiro(
+            nome = "Amilcar Morreira",
+            contacto="Contacto :" +
+                    "912224715",
+            sexo = "Sexo: M",
+            Morada = "Beco do Sacrifício",
+            data = Date(2020,7,15),
+            idDestrito = destrito.id,
+            Mail = "meni@gmail.com")
+
+        enfermeiro.id = insereEnfermeiro(tabelaEnfermeiro, enfermeiro)
+
+        val tabelaPessoas = TabelaPessoas(db)
+        val pessoas =  Pessoas(
+            nome ="Carlos Matus Da Silva",
+            sexo ="Sexo: M",
+            Morada = "Beco do Sacrifício",
+            NumeroUtente = "251789657",
+            dataNascimento =Date(1995,7,5),
+            Contacto="Contacto: " +
+                    "923557788",
+            dataTeste =Date(2020,10,15),
+            idDestrito = destrito.id,
+            idEnfermeio =enfermeiro.id)
+
+
+        pessoas.id= inserePessoas(tabelaPessoas,pessoas)
+
+        assertEquals(pessoas, getPessoasBaseDados(tabelaPessoas, pessoas.id))
+
+        db.close()
+    }
+
+
+
 
 
 
