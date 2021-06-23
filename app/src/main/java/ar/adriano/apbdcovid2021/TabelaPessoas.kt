@@ -20,8 +20,9 @@ class TabelaPessoas(db: SQLiteDatabase) {
                     "$DATA DATE NOT NULL," +
                     "$CAMPO_ID_DESTRITO INTEGER NOT NULL," +
                     "$IDENFERMEIRO INTEGER NOT NULL," +
-                    "FOREIGN KEY($CAMPO_ID_DESTRITO) REFERENCES ${TabelaDestrito.NOME_TABELA})")
-                    
+                    "FOREIGN KEY($CAMPO_ID_DESTRITO) REFERENCES ${TabelaDestrito.NOME_TABELA},"+
+                    "FOREIGN KEY($IDENFERMEIRO) REFERENCES ${TabelaEnfermeiro.NOME_TABELA})")
+
     }
 
 
@@ -40,18 +41,18 @@ class TabelaPessoas(db: SQLiteDatabase) {
 
     fun query(
         columns: Array<String>,
-        selection: String,
-        selectionArgs: Array<String>,
-        groupBy: String,
-        having: String,
-        orderBy: String
+        selection: String?,
+        selectionArgs: Array<String>?,
+        groupBy: String?,
+        having: String?,
+        orderBy: String?
     ): Cursor? {
         return db.query(NOME_TABELA, columns, selection, selectionArgs, groupBy, having, orderBy)
     }
 
 
     companion object {
-        const val NOME_TABELA = "PACIENTE"
+        const val NOME_TABELA = "PESSOAS"
         const val NOME_PESSOA = "nome_Pessoa"
         const val SEXO = "SEXO"
         const val NUMERO_UTENTE = "Numero_Utente"
@@ -62,7 +63,8 @@ class TabelaPessoas(db: SQLiteDatabase) {
         const val CAMPO_ID_DESTRITO = "idDestrito"
         const val IDENFERMEIRO = "idEnfermeiro"
 
-
+        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, NOME_PESSOA,  DATA, DATA_NASCIMENTO, CONTACTO,NUMERO_UTENTE, SEXO,
+            CAMPO_ID_DESTRITO, MORADA, IDENFERMEIRO)
 }
 
 }

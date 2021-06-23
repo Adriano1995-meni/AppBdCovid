@@ -38,6 +38,15 @@ class TesteBaseDados {
     }
 
 
+    private fun inserePessoas(tabela: TabelaPessoas, pessoas: Pessoas): Long {
+        val id = tabela.insert(pessoas.toContentValues())
+        Assert.assertNotEquals(-1, id)
+
+        return id
+    }
+
+
+
     private fun getDestritosBaseDados(tabela: TabelaDestrito, id: Long): Destritos {
         val cursor = tabela.query(
             TabelaDestrito.TODAS_COLUNAS,
@@ -64,6 +73,21 @@ class TesteBaseDados {
         assert(cursor!!.moveToNext())
 
         return Enfermeiro.fromCursor(cursor)
+    }
+
+
+    private fun getPessoasBaseDados(tabela: TabelaPessoas, id: Long): Pessoas {
+        val cursor = tabela.query(
+            TabelaPessoas.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf(id.toString()),
+            null, null, null
+        )
+
+        Assert.assertNotNull(cursor)
+        assert(cursor!!.moveToNext())
+
+        return Pessoas.fromCursor(cursor)
     }
 
 
@@ -300,6 +324,51 @@ class TesteBaseDados {
         db.close()
     }
 
+
+
+    @Test
+    fun consegueInserirPessoas() {
+
+        val db = getBdPessoasOpenHelper().writableDatabase
+
+        val tabelaDestrito = TabelaDestrito(db)
+        val destrito= Destritos(nome = "Portalegre")
+        destrito.id = insereDestritos(tabelaDestrito, destrito)
+
+        val tabelaEnfermeiro = TabelaEnfermeiro(db)
+        val enfermeiro = Enfermeiro(
+            nome = " Elisio Shanchs",
+            contacto="Contacto :" +
+                    "962024715",
+            sexo = " Sexo:M",
+            Morada = "Avenida da Liberdade",
+            data = Date(2020,7,15),
+            idDestrito = destrito.id,
+            Mail = "nataperez@gmail.com"
+        //    nomeCategoria =  destrito.nome
+
+        )
+        enfermeiro.id = insereEnfermeiro(tabelaEnfermeiro, enfermeiro)
+
+        val tabelaPessoas = TabelaPessoas(db)
+        val pessoas =  Pessoas(
+            nome ="Junior Carlos Britos",
+            sexo ="Sexo:M",
+            Morada = "Avenida da Liberdade",
+            NumeroUtente = "254789657",
+            dataNascimento =Date(1995,7,5),
+            Contacto="Contacto :" +
+                    "925557788",
+            dataTeste =Date(2020,10,15),
+            idDestrito = destrito.id,
+            idEnfermeio =enfermeiro.id)
+
+        pessoas.id= inserePessoas(tabelaPessoas,pessoas)
+        assertEquals(pessoas, getPessoasBaseDados(tabelaPessoas, pessoas.id))
+
+        db.close()
+
+    }
 
 
 

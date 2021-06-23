@@ -5,7 +5,7 @@ import android.database.Cursor
 import android.provider.BaseColumns
 import java.util.*
 
-class Enfermeiro (
+data class Enfermeiro (
     var id: Long = -1,
     var nome: String,
     val Morada:String,
