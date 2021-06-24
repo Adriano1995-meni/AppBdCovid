@@ -295,7 +295,38 @@ class ContentProviderEnfermeiros : ContentProvider() {
      * @throws SQLException
      */
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<out String>?): Int {
-        TODO("Not yet implemented")
+
+        val bd = bdPessoasOpenHelper!!.writableDatabase
+
+        return when (getUriMatcher().match(uri)) {
+
+            URI_PACIENTE_ESPECIFICO -> TabelaPessoas(bd).delete(
+                    "${BaseColumns._ID}=?",
+                    arrayOf(uri.lastPathSegment!!)
+            )
+
+            URI_DESTRITO_ESPECIFICA -> TabelaDestrito(bd).delete(
+
+                    "${BaseColumns._ID}=?",
+                    arrayOf(uri.lastPathSegment!!)
+            )
+
+            URI_ENFERMEIRO_ESPECIFICO-> TabelaEnfermeiro(bd).delete(
+
+                    "${BaseColumns._ID}=?",
+                    arrayOf(uri.lastPathSegment!!)
+            )
+
+            URI_VACINA_ESPECIFICA-> TabelaVacina(bd).delete(
+
+                    "${BaseColumns._ID}=?",
+                    arrayOf(uri.lastPathSegment!!)
+            )
+
+            else -> 0
+        }
+
+
     }
 
     /**
