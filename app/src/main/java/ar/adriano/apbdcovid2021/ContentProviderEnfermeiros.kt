@@ -5,9 +5,10 @@ import android.content.ContentValues
 import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
+import android.provider.BaseColumns
 
 class ContentProviderEnfermeiros : ContentProvider() {
-    private var bdLivrosOpenHelper : BdRegistaPessoasOpenHelper? = null
+    private var bdPessoasOpenHelper : BdRegistaPessoasOpenHelper? = null
     /**
      * Implement this to handle requests to insert a new row. As a courtesy,
      * call
@@ -91,8 +92,99 @@ class ContentProviderEnfermeiros : ContentProvider() {
      * If `null` then the provider is free to define the sort order.
      * @return a Cursor or `null`.
      */
-    override fun query(uri: Uri, projection: Array<out String>?, selection: String?, selectionArgs: Array<out String>?, sortOrder: String?): Cursor? {
-        TODO("Not yet implemented")
+    override fun query(
+            uri: Uri,
+            projection: Array<out String>?,
+            selection: String?,
+            selectionArgs: Array<out String>?,
+            sortOrder: String?
+    ): Cursor? {
+
+        val bd = bdPessoasOpenHelper!!.readableDatabase
+
+
+        //  retirei um ? na Frente de Array<String>?,
+
+        return when (getUriMatcher().match(uri)) {
+
+            URI_PESSOAS-> TabelaPessoas(bd).query(
+                    projection as Array<String>,
+                    selection,
+                    selectionArgs as Array<String>?,
+                    null,
+                    null,
+                    sortOrder
+            )
+
+            URI_PACIENTE_ESPECIFICO -> TabelaEnfermeiro(bd).query(
+                    projection as Array<String>,
+                    "${BaseColumns._ID}=?",
+                    arrayOf(uri.lastPathSegment!!),
+                    null,
+                    null,
+                    null
+            )
+
+            URI_DESTRITO -> TabelaDestrito(bd).query(
+                    projection as Array<String>,
+                    selection,
+                    selectionArgs as Array<String>?,
+                    null,
+                    null,
+                    sortOrder
+            )
+
+            URI_DESTRITO_ESPECIFICA -> TabelaDestrito(bd).query(
+                    projection as Array<String>,
+                    "${BaseColumns._ID}=?",
+                    arrayOf(uri.lastPathSegment!!),
+                    null,
+                    null,
+                    null
+            )
+
+
+            URI_ENFERMEIROS -> TabelaEnfermeiro(bd).query(
+                    projection as Array<String>,
+                    selection,
+                    selectionArgs as Array<String>?,
+                    null,
+                    null,
+                    sortOrder
+            )
+
+            URI_ENFERMEIRO_ESPECIFICO -> TabelaEnfermeiro(bd).query(
+                    projection as Array<String>,
+                    "${BaseColumns._ID}=?",
+                    arrayOf(uri.lastPathSegment!!),
+                    null,
+                    null,
+                    null
+            )
+
+
+            //  retiramos um ? na Frente de Array<String>?,
+            URI_VACINA -> TabelaVacina(bd).query(
+                    projection as Array<String>,
+                    selection,
+                    selectionArgs as Array<String>,
+                    null,
+                    null,
+                    sortOrder
+            )
+
+            URI_VACINA_ESPECIFICA-> TabelaVacina(bd).query(
+                    projection as Array<String>,
+                    "${BaseColumns._ID}=?",
+                    arrayOf(uri.lastPathSegment!!),
+                    null,
+                    null,
+                    null
+            )
+
+            else -> null
+        }
+
     }
 
     /**
@@ -123,7 +215,7 @@ class ContentProviderEnfermeiros : ContentProvider() {
      * @return true if the provider was successfully loaded, false otherwise
      */
     override fun onCreate(): Boolean {
-        bdLivrosOpenHelper = BdRegistaPessoasOpenHelper(context)
+        bdPessoasOpenHelper = BdRegistaPessoasOpenHelper(context)
 
         return true
     }
