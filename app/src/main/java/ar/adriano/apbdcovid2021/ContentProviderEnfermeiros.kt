@@ -22,7 +22,23 @@ class ContentProviderEnfermeiros : ContentProvider() {
      * @return The URI for the newly inserted item.
      */
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
-        TODO("Not yet implemented")
+
+
+        val bd = bdPessoasOpenHelper!!.writableDatabase
+
+        val id = when (getUriMatcher().match(uri)) {
+            URI_PESSOAS -> TabelaPessoas(bd).insert(values!!)
+            URI_DESTRITO -> TabelaDestrito(bd).insert(values!!)
+            URI_ENFERMEIROS -> TabelaEnfermeiro(bd).insert(values!!)
+            URI_VACINA -> TabelaVacina(bd).insert(values!!)
+
+
+            else -> -1L
+        }
+
+        if (id == -1L) return null
+
+        return Uri.withAppendedPath(uri, id.toString())
     }
 
     /**
