@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.loader.app.LoaderManager
+import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
 
@@ -26,7 +27,8 @@ class ListaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        LoaderManager.getInstance(this)
+                .initLoader(ID_LOADER_MANAGER_PESSOAS, null, this)
         findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
    //     view.findViewById<Button>(R.id.button_first).setOnClickListener {
 
@@ -43,7 +45,13 @@ class ListaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
      * @return Return a new Loader instance that is ready to start loading.
      */
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
-        TODO("Not yet implemented")
+        return CursorLoader(
+                requireContext(),
+                ContentProviderEnfermeiros.ENDRECO_ENFERMEIRA,
+                TabelaEnfermeiro.TODAS_COLUNAS,
+                null,null,
+                TabelaEnfermeiro.NOME_ENFERMEIRO
+        )
     }
 
     /**
@@ -105,5 +113,9 @@ class ListaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
      */
     override fun onLoaderReset(loader: Loader<Cursor>) {
         TODO("Not yet implemented")
+    }
+
+    companion object {
+        const val ID_LOADER_MANAGER_PESSOAS = 0
     }
 }
