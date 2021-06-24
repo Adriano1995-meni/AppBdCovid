@@ -235,10 +235,42 @@ class ContentProviderEnfermeiros : ContentProvider() {
      * @param selection An optional filter to match rows to update.
      * @return the number of rows affected.
      */
-    override fun update(uri: Uri, values: ContentValues?, selection: String?, selectionArgs: Array<out String>?): Int {
-        TODO("Not yet implemented")
-    }
+    override fun update(
+            uri: Uri,
+            values: ContentValues?,
+            selection: String?,
+            selectionArgs: Array<out String>?
+    ): Int {
+        val bd = bdPessoasOpenHelper!!.writableDatabase
 
+        return when (getUriMatcher().match(uri)) {
+            URI_PACIENTE_ESPECIFICO -> TabelaPessoas(bd).update(
+                    values!!,
+                    "${BaseColumns._ID}=?",
+                    arrayOf(uri.lastPathSegment!!)
+            )
+
+            URI_DESTRITO_ESPECIFICA -> TabelaDestrito(bd).update(
+                    values!!,
+                    "${BaseColumns._ID}=?",
+                    arrayOf(uri.lastPathSegment!!)
+            )
+
+            URI_ENFERMEIRO_ESPECIFICO-> TabelaEnfermeiro(bd).update(
+                    values!!,
+                    "${BaseColumns._ID}=?",
+                    arrayOf(uri.lastPathSegment!!)
+            )
+
+            URI_VACINA_ESPECIFICA-> TabelaVacina(bd).update(
+                    values!!,
+                    "${BaseColumns._ID}=?",
+                    arrayOf(uri.lastPathSegment!!)
+            )
+
+            else -> 0
+        }
+    }
     /**
      * Implement this to handle requests to delete one or more rows. The
      * implementation should apply the selection clause when performing
