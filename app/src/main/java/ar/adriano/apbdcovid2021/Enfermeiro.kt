@@ -13,7 +13,9 @@ data class Enfermeiro (
     var sexo:String,
     var data: Date,
     var idDestrito: Long,
-    var Mail: String
+    var Mail: String,
+    var nomeCategoria: String? = null
+
 
 )  {
 
@@ -47,6 +49,7 @@ data class Enfermeiro (
             val SEXO = cursor.getColumnIndex(TabelaEnfermeiro.SEXO)
             val DataHoje = cursor.getColumnIndex(TabelaEnfermeiro.DATA)
             val mail = cursor.getColumnIndex(TabelaEnfermeiro.MAIL)
+            val colNomeCateg = cursor.getColumnIndex(TabelaEnfermeiro.CAMPO_EXTERNO_NOME_DESTRITO)
 
 
 
@@ -59,8 +62,8 @@ data class Enfermeiro (
             val SexoEnf = cursor.getString(SEXO)
             val Data = cursor.getLong(DataHoje)
             val C_Mail = cursor.getString(mail)
-
-            return Enfermeiro(id, nome, CM_Morada,contacto, SexoEnf, Date(Data),idCateg,C_Mail)
+            val nomeCategoria = if (colNomeCateg != -1) cursor.getString(colNomeCateg) else null
+            return Enfermeiro(id, nome, CM_Morada,contacto, SexoEnf, Date(Data),idCateg,C_Mail, nomeCategoria)
         }
     }
 }

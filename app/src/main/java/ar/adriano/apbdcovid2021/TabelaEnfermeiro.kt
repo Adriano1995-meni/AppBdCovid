@@ -33,7 +33,6 @@ class TabelaEnfermeiro(db: SQLiteDatabase) {
     fun delete(whereClause: String, whereArgs: Array<String>): Int {
         return db.delete(NOME_TABELA, whereClause, whereArgs)
     }
-
     fun query(
         columns: Array<String>,
         selection: String?,
@@ -42,8 +41,46 @@ class TabelaEnfermeiro(db: SQLiteDatabase) {
         having: String?,
         orderBy: String?
     ): Cursor? {
-        return db.query(NOME_TABELA, columns, selection, selectionArgs, groupBy, having, orderBy)
+        val ultimaColuna = columns.size - 1
+
+        var posColNomeDestrito = -1 // -1 indica que a coluna não foi pedida
+        for (i in 0..ultimaColuna) {
+            if (columns[i] == CAMPO_EXTERNO_NOME_DESTRITO) {
+                posColNomeDestrito = i
+                break
+            }
+        }
+
+        if (posColNomeDestrito == -1) {
+            return db.query(NOME_TABELA, columns, selection, selectionArgs, groupBy, having, orderBy)
+        }
+
+        var colunas = ""
+        for (i in 0..ultimaColuna) {
+            if (i > 0) colunas += ","
+
+            colunas += if (i == posColNomeDestrito) {
+                "${TabelaDestrito.NOME_TABELA}.${TabelaDestrito.CAMPO_NOME} AS $CAMPO_EXTERNO_NOME_DESTRITO"
+            } else {
+                "${NOME_TABELA}.${columns[i]}"
+            }
+        }
+
+        val tabelas = "$NOME_TABELA INNER JOIN ${TabelaDestrito.NOME_TABELA} ON ${TabelaDestrito.NOME_TABELA}.${BaseColumns._ID}=$CAMPO_ID_DESTRITO"
+        var sql = "SELECT $colunas FROM $tabelas"
+
+        if (selection != null) sql += " WHERE $selection"
+
+        if (groupBy != null) {
+            sql += " GROUP BY $groupBy"
+            if (having != null) " HAVING $having"
+        }
+
+        if (orderBy != null) sql += " ORDER BY $orderBy"
+
+        return db.rawQuery(sql, selectionArgs)
     }
+
 
 
 
@@ -56,13 +93,13 @@ class TabelaEnfermeiro(db: SQLiteDatabase) {
         const val SEXO = "Sexo"
         const val MORADA = "Morada"
         const val DATA = "data"
+        const val  CAMPO_EXTERNO_NOME_DESTRITO = "EXTERNO_NO_ENFERMEIRO"
 
-
-        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, NOME_ENFERMEIRO, CONTACTO, CAMPO_ID_DESTRITO, DATA,
+        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, NOME_ENFERMEIRO, CONTACTO, MAIL,CAMPO_ID_DESTRITO, DATA,
             SEXO,
             MORADA,
-            MAIL
-        )
+            CAMPO_EXTERNO_NOME_DESTRITO)
+
 
 
     }
