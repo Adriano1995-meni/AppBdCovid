@@ -194,7 +194,22 @@ class ContentProviderEnfermeiros : ContentProvider() {
      * @return a MIME type string, or `null` if there is no type.
      */
     override fun getType(uri: Uri): String? {
-        TODO("Not yet implemented")
+        return when (getUriMatcher().match(uri)) {
+            URI_PESSOAS-> "$MULTIPLOS_ITEMS/$Pessoas"
+            URI_PACIENTE_ESPECIFICO -> "$UNICO_ITEM/$Pessoas"
+
+            URI_DESTRITO ->"$MULTIPLOS_ITEMS/$Destrito"
+            URI_DESTRITO_ESPECIFICA -> "$UNICO_ITEM/$Destrito"
+
+            URI_ENFERMEIROS->"$MULTIPLOS_ITEMS/$Enfermeiro"
+            URI_ENFERMEIRO_ESPECIFICO -> "$UNICO_ITEM/$Enfermeiro"
+
+            URI_VACINA->"$MULTIPLOS_ITEMS/$Vacina"
+            URI_VACINA_ESPECIFICA-> "$UNICO_ITEM/$Vacina"
+
+            else -> null
+        }
+
     }
 
     companion object {
