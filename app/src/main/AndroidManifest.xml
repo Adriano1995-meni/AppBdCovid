@@ -19,6 +19,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:authorities="ar.adriano.apbdcovid2021"
+            android:name=".ContentProviderEnfermeiros"
+            android:exported="false"/>
+
     </application>
 
 </manifest>
