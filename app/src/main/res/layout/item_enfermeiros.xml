@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/margem_Campos"
+    android:layout_marginLeft="@dimen/margem_Campos"
+    android:layout_marginTop="@dimen/margem_Campos"
+    android:layout_marginEnd="@dimen/margem_Campos"
+    android:layout_marginRight="@dimen/margem_Campos"
+    android:layout_marginBottom="@dimen/margem_Campos"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textViewSexo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margem_Campos"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/textViewNome"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNome"
+        tools:text="Sexo " />
+
+    <TextView
+        android:id="@+id/textViewDatNascimento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margem_Campos"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="@+id/textViewDataTeste"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDataTeste"
+        tools:text="@tools:sample/date/ddmmyy" />
+
+    <TextView
+        android:id="@+id/textViewContacto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margem_Campos"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintStart_toStartOf="@+id/textViewSexo"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSexo"
+        tools:text="Contacto " />
+
+    <TextView
+        android:id="@+id/textViewDataTeste"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margem_Campos"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="@+id/textViewContacto"
+        app:layout_constraintTop_toBottomOf="@+id/textViewContacto"
+        tools:text="Data" />
+
+    <TextView
+        android:id="@+id/textViewMorada"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margem_Campos"
+        android:paddingBottom="@dimen/margem_Campos"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="@+id/textViewDatNascimento"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDatNascimento"
+        tools:text="Morada" />
+
+    <TextView
+        android:id="@+id/textViewNome"
+        android:layout_width="0dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="@dimen/margem_Campos"
+        android:layout_marginEnd="@dimen/margem_Campos"
+        android:layout_marginRight="@dimen/margem_Campos"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toStartOf="@+id/textViewDestrito"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Adriano correia " />
+
+    <TextView
+        android:id="@+id/textViewDestrito"
+        android:layout_width="111dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="@dimen/margem_Campos"
+        android:layout_marginEnd="@dimen/margem_Campos"
+        android:layout_marginRight="@dimen/margem_Campos"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/purple_700"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Destrito" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
