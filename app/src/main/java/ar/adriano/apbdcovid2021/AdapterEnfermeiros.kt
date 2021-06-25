@@ -42,7 +42,7 @@ class AdapterEnfermeiros (var cursor: Cursor? = null) : RecyclerView.Adapter<Ada
      * @return The total number of items in this adapter.
      */
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return cursor?.count ?: 0
     }
 
     /**
