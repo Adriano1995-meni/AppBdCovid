@@ -117,6 +117,7 @@ class AdapterEnfermeiros (val fragment: ListaEnfermeirosFragment) : RecyclerView
             DadosApp.activity.ActulizaMenusListaEnfermeiros(true)
 
 
+
         }
 
         private fun desSeleciona() {
