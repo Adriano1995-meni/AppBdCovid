@@ -11,6 +11,9 @@ import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import ar.adriano.apbdcovid2021.R.id
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -23,9 +26,16 @@ class ListaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_lista_enfermeiros, container, false)
     }
+    private var adapterEnfermeiros: AdapterEnfermeiros?=null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        val recyclerViewEnfermeiro=   view.findViewById<RecyclerView>(R.id.recyclerViewEnfermeiro)
+        adapterEnfermeiros= AdapterEnfermeiros()
+        recyclerViewEnfermeiro.adapter = adapterEnfermeiros
+        recyclerViewEnfermeiro.layoutManager = LinearLayoutManager(requireContext())
 
         LoaderManager.getInstance(this)
                 .initLoader(ID_LOADER_MANAGER_PESSOAS, null, this)

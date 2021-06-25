@@ -7,6 +7,7 @@
     tools:context=".ListaEnfermeirosFragment">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewEnfermeiro"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </FrameLayout>
