@@ -1,10 +1,11 @@
 package ar.adriano.apbdcovid2021
 
+import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterEnfermeiros: RecyclerView.Adapter<AdapterEnfermeiros.ViewHolderEnfermeiro>() {
+class AdapterEnfermeiros (var cursor: Cursor? = null) : RecyclerView.Adapter<AdapterEnfermeiros.ViewHolderEnfermeiro>() {
 
     class ViewHolderEnfermeiro(itemView: View) : RecyclerView.ViewHolder(itemView)
 
