@@ -33,7 +33,7 @@ class ListaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
 
 
         val recyclerViewEnfermeiro=   view.findViewById<RecyclerView>(R.id.recyclerViewEnfermeiro)
-        adapterEnfermeiros= AdapterEnfermeiros()
+        adapterEnfermeiros= AdapterEnfermeiros(this)
         recyclerViewEnfermeiro.adapter = adapterEnfermeiros
         recyclerViewEnfermeiro.layoutManager = LinearLayoutManager(requireContext())
 

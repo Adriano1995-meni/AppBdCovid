@@ -9,6 +9,9 @@ import android.view.MenuItem
 
 class MainActivity : AppCompatActivity() {
 
+    private  lateinit var menu: Menu
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -18,21 +21,35 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
+      DadosApp.activity=this
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
+        menuInflater.inflate(R.menu.menu_lista_enfermeiro, menu)
+        this.menu= menu
+        ActulizaMenusListaEnfermeiros(false)
         return true
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         return when (item.itemId) {
             R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
+
+            else -> {
+                if( DadosApp.listaEnfermeiroFragment.processaOpcaoDeMenu(item)){
+                    return true
+                }else
+                    return super.onOptionsItemSelected(item)
+            }
         }
+    }
+
+    fun ActulizaMenusListaEnfermeiros(mostraBotoesAlterarEliminar:Boolean){
+        menu.findItem(R.id.action_Alterar_Enfermeiro).setVisible(mostraBotoesAlterarEliminar)
+        menu.findItem(R.id.action_eliminar_Enfermeiro).setVisible(mostraBotoesAlterarEliminar)
+
     }
 }

@@ -78,7 +78,7 @@ class AdapterEnfermeiros (val fragment: ListaEnfermeirosFragment) : RecyclerView
         holder.atualizaEnfermeiros(enfermeiro)
     }
 
-    class ViewHolderEnfermeiro(itemView: View) : RecyclerView.ViewHolder(itemView),View.OnClickListener{
+    class ViewHolderEnfermeiro(itemView: View) : RecyclerView.ViewHolder(itemView),View.OnClickListener {
         private val textViewNome = itemView.findViewById<TextView>(R.id.textViewNome)
         private val textViewSexo = itemView.findViewById<TextView>(R.id.textViewSexo)
         private val textViewMorada = itemView.findViewById<TextView>(R.id.textViewMorada)
@@ -105,22 +105,30 @@ class AdapterEnfermeiros (val fragment: ListaEnfermeirosFragment) : RecyclerView
 
         }
 
-        /**
-         * Called when a view has been clicked.
-         *
-         * @param v The view that was clicked.
-         */
         override fun onClick(v: View?) {
-            TODO("Not yet implemented")
+            selecionado?.desSeleciona()
+            seleciona()
         }
 
-        /**
-         * Called when a view has been clicked.
-         *
-         * @param v The view that was clicked.
-         */
+        private fun seleciona() {
+            selecionado = this
+            itemView.setBackgroundResource(R.color.cor_selecao)
+            DadosApp.enfermeiroSelecionado = enfermeiro
+            DadosApp.activity.ActulizaMenusListaEnfermeiros(true)
 
 
+        }
+
+        private fun desSeleciona() {
+            selecionado = null
+            itemView.setBackgroundResource(android.R.color.white)
+        }
+
+
+        companion object {
+
+            var selecionado: ViewHolderEnfermeiro? = null
+        }
 
     }
-}
+    }
