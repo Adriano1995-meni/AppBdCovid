@@ -17,9 +17,9 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="ar.adriano.apbdcovid2021.SecondFragment"
+        android:name="ar.adriano.apbdcovid2021.NovoLivroFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        tools:layout="@layout/fragment_novo_enfermeiro">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"

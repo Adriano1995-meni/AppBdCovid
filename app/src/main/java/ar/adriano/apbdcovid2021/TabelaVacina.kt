@@ -13,10 +13,10 @@ class TabelaVacina (db: SQLiteDatabase) {
             "CREATE TABLE $NOME_TABELA(${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "$NOME_VACINA TEXT NOT NULL," +
                     "$DATA_DO_SEGUNDA_DOCE DATE NOT NULL," +
-                    "$DATA_VALIDACAO DATE NOT NULL," +
-                    "$CAMPO_ID_DESTRITO INTEGER NOT NULL," +
-                    "$IDPaciente INTEGER NOT NULL," +
-                    "FOREIGN KEY($CAMPO_ID_DESTRITO) REFERENCES ${TabelaDestrito.NOME_TABELA}," +
+                  // "$DATA_VALIDACAO DATE NOT NULL," +
+                   "$CAMPO_ID_DESTRITO INTEGER NOT NULL," +
+                   "$IDPaciente INTEGER NOT NULL," +
+                   "FOREIGN KEY($CAMPO_ID_DESTRITO) REFERENCES ${TabelaDestrito.NOME_TABELA}," +
                     "FOREIGN KEY($IDPaciente) REFERENCES ${TabelaPessoas.NOME_TABELA})")
 
 
@@ -51,12 +51,17 @@ class TabelaVacina (db: SQLiteDatabase) {
     companion object {
         const val NOME_TABELA = "Vacina"
         const val NOME_VACINA = "nome_Vacina"
-        const val DATA_DO_SEGUNDA_DOCE = "DATA_DO_TESTE"
-        const val DATA_VALIDACAO ="Data de Validaçao"
+     const val DATA_DO_SEGUNDA_DOCE = "DATA_DO_TESTE"
+       // const val DATA_VALIDACAO ="Data de Validaçao"
         const val CAMPO_ID_DESTRITO = "idDestrito"
         const val IDPaciente = "IDPaciente"
 
-        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, NOME_VACINA,DATA_DO_SEGUNDA_DOCE,IDPaciente,CAMPO_ID_DESTRITO )
+        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, NOME_VACINA
+               ,DATA_DO_SEGUNDA_DOCE,
+              //  DATA_VALIDACAO,
+                IDPaciente,
+               CAMPO_ID_DESTRITO
+        )
 
     }
 

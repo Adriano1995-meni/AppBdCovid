@@ -4,6 +4,7 @@ import android.database.Cursor
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -124,6 +125,16 @@ class ListaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
     override fun onLoaderReset(loader: Loader<Cursor>) {
         adapterEnfermeiros!!.cursor =null
     }
+
+
+
+
+    fun processaOpcaoDeMenu(item: MenuItem): Boolean {
+
+        return true
+    }
+
+
 
     companion object {
         const val ID_LOADER_MANAGER_PESSOAS = 0
