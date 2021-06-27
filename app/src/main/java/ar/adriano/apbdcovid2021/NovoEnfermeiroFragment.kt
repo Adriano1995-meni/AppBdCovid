@@ -32,8 +32,10 @@ class NovoEnfermeiroFragment : Fragment() {
         }
 
 
-    fun navegaListaLivros() {
-        // todo: navegar para a lista de livros
+    fun navegaListaEnfermeiro() {
+
+        findNavController().navigate(R.id.action_NovoEnfermeirosFragment_to_action_ListaEnfermerosFragment)
+
     }
 
     fun guardar() {
@@ -43,7 +45,7 @@ class NovoEnfermeiroFragment : Fragment() {
     fun processaOpcaoMenu(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_guardar_novo_enfermeiro-> guardar()
-            R.id.action_cancelar_novo_livro -> navegaListaLivros()
+            R.id.action_cancelar_novo_livro -> navegaListaEnfermeiro()
             else -> return false
         }
 
