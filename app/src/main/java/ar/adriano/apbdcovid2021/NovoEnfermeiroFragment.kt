@@ -14,6 +14,8 @@ import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
+import java.util.*
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -64,7 +66,61 @@ class NovoEnfermeiroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>
     }
 
     fun guardar() {
-        // todo: guardar livro
+        val nome = editTextNome.text.toString()
+        if (nome.isEmpty()) {
+            editTextNome.setError(getString(R.string.preencha_titulo))
+            return
+        }
+        val morada = editTextMorada.text.toString()
+        if (morada.isEmpty()) {
+            editTextMorada.setError(getString(R.string.preencha_titulo))
+            return
+        }
+
+        val contacto = editTextContacto.text.toString()
+        if (contacto.isEmpty()) {
+            editTextContacto.setError(getString(R.string.preencha_titulo))
+            return
+        }
+
+        val sexo = editTextSexo.text.toString()
+        if (sexo.isEmpty()) {
+            editTextSexo.setError(getString(R.string.preencha_titulo))
+            return
+        }
+
+        val data = editTextData.text.toString()
+        if (data.isEmpty()) {
+            editTextData.setError(getString(R.string.preencha_titulo))
+            return
+        }
+
+
+        val mail = editTextMail.text.toString()
+        if (mail.isEmpty()) {
+            editTextMail.setError(getString(R.string.preencha_autor))
+            return
+        }
+
+        val idDestrito = spinnerDestritos.selectedItemId
+
+        val enfermeiros = Enfermeiro(nome = nome, Morada = morada, contacto = contacto,sexo = sexo,data = Date(data), Mail = mail,idDestrito = idDestrito)
+
+        val uri = activity?.contentResolver?.insert(
+                ContentProviderEnfermeiros.ENDRECO_ENFERMEIRA,
+                enfermeiros.toContentValues()
+        )
+
+        if (uri == null) {
+            Snackbar.make(
+                    editTextNome,
+                    getString(R.string.erro_inserir_livro),
+                    Snackbar.LENGTH_LONG
+            ).show()
+            return
+        }
+
+        navegaListaEnfermeiro()
     }
 
     fun processaOpcaoMenu(item: MenuItem): Boolean {

@@ -24,4 +24,8 @@
     <string name="cancelar">cancelar</string>
     <string name="eliminar_enfermeiro">eliminar_enfermeiro</string>
     <string name="versao">Enfermeiro v. 1.0</string>
+
+    <string name="preencha_titulo">Preencha o título</string>
+    <string name="preencha_autor">Preencha o autor</string>
+    <string name="erro_inserir_livro">Erro ao inserir livro</string>
 </resources>
