@@ -20,4 +20,6 @@
     <string name="morad">Morad</string>
     <string name="email">Email</string>
     <string name="destritos">Destritos</string>
+    <string name="guardar">guardar</string>
+    <string name="cancelar">cancelar</string>
 </resources>
