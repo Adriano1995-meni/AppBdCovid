@@ -95,7 +95,8 @@ class TabelaEnfermeiro(db: SQLiteDatabase) {
         const val DATA = "data"
         const val  CAMPO_EXTERNO_NOME_DESTRITO = "EXTERNO_NO_ENFERMEIRO"
 
-        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, NOME_ENFERMEIRO, CONTACTO, MAIL,CAMPO_ID_DESTRITO, DATA,
+        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, NOME_ENFERMEIRO, CONTACTO, MAIL,CAMPO_ID_DESTRITO,
+                DATA,
             SEXO,
             MORADA,
             CAMPO_EXTERNO_NOME_DESTRITO)

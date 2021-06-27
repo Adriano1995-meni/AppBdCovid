@@ -21,15 +21,16 @@ class ContentProviderEnfermeiros : ContentProvider() {
      * @param values A set of column_name/value pairs to add to the database.
      * @return The URI for the newly inserted item.
      */
+
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
 
 
         val bd = bdPessoasOpenHelper!!.writableDatabase
 
         val id = when (getUriMatcher().match(uri)) {
+            URI_ENFERMEIROS -> TabelaEnfermeiro(bd).insert(values!!)
             URI_PESSOAS -> TabelaPessoas(bd).insert(values!!)
             URI_DESTRITO -> TabelaDestrito(bd).insert(values!!)
-            URI_ENFERMEIROS -> TabelaEnfermeiro(bd).insert(values!!)
             URI_VACINA -> TabelaVacina(bd).insert(values!!)
 
 
@@ -132,7 +133,7 @@ class ContentProviderEnfermeiros : ContentProvider() {
                     sortOrder
             )
 
-            URI_PACIENTE_ESPECIFICO -> TabelaEnfermeiro(bd).query(
+            URI_PESSOA_ESPECIFICO -> TabelaEnfermeiro(bd).query(
                     projection as Array<String>,
                     "${BaseColumns._ID}=?",
                     arrayOf(uri.lastPathSegment!!),
@@ -260,7 +261,7 @@ class ContentProviderEnfermeiros : ContentProvider() {
         val bd = bdPessoasOpenHelper!!.writableDatabase
 
         return when (getUriMatcher().match(uri)) {
-            URI_PACIENTE_ESPECIFICO -> TabelaPessoas(bd).update(
+            URI_PESSOA_ESPECIFICO -> TabelaPessoas(bd).update(
                     values!!,
                     "${BaseColumns._ID}=?",
                     arrayOf(uri.lastPathSegment!!)
@@ -316,7 +317,7 @@ class ContentProviderEnfermeiros : ContentProvider() {
 
         return when (getUriMatcher().match(uri)) {
 
-            URI_PACIENTE_ESPECIFICO -> TabelaPessoas(bd).delete(
+            URI_PESSOA_ESPECIFICO -> TabelaPessoas(bd).delete(
                     "${BaseColumns._ID}=?",
                     arrayOf(uri.lastPathSegment!!)
             )
@@ -366,14 +367,15 @@ class ContentProviderEnfermeiros : ContentProvider() {
      */
     override fun getType(uri: Uri): String? {
         return when (getUriMatcher().match(uri)) {
-            URI_PESSOAS-> "$MULTIPLOS_ITEMS/$Pessoas"
-            URI_PACIENTE_ESPECIFICO -> "$UNICO_ITEM/$Pessoas"
-
-            URI_DESTRITO ->"$MULTIPLOS_ITEMS/$Destrito"
-            URI_DESTRITO_ESPECIFICA -> "$UNICO_ITEM/$Destrito"
 
             URI_ENFERMEIROS->"$MULTIPLOS_ITEMS/$Enfermeiro"
             URI_ENFERMEIRO_ESPECIFICO -> "$UNICO_ITEM/$Enfermeiro"
+
+            URI_PESSOAS-> "$MULTIPLOS_ITEMS/$Pessoas"
+            URI_PESSOA_ESPECIFICO -> "$UNICO_ITEM/$Pessoas"
+
+            URI_DESTRITO ->"$MULTIPLOS_ITEMS/$Destrito"
+            URI_DESTRITO_ESPECIFICA -> "$UNICO_ITEM/$Destrito"
 
             URI_VACINA->"$MULTIPLOS_ITEMS/$Vacina"
             URI_VACINA_ESPECIFICA-> "$UNICO_ITEM/$Vacina"
@@ -386,15 +388,15 @@ class ContentProviderEnfermeiros : ContentProvider() {
     companion object {
 
 
-        private const val AUTHORITY = "ar.adriano.bdcovid2021"
-        private const val Pessoas = "Pacientes"
+        private const val AUTHORITY = "ar.adriano.apbdcovid2021"
+        private const val Pessoas = "Pessoas"
         private const val Destrito = "destritos"
         private const val Enfermeiro="enfermeiro"
         private const val Vacina="Vacinas"
 
 
         private const val URI_PESSOAS = 100
-        private const val URI_PACIENTE_ESPECIFICO = 101
+        private const val URI_PESSOA_ESPECIFICO = 101
 
         private const val URI_DESTRITO = 200
         private const val URI_DESTRITO_ESPECIFICA = 201
@@ -419,14 +421,16 @@ class ContentProviderEnfermeiros : ContentProvider() {
         private fun getUriMatcher() : UriMatcher {
             val uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
 
+            uriMatcher.addURI(AUTHORITY, Enfermeiro, URI_ENFERMEIROS)
+            uriMatcher.addURI(AUTHORITY, "$Enfermeiro/#", URI_ENFERMEIRO_ESPECIFICO)
+
+
             uriMatcher.addURI(AUTHORITY, Pessoas, URI_PESSOAS)
-            uriMatcher.addURI(AUTHORITY, "$Pessoas/#", URI_PACIENTE_ESPECIFICO)
+            uriMatcher.addURI(AUTHORITY, "$Pessoas/#", URI_PESSOA_ESPECIFICO)
 
             uriMatcher.addURI(AUTHORITY, Destrito, URI_DESTRITO)
             uriMatcher.addURI(AUTHORITY, "$Destrito/#", URI_DESTRITO_ESPECIFICA)
 
-            uriMatcher.addURI(AUTHORITY, Enfermeiro, URI_ENFERMEIROS)
-            uriMatcher.addURI(AUTHORITY, "$Enfermeiro/#", URI_ENFERMEIRO_ESPECIFICO)
 
             uriMatcher.addURI(AUTHORITY, Vacina, URI_VACINA)
             uriMatcher.addURI(AUTHORITY, "$Vacina/#", URI_VACINA_ESPECIFICA)

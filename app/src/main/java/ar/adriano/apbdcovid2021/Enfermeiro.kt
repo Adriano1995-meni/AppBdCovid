@@ -25,9 +25,10 @@ data class Enfermeiro (
             put(TabelaEnfermeiro.CONTACTO, contacto)
             put(TabelaEnfermeiro.MORADA,Morada)
             put(TabelaEnfermeiro.CAMPO_ID_DESTRITO, idDestrito)
-            put(TabelaEnfermeiro.DATA,data.time)
+           put(TabelaEnfermeiro.DATA,data.time)
             put(TabelaEnfermeiro.SEXO, sexo)
             put(TabelaEnfermeiro.MAIL,Mail)
+
 
 
 
@@ -63,7 +64,10 @@ data class Enfermeiro (
             val Data = cursor.getLong(DataHoje)
             val C_Mail = cursor.getString(mail)
             val nomeCategoria = if (colNomeCateg != -1) cursor.getString(colNomeCateg) else null
-            return Enfermeiro(id, nome, CM_Morada,contacto, SexoEnf, Date(Data),idCateg,C_Mail, nomeCategoria)
+
+            return Enfermeiro(id, nome, CM_Morada,contacto, SexoEnf,
+                    Date(Data),
+                    idCateg,C_Mail, nomeCategoria)
         }
     }
 }

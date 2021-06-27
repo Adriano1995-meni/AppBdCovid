@@ -4,7 +4,7 @@
     <item name="textViewDataTeste" type="id" />
     <item name="textViewContacto" type="id" />
     <item name="textViewMorada" type="id" />
-    <item name="textViewDatNascimento" type="id" />
+    <item name="textViewEmail" type="id" />
     <item name="textViewDestrito" type="id" />
     <item name="textViewNome" type="id" />
 </resources>

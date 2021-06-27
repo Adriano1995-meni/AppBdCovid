@@ -7,12 +7,67 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class AdapterEnfermeiros (val fragment: ListaEnfermeirosFragment) : RecyclerView.Adapter<AdapterEnfermeiros.ViewHolderEnfermeiro>() {
-    public var cursor: Cursor? = null
+   public  var cursor: Cursor? = null
         get() = field
         set(value) {
             field = value
             notifyDataSetChanged()
         }
+
+
+    class ViewHolderEnfermeiro(itemView: View) : RecyclerView.ViewHolder(itemView),View.OnClickListener {
+        private val textViewNome = itemView.findViewById<TextView>(R.id.textViewNome)
+        private val textViewSexo = itemView.findViewById<TextView>(R.id.textViewSexo)
+        private val textViewMorada = itemView.findViewById<TextView>(R.id.textViewMorada)
+        private val textViewContacto = itemView.findViewById<TextView>(R.id.textViewContacto)
+       // private val textViewData = itemView.findViewById<TextView>(R.id.textViewDataTeste)
+        private var textViewEmail=itemView.findViewById<TextView>(R.id.textViewEmail)
+        private val textViewDestrito = itemView.findViewById<TextView>(R.id.textViewDestritos)
+
+
+        private lateinit var enfermeiro: Enfermeiro
+
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        fun atualizaEnfermeiros(enfermeiro: Enfermeiro) {
+
+            this.enfermeiro = enfermeiro
+
+            textViewNome.text = enfermeiro.nome
+            textViewSexo.text = enfermeiro.sexo
+            textViewContacto.text = enfermeiro.contacto
+         //   textViewData.text = enfermeiro.data.toString()
+            textViewMorada.text = enfermeiro.Morada
+            textViewEmail.text = enfermeiro.Mail
+            textViewDestrito.text = enfermeiro.nomeCategoria
+        }
+
+        override fun onClick(v: View?) {
+            selecionado?.desSeleciona()
+            seleciona()
+        }
+
+        private fun seleciona() {
+            selecionado = this
+            itemView.setBackgroundResource(R.color.cor_selecao)
+            DadosApp.enfermeiroSelecionado = enfermeiro
+            DadosApp.activity.ActulizaMenusListaEnfermeiros(true)
+        }
+
+        private fun desSeleciona() {
+            selecionado = null
+            itemView.setBackgroundResource(android.R.color.white)
+        }
+
+        companion object {
+
+            var selecionado: ViewHolderEnfermeiro? = null
+        }
+
+    }
+
 
     /**
      * Called when RecyclerView needs a new [ViewHolder] of the given type to represent
@@ -39,17 +94,10 @@ class AdapterEnfermeiros (val fragment: ListaEnfermeirosFragment) : RecyclerView
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderEnfermeiro {
         val itemEnfermeiros = fragment.layoutInflater.inflate(R.layout.item_enfermeiros, parent, false)
+
         return ViewHolderEnfermeiro(itemEnfermeiros)
     }
 
-    /**
-     * Returns the total number of items in the data set held by the adapter.
-     *
-     * @return The total number of items in this adapter.
-     */
-    override fun getItemCount(): Int {
-        return cursor?.count ?: 0
-    }
 
     /**
      * Called by RecyclerView to display the data at the specified position. This method should
@@ -78,58 +126,15 @@ class AdapterEnfermeiros (val fragment: ListaEnfermeirosFragment) : RecyclerView
         holder.atualizaEnfermeiros(enfermeiro)
     }
 
-    class ViewHolderEnfermeiro(itemView: View) : RecyclerView.ViewHolder(itemView),View.OnClickListener {
-        private val textViewNome = itemView.findViewById<TextView>(R.id.textViewNome)
-        private val textViewSexo = itemView.findViewById<TextView>(R.id.textViewSexo)
-        private val textViewMorada = itemView.findViewById<TextView>(R.id.textViewMorada)
-        private val textViewContacto = itemView.findViewById<TextView>(R.id.textViewContacto)
-        private val textViewData = itemView.findViewById<TextView>(R.id.textViewDataTeste)
-        private val textViewDestrito = itemView.findViewById<TextView>(R.id.textViewDestrito)
 
 
-        private lateinit var enfermeiro: Enfermeiro
-
-        init {
-            itemView.setOnClickListener(this)
-        }
-
-
-        fun atualizaEnfermeiros(enfermeiro: Enfermeiro) {
-            this.enfermeiro = enfermeiro
-            textViewNome.text = enfermeiro.nome
-            textViewSexo.text = enfermeiro.sexo
-            textViewContacto.text = enfermeiro.contacto
-            textViewData.text = enfermeiro.data.toString()
-            textViewMorada.text = enfermeiro.Morada
-            textViewDestrito.text = enfermeiro.nomeCategoria
-
-        }
-
-        override fun onClick(v: View?) {
-            selecionado?.desSeleciona()
-            seleciona()
-        }
-
-        private fun seleciona() {
-            selecionado = this
-            itemView.setBackgroundResource(R.color.cor_selecao)
-            DadosApp.enfermeiroSelecionado = enfermeiro
-            DadosApp.activity.ActulizaMenusListaEnfermeiros(true)
-
-
-
-        }
-
-        private fun desSeleciona() {
-            selecionado = null
-            itemView.setBackgroundResource(android.R.color.white)
-        }
-
-
-        companion object {
-
-            var selecionado: ViewHolderEnfermeiro? = null
-        }
-
+    /**
+     * Returns the total number of items in the data set held by the adapter.
+     *
+     * @return The total number of items in this adapter.
+     */
+    override fun getItemCount(): Int {
+        return cursor?.count ?: 0
     }
-    }
+
+}

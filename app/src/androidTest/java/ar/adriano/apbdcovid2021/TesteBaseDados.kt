@@ -119,7 +119,7 @@ class TesteBaseDados {
 
     @Before
     fun apagaBaseDados() {
-     //   getAppContext().deleteDatabase( BdRegistaPessoasOpenHelper.NOME_BASE_DADOS)
+       getAppContext().deleteDatabase( BdRegistaPessoasOpenHelper.NOME_BASE_DADOS)
     }
 
     @Test
@@ -536,7 +536,7 @@ class TesteBaseDados {
                         "912224715",
                 sexo = "Sexo: M",
                 Morada = "Beco do Sacrifício",
-                data = Date(2020,7,15),
+               data = Date(2020,7,15),
                 idDestrito = destrito.id,
                 nomeCategoria = destrito.nome,
                 Mail = "meni@gmail.com")
@@ -716,7 +716,7 @@ class TesteBaseDados {
                         " 962224715",
                 sexo ="Sexo :M",
                 Morada = " Entrada Nº 1 do Caminho do Pico",
-                data = Date(2020,7,15),
+               data = Date(2020,7,15),
                 idDestrito = destrito.id,
                 nomeCategoria = destrito.nome,
                 Mail = "@abinelgmwil.com"
@@ -776,7 +776,7 @@ class TesteBaseDados {
                         " 962224715",
                 sexo ="Sexo :M",
                 Morada = "Ponta da Serra das Lajes",
-                data = Date(2020,7,15),
+              data = Date(2020,7,15),
                 idDestrito = destrito.id,
                 nomeCategoria = destrito.nome,
                 Mail = "@aureliogmail.com"

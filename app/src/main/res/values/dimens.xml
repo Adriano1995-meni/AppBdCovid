@@ -1,4 +1,5 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="margem_Campos" />
+    <dimen name="margem_Ecran">8dp</dimen>
+    <dimen name="margem_Campos">8dp</dimen>
 </resources>
