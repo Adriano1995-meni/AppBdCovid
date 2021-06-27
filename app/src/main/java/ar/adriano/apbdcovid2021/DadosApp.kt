@@ -5,7 +5,6 @@ class DadosApp {
         lateinit var activity: MainActivity
         var listaEnfermeiroFragment: ListaEnfermeirosFragment?=null
         var novoEnfermeiroFragment:NovoEnfermeiroFragment?=null
-
         var enfermeiroSelecionado  : Enfermeiro?= null
 
 

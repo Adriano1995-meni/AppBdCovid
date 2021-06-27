@@ -6,6 +6,7 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 
@@ -45,16 +46,20 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        return when (item.itemId) {
-            R.id.action_settings -> true
+        val opcaoProcessada = when (item.itemId) {
+            R.id.action_settings -> {
+                Toast.makeText(this, R.string.versao, Toast.LENGTH_LONG).show()
+                true
+            }
 
-            else -> {
-                if( DadosApp.listaEnfermeiroFragment!!.processaOpcaoDeMenu(item)){
-                    return true
-                }else
-                    return super.onOptionsItemSelected(item)
+            else -> when(menuAtual) {
+                R.menu.menu_lista_enfermeiro -> DadosApp.listaEnfermeiroFragment!!.processaOpcaoDeMenu(item)
+                R.menu.menu_novo_enfermeiro -> DadosApp.novoEnfermeiroFragment!!.processaOpcaoMenu(item)
+                else -> false
             }
         }
+
+        return if(opcaoProcessada) true else super.onOptionsItemSelected(item)
     }
 
     fun ActulizaMenusListaEnfermeiros(mostraBotoesAlterarEliminar:Boolean){

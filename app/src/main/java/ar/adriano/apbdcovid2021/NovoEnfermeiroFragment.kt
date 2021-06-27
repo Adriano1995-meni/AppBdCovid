@@ -3,6 +3,7 @@ package ar.adriano.apbdcovid2021
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -29,4 +30,25 @@ class NovoEnfermeiroFragment : Fragment() {
 
 
         }
+
+
+    fun navegaListaLivros() {
+        // todo: navegar para a lista de livros
     }
+
+    fun guardar() {
+        // todo: guardar livro
+    }
+
+    fun processaOpcaoMenu(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_guardar_novo_enfermeiro-> guardar()
+            R.id.action_cancelar_novo_livro -> navegaListaLivros()
+            else -> return false
+        }
+
+        return true
+    }
+}
+
+

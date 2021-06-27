@@ -23,4 +23,5 @@
     <string name="guardar">guardar</string>
     <string name="cancelar">cancelar</string>
     <string name="eliminar_enfermeiro">eliminar_enfermeiro</string>
+    <string name="versao">Enfermeiro v. 1.0</string>
 </resources>
