@@ -12,4 +12,15 @@
     <string name="alterar_enfermeiro" />
     <string name="eliminar_enfermeiros" />
     <string name="novo_enfermeiro" />
+    <string name="action_novo_enfermeiro">Novo Enfermeiro</string>
+    <string name="action_alterar_enfermeiro">Alterar Enfermeiro</string>
+    <string name="action_eliminar_enfermeiro">Eliminar Enfermeiro</string>
+    <string name="editTextInputNome">Nome</string>
+    <string name="nome">Nome</string>
+    <string name="contacto">Contacto</string>
+    <string name="data">Data</string>
+    <string name="sexo">sexo</string>
+    <string name="morad">Morad</string>
+    <string name="email">Email</string>
+    <string name="destritos">Destritos</string>
 </resources>

@@ -3,23 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="ar.adriano.bdcovid2021.MainActivity">
     <item
+        android:id="@+id/action_Novo"
+        android:icon="@drawable/ic_baseline_add_24"
+        android:title="@string/action_novo_enfermeiro"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_Alterar"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="@string/action_alterar_enfermeiro"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_Eliminar"
+        android:icon="@android:drawable/ic_menu_delete"
+        android:title="@string/action_eliminar_enfermeiro"
+        app:showAsAction="ifRoom" />
+    <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/action_Novo_Enfermeiro"
-        android:icon="@android:drawable/ic_input_add"
-        android:title="@string/novo_enfermeiro"
-        app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/action_Alterar_Enfermeiro"
-        android:icon="@android:drawable/ic_menu_edit"
-        android:title="@string/alterar_enfermeiro"
-        app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/action_eliminar_Enfermeiro"
-        android:icon="@android:drawable/ic_menu_delete"
-        android:title="@string/eliminar_enfermeiros"
-        app:showAsAction="ifRoom" />
 </menu>

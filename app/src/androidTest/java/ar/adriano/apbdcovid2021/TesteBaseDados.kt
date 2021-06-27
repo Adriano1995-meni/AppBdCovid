@@ -55,10 +55,10 @@ class TesteBaseDados {
 
     private fun getDestritosBaseDados(tabela: TabelaDestrito, id: Long): Destritos {
         val cursor = tabela.query(
-            TabelaDestrito.TODAS_COLUNAS,
-            "${TabelaDestrito.NOME_TABELA}.${BaseColumns._ID}=?",
-            arrayOf(id.toString()),
-            null, null, null
+                TabelaDestrito.TODAS_COLUNAS,
+                "${TabelaDestrito.NOME_TABELA}.${BaseColumns._ID}=?",
+                arrayOf(id.toString()),
+                null, null, null
         )
 
         assertNotNull(cursor)
@@ -70,10 +70,10 @@ class TesteBaseDados {
 
     private fun getEnfemeiroBaseDados(tabela: TabelaEnfermeiro, id: Long): Enfermeiro {
         val cursor = tabela.query(
-            TabelaEnfermeiro.TODAS_COLUNAS,
-            "${TabelaEnfermeiro.NOME_TABELA}.${BaseColumns._ID}=?",
-            arrayOf(id.toString()),
-            null, null, null
+                TabelaEnfermeiro.TODAS_COLUNAS,
+                "${TabelaEnfermeiro.NOME_TABELA}.${BaseColumns._ID}=?",
+                arrayOf(id.toString()),
+                null, null, null
         )
 
         assertNotNull(cursor)
@@ -86,10 +86,10 @@ class TesteBaseDados {
 
     private fun getPessoasBaseDados(tabela: TabelaPessoas, id: Long): Pessoas {
         val cursor = tabela.query(
-            TabelaPessoas.TODAS_COLUNAS,
-            "${BaseColumns._ID}=?",
-            arrayOf(id.toString()),
-            null, null, null
+                TabelaPessoas.TODAS_COLUNAS,
+                "${BaseColumns._ID}=?",
+                arrayOf(id.toString()),
+                null, null, null
         )
 
         assertNotNull(cursor)
@@ -101,10 +101,10 @@ class TesteBaseDados {
 
     private fun getVacinaBaseDados(tabela: TabelaVacina, id: Long): Vacinas {
         val cursor = tabela.query(
-            TabelaVacina.TODAS_COLUNAS,
-            "${BaseColumns._ID}=?",
-            arrayOf(id.toString()),
-            null, null, null
+                TabelaVacina.TODAS_COLUNAS,
+                "${BaseColumns._ID}=?",
+                arrayOf(id.toString()),
+                null, null, null
         )
 
         assertNotNull(cursor)
@@ -119,7 +119,7 @@ class TesteBaseDados {
 
     @Before
     fun apagaBaseDados() {
-        getAppContext().deleteDatabase( BdRegistaPessoasOpenHelper.NOME_BASE_DADOS)
+     //   getAppContext().deleteDatabase( BdRegistaPessoasOpenHelper.NOME_BASE_DADOS)
     }
 
     @Test
@@ -138,7 +138,7 @@ class TesteBaseDados {
         val destritos = Destritos(nome = "Viseu")
         destritos.id = insereDestritos(tabelaDestritos,destritos )
 
-       // assertEquals(destritos, getDestritosBaseDados(tabelaDestritos, destritos.id))
+        // assertEquals(destritos, getDestritosBaseDados(tabelaDestritos, destritos.id))
         db.close()
     }
 
@@ -159,11 +159,11 @@ class TesteBaseDados {
         destrito.nome = "Vila Real"
 
         val AlterarRegistos = tabelaDestrito.update(
-            destrito.toContentValues(),
-            "${BaseColumns._ID}=?",
-            arrayOf(destrito.id.toString())
+                destrito.toContentValues(),
+                "${BaseColumns._ID}=?",
+                arrayOf(destrito.id.toString())
         )
-         assertEquals(1, AlterarRegistos)
+        assertEquals(1, AlterarRegistos)
         assertEquals(destrito, getDestritosBaseDados(tabelaDestrito, destrito.id))
 
         db.close()
@@ -182,8 +182,8 @@ class TesteBaseDados {
 
         val registosEliminados = tabelaDestrito.delete(
 
-            "${BaseColumns._ID}=?",
-            arrayOf(destrito.id.toString())
+                "${BaseColumns._ID}=?",
+                arrayOf(destrito.id.toString())
         )
         assertEquals(1, registosEliminados)
 
@@ -219,15 +219,15 @@ class TesteBaseDados {
 
         val tabelaEnfermeiro = TabelaEnfermeiro(db)
         val enfermeiro = Enfermeiro(
-            nome = "Francisco Mendes",
-            contacto="Contacto :" +
-                    "96558887",
-            sexo = "Sexo: M",
-            Morada = "Rua Santa Catarina",
-            data = Date(1990,7,5),
-            idDestrito = destrito.id,
-            Mail = "@adrigmail.com",
-            nomeCategoria = destrito.nome
+                nome = "Francisco Mendes",
+                contacto="Contacto :" +
+                        "96558887",
+                sexo = "Sexo: M",
+                Morada = "Rua Santa Catarina",
+                data = Date(1990,7,5),
+                idDestrito = destrito.id,
+                Mail = "@adrigmail.com",
+                nomeCategoria = destrito.nome
         )
         enfermeiro.id = insereEnfermeiro(tabelaEnfermeiro, enfermeiro)
         assertEquals(enfermeiro, getEnfemeiroBaseDados(tabelaEnfermeiro, enfermeiro.id))
@@ -255,15 +255,15 @@ class TesteBaseDados {
 
         val tabelaEnfermeiro = TabelaEnfermeiro(db)
         val enfermeiro = Enfermeiro(
-            nome = "João  Almeida",
-            contacto="Contacto :" +
-                    "925572030",
-            data = Date(2021,4,15),
-            sexo = "Sexo:M",
-            Morada = "Edifício Atrium, Praça Dom João",
-            idDestrito = destrito.id,
-            nomeCategoria = destrito.nome,
-            Mail = "@adrigmail.com")
+                nome = "João  Almeida",
+                contacto="Contacto :" +
+                        "925572030",
+                data = Date(2021,4,15),
+                sexo = "Sexo:M",
+                Morada = "Edifício Atrium, Praça Dom João",
+                idDestrito = destrito.id,
+                nomeCategoria = destrito.nome,
+                Mail = "@adrigmail.com")
 
         enfermeiro.id = insereEnfermeiro(tabelaEnfermeiro, enfermeiro)
 
@@ -273,9 +273,9 @@ class TesteBaseDados {
 
 
         val registosAlterados = tabelaEnfermeiro.update(
-            enfermeiro.toContentValues(),
-            "${BaseColumns._ID}=?",
-            arrayOf(enfermeiro.id.toString())
+                enfermeiro.toContentValues(),
+                "${BaseColumns._ID}=?",
+                arrayOf(enfermeiro.id.toString())
         )
 
         assertEquals(1, registosAlterados)
@@ -298,15 +298,15 @@ class TesteBaseDados {
 
         val tabelaEnfermeiro = TabelaEnfermeiro(db)
         val enfermeiro = Enfermeiro(
-            nome = "Armando correia  Co",
-            contacto="Contacto :" +
-                    "925888721",
-            sexo ="Sexo :M",
-            Morada = "Avenida General Humberto Delgado",
-            data = Date(2020,7,15),
-            idDestrito = destrito.id ,
-            nomeCategoria = destrito.nome,
-            Mail = "fpv@gmail"
+                nome = "Armando correia  Co",
+                contacto="Contacto :" +
+                        "925888721",
+                sexo ="Sexo :M",
+                Morada = "Avenida General Humberto Delgado",
+                data = Date(2020,7,15),
+                idDestrito = destrito.id ,
+                nomeCategoria = destrito.nome,
+                Mail = "fpv@gmail"
 
         )
         enfermeiro.id = insereEnfermeiro(tabelaEnfermeiro, enfermeiro)
@@ -314,8 +314,8 @@ class TesteBaseDados {
         // Eliminar Enfermeiro
 
         val EliminadosEnfermeiro = tabelaEnfermeiro.delete(
-            "${BaseColumns._ID}=?",
-            arrayOf(enfermeiro.id.toString())
+                "${BaseColumns._ID}=?",
+                arrayOf(enfermeiro.id.toString())
         )
         assertEquals(1, EliminadosEnfermeiro)
 
@@ -336,16 +336,16 @@ class TesteBaseDados {
 
         val tabelaEnfermeiro = TabelaEnfermeiro(db)
         val enfermeiro = Enfermeiro(
-            nome = "Natalia Perez",
-            contacto="Contacto :" +
-                    "96666717",
-            data = Date(2021,3,15),
-            sexo = "sexo:F",
-            Morada = " Viela Arrocheiras de Cima",
-            idDestrito = destrito.id ,
-            nomeCategoria = destrito.nome,
-            Mail = "jfd@gmail.com"
-            //nomeCategoria = destrito.nome
+                nome = "Natalia Perez",
+                contacto="Contacto :" +
+                        "96666717",
+                data = Date(2021,3,15),
+                sexo = "sexo:F",
+                Morada = " Viela Arrocheiras de Cima",
+                idDestrito = destrito.id ,
+                nomeCategoria = destrito.nome,
+                Mail = "jfd@gmail.com"
+                //nomeCategoria = destrito.nome
 
         )
         enfermeiro.id = insereEnfermeiro(tabelaEnfermeiro, enfermeiro)
@@ -368,15 +368,15 @@ class TesteBaseDados {
 
         val tabelaEnfermeiro = TabelaEnfermeiro(db)
         val enfermeiro = Enfermeiro(
-            nome = "Francisco Mendes",
-            contacto="Contacto :" +
-                    "96558887",
-            sexo = "Sexo: M",
-            Morada = "Rua Santa Catarina",
-            data = Date(1990,7,5),
+                nome = "Francisco Mendes",
+                contacto="Contacto :" +
+                        "96558887",
+                sexo = "Sexo: M",
+                Morada = "Rua Santa Catarina",
+                data = Date(1990,7,5),
                 Mail = "@adrigmail.com",
-            idDestrito = destrito.id,
-            nomeCategoria = destrito.nome
+                idDestrito = destrito.id,
+                nomeCategoria = destrito.nome
         )
         enfermeiro.id = insereEnfermeiro(tabelaEnfermeiro, enfermeiro)
 
@@ -416,23 +416,23 @@ class TesteBaseDados {
 
         val tabelaEnfermeiro = TabelaEnfermeiro(db)
         val enfermeiro = Enfermeiro(
-            nome = "Amilcar Morreira",
-            contacto="Contacto :" +
-                    "912224715",
-            sexo = "Sexo: M",
-            Morada = "Beco do Sacrifício",
-            data = Date(2020,7,15),
-            idDestrito = destrito.id,
-            nomeCategoria = destrito.nome,
-            Mail = "meni@gmail.com")
-            //nomeCategoria =  destrito.nome)
+                nome = "Amilcar Morreira",
+                contacto="Contacto :" +
+                        "912224715",
+                sexo = "Sexo: M",
+                Morada = "Beco do Sacrifício",
+                data = Date(2020,7,15),
+                idDestrito = destrito.id,
+                nomeCategoria = destrito.nome,
+                Mail = "meni@gmail.com")
+        //nomeCategoria =  destrito.nome)
 
         enfermeiro.id = insereEnfermeiro(tabelaEnfermeiro, enfermeiro)
 
         val tabelaPessoas = TabelaPessoas(db)
         val pessoas =  Pessoas(
                 nome ="Junior Correia",
-                        sexo ="Sexo :M",
+                sexo ="Sexo :M",
                 Morada = "Ponta da Serra das Lajes",
                 NumeroUtente = "254789657",
                 dataNascimento =Date(1995,7,5),
@@ -445,16 +445,16 @@ class TesteBaseDados {
 
         pessoas.id= inserePessoas(tabelaPessoas,pessoas)
 
-      pessoas.Contacto = "967557744"
+        pessoas.Contacto = "967557744"
         pessoas.idEnfermeio= enfermeiro.id
         pessoas.data=Date(2021,3,16)
-       pessoas.dataNascimento=Date(1987,7,18)
+        pessoas.dataNascimento=Date(1987,7,18)
 
 
         val AlteradosPessoas = tabelaPessoas.update(
-            pessoas.toContentValues(),
-            "${BaseColumns._ID}=?",
-            arrayOf(pessoas.id.toString())
+                pessoas.toContentValues(),
+                "${BaseColumns._ID}=?",
+                arrayOf(pessoas.id.toString())
         )
 
         assertEquals(1, AlteradosPessoas)
@@ -476,21 +476,21 @@ class TesteBaseDados {
 
         val tabelaEnfermeiro = TabelaEnfermeiro(db)
         val enfermeiro = Enfermeiro(
-            nome = "Amilcar Morreira",
-            contacto="Contacto :" +
-                    "912224715",
-            sexo = "Sexo: M",
-            Morada = "Beco do Sacrifício",
-            data = Date(2020,7,15),
-            idDestrito = destrito.id,
-            nomeCategoria = destrito.nome,
-            Mail = "meni@gmail.com")
+                nome = "Amilcar Morreira",
+                contacto="Contacto :" +
+                        "912224715",
+                sexo = "Sexo: M",
+                Morada = "Beco do Sacrifício",
+                data = Date(2020,7,15),
+                idDestrito = destrito.id,
+                nomeCategoria = destrito.nome,
+                Mail = "meni@gmail.com")
         enfermeiro.id = insereEnfermeiro(tabelaEnfermeiro, enfermeiro)
 
         val tabelaPessoas = TabelaPessoas(db)
         val pessoas =  Pessoas(
                 nome ="Junior Correia",
-                        sexo ="Sexo :M",
+                sexo ="Sexo :M",
                 Morada = "Ponta da Serra das Lajes",
                 NumeroUtente = "254789657",
                 dataNascimento =Date(1995,7,5),
@@ -504,10 +504,10 @@ class TesteBaseDados {
         pessoas.id= inserePessoas(tabelaPessoas,pessoas)
 
         val EliminadosPessoas = tabelaPessoas.delete(
-            "${BaseColumns._ID}=?",
-            arrayOf(pessoas.id.toString())
+                "${BaseColumns._ID}=?",
+                arrayOf(pessoas.id.toString())
         )
-       assertEquals(1, EliminadosPessoas)
+        assertEquals(1, EliminadosPessoas)
 
 
         db.close()
@@ -520,7 +520,7 @@ class TesteBaseDados {
 
 
 
-@Test
+    @Test
     fun consegueLerPessoas() {
         val db = getBdPessoasOpenHelper().writableDatabase
 
@@ -531,30 +531,30 @@ class TesteBaseDados {
 
         val tabelaEnfermeiro = TabelaEnfermeiro(db)
         val enfermeiro = Enfermeiro(
-            nome = "Amilcar Morreira",
-            contacto="Contacto :" +
-                    "912224715",
-            sexo = "Sexo: M",
-            Morada = "Beco do Sacrifício",
-            data = Date(2020,7,15),
-            idDestrito = destrito.id,
-            nomeCategoria = destrito.nome,
-            Mail = "meni@gmail.com")
+                nome = "Amilcar Morreira",
+                contacto="Contacto :" +
+                        "912224715",
+                sexo = "Sexo: M",
+                Morada = "Beco do Sacrifício",
+                data = Date(2020,7,15),
+                idDestrito = destrito.id,
+                nomeCategoria = destrito.nome,
+                Mail = "meni@gmail.com")
 
         enfermeiro.id = insereEnfermeiro(tabelaEnfermeiro, enfermeiro)
 
-    val tabelaPessoas = TabelaPessoas(db)
-    val pessoas =  Pessoas(
-            nome ="Junior Correia",
-                    sexo ="Sexo :M",
-            Morada = "Ponta da Serra das Lajes",
-            NumeroUtente = "254789657",
-            dataNascimento =Date(1995,7,5),
-            Contacto="Contacto: " +
-                    "925557788",
-            data =Date(2020,10,15),
-            idDestrito = destrito.id,
-            idEnfermeio =enfermeiro.id)
+        val tabelaPessoas = TabelaPessoas(db)
+        val pessoas =  Pessoas(
+                nome ="Junior Correia",
+                sexo ="Sexo :M",
+                Morada = "Ponta da Serra das Lajes",
+                NumeroUtente = "254789657",
+                dataNascimento =Date(1995,7,5),
+                Contacto="Contacto: " +
+                        "925557788",
+                data =Date(2020,10,15),
+                idDestrito = destrito.id,
+                idEnfermeio =enfermeiro.id)
 
 
 
@@ -580,17 +580,17 @@ class TesteBaseDados {
 
         val tabelaEnfermeiro = TabelaEnfermeiro(db)
         val enfermeiro = Enfermeiro(
-            nome = "Amilcar Morreira",
-            contacto="Contacto :" +
-                    "912224715",
-            sexo = "Sexo: M",
-            Morada = "Beco do Sacrifício",
-            data = Date(2020,7,15),
-            idDestrito = destrito.id,
-            nomeCategoria = destrito.nome,
-            Mail = "meni@gmail.com")
+                nome = "Amilcar Morreira",
+                contacto="Contacto :" +
+                        "912224715",
+                sexo = "Sexo: M",
+                Morada = "Beco do Sacrifício",
+                data = Date(2020,7,15),
+                idDestrito = destrito.id,
+                nomeCategoria = destrito.nome,
+                Mail = "meni@gmail.com")
 
-            //nomeCategoria =  destrito.nome
+        //nomeCategoria =  destrito.nome
 
 
 
@@ -599,7 +599,7 @@ class TesteBaseDados {
         val tabelaPessoas = TabelaPessoas(db)
         val pessoas =  Pessoas(
                 nome ="Junior Correia",
-                        sexo ="Sexo :M",
+                sexo ="Sexo :M",
                 Morada = "Ponta da Serra das Lajes",
                 NumeroUtente = "254789657",
                 dataNascimento =Date(1995,7,5),
@@ -639,15 +639,15 @@ class TesteBaseDados {
 
         val tabelaEnfermeiro = TabelaEnfermeiro(db)
         val enfermeiro = Enfermeiro(
-            nome = "Amilcar Morreira",
-            contacto="Contacto :" +
-                    "912224715",
-            sexo = "Sexo: M",
-            Morada = "Beco do Sacrifício",
-            data = Date(2020,7,15),
-            idDestrito = destrito.id,
-            nomeCategoria = destrito.nome,
-            Mail = "meni@gmail.com")
+                nome = "Amilcar Morreira",
+                contacto="Contacto :" +
+                        "912224715",
+                sexo = "Sexo: M",
+                Morada = "Beco do Sacrifício",
+                data = Date(2020,7,15),
+                idDestrito = destrito.id,
+                nomeCategoria = destrito.nome,
+                Mail = "meni@gmail.com")
 
         //nomeCategoria =  destrito.nome
 
@@ -657,7 +657,7 @@ class TesteBaseDados {
         val tabelaPessoas = TabelaPessoas(db)
         val pessoas =  Pessoas(
                 nome ="Junior Correia",
-                        sexo ="Sexo :M",
+                sexo ="Sexo :M",
                 Morada = "Ponta da Serra das Lajes",
                 NumeroUtente = "254789657",
                 dataNascimento =Date(1995,7,5),
@@ -683,14 +683,14 @@ class TesteBaseDados {
         vacinas.id= insereVacina(tabelaVacina,vacinas)
 
         vacinas.idPaciente = pessoas.id
-       vacinas.data_da_Proxima_Doce=Date(2020,7,15)
+        vacinas.data_da_Proxima_Doce=Date(2020,7,15)
 
 
 
         val AlteradosVacinas = tabelaVacina.update(
-            vacinas.toContentValues(),
-            "${BaseColumns._ID}=?",
-            arrayOf(vacinas.id.toString())
+                vacinas.toContentValues(),
+                "${BaseColumns._ID}=?",
+                arrayOf(vacinas.id.toString())
         )
 
         Assert.assertEquals(1, AlteradosVacinas)
@@ -711,15 +711,15 @@ class TesteBaseDados {
 
         val tabelaEnfermeiro = TabelaEnfermeiro(db)
         val enfermeiro = Enfermeiro(
-            nome = "Amindo Vaz Conselho",
-            contacto="Contacto: " +
-                    " 962224715",
-            sexo ="Sexo :M",
-            Morada = " Entrada Nº 1 do Caminho do Pico",
-            data = Date(2020,7,15),
-            idDestrito = destrito.id,
-            nomeCategoria = destrito.nome,
-            Mail = "@abinelgmwil.com"
+                nome = "Amindo Vaz Conselho",
+                contacto="Contacto: " +
+                        " 962224715",
+                sexo ="Sexo :M",
+                Morada = " Entrada Nº 1 do Caminho do Pico",
+                data = Date(2020,7,15),
+                idDestrito = destrito.id,
+                nomeCategoria = destrito.nome,
+                Mail = "@abinelgmwil.com"
 
         )
         enfermeiro.id = insereEnfermeiro(tabelaEnfermeiro, enfermeiro)
@@ -727,7 +727,7 @@ class TesteBaseDados {
         val tabelaPessoas = TabelaPessoas(db)
         val pessoas =  Pessoas(
                 nome ="Junior Correia",
-                        sexo ="Sexo :M",
+                sexo ="Sexo :M",
                 Morada = "Ponta da Serra das Lajes",
                 NumeroUtente = "254789657",
                 dataNascimento =Date(1995,7,5),
@@ -751,8 +751,8 @@ class TesteBaseDados {
         vacinas.id= insereVacina(tabelaVacina,vacinas)
 
         val EliminadosVacinas = tabelaVacina.delete(
-            "${BaseColumns._ID}=?",
-            arrayOf(vacinas.id.toString())
+                "${BaseColumns._ID}=?",
+                arrayOf(vacinas.id.toString())
         )
         assertEquals(1, EliminadosVacinas)
 
@@ -771,15 +771,15 @@ class TesteBaseDados {
 
         val tabelaEnfermeiro = TabelaEnfermeiro(db)
         val enfermeiro = Enfermeiro(
-            nome = "Anibal João Morreira",
-            contacto="Contacto: " +
-                    " 962224715",
-            sexo ="Sexo :M",
-            Morada = "Ponta da Serra das Lajes",
-            data = Date(2020,7,15),
-            idDestrito = destrito.id,
-            nomeCategoria = destrito.nome,
-            Mail = "@aureliogmail.com"
+                nome = "Anibal João Morreira",
+                contacto="Contacto: " +
+                        " 962224715",
+                sexo ="Sexo :M",
+                Morada = "Ponta da Serra das Lajes",
+                data = Date(2020,7,15),
+                idDestrito = destrito.id,
+                nomeCategoria = destrito.nome,
+                Mail = "@aureliogmail.com"
 
 
         )
@@ -788,16 +788,16 @@ class TesteBaseDados {
 
         val tabelaPessoas = TabelaPessoas(db)
         val pessoas =  Pessoas(
-            nome ="Junior Correia",
-            sexo ="Sexo :M",
-            Morada = "Ponta da Serra das Lajes",
-            NumeroUtente = "254789657",
-            dataNascimento =Date(1995,7,5),
-            Contacto="Contacto: " +
-                   "925557788",
-            data =Date(2020,10,15),
-            idDestrito = destrito.id,
-            idEnfermeio =enfermeiro.id)
+                nome ="Junior Correia",
+                sexo ="Sexo :M",
+                Morada = "Ponta da Serra das Lajes",
+                NumeroUtente = "254789657",
+                dataNascimento =Date(1995,7,5),
+                Contacto="Contacto: " +
+                        "925557788",
+                data =Date(2020,10,15),
+                idDestrito = destrito.id,
+                idEnfermeio =enfermeiro.id)
 
 
         pessoas.id= inserePessoas(tabelaPessoas,pessoas)
@@ -805,10 +805,10 @@ class TesteBaseDados {
         val tabelaVacina = TabelaVacina(db)
         val vacinas =  Vacinas(
                 nome ="AstraZeneca"
-                 ,data_da_Proxima_Doce =Date(2021,4,5),
+                ,data_da_Proxima_Doce =Date(2021,4,5),
                 //,data_Validade = Date(2024,4,5)
-                 idDestrito = destrito.id,
-                 idPaciente = pessoas.id
+                idDestrito = destrito.id,
+                idPaciente = pessoas.id
         )
         vacinas.id= insereVacina(tabelaVacina,vacinas)
         assertEquals(vacinas, getVacinaBaseDados(tabelaVacina,vacinas.id))
@@ -817,5 +817,4 @@ class TesteBaseDados {
         db.close()
     }
 }
-
 

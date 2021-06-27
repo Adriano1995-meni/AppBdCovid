@@ -48,8 +48,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun ActulizaMenusListaEnfermeiros(mostraBotoesAlterarEliminar:Boolean){
-        menu.findItem(R.id.action_Alterar_Enfermeiro).setVisible(mostraBotoesAlterarEliminar)
-        menu.findItem(R.id.action_eliminar_Enfermeiro).setVisible(mostraBotoesAlterarEliminar)
+        menu.findItem(R.id.action_Alterar).setVisible(mostraBotoesAlterarEliminar)
+        menu.findItem(R.id.action_Eliminar).setVisible(mostraBotoesAlterarEliminar)
 
     }
 }
