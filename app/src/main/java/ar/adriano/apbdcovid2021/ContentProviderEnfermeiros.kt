@@ -413,7 +413,7 @@ class ContentProviderEnfermeiros : ContentProvider() {
 
         public val  ENDRECO_BASE= Uri.parse("content://$AUTHORITY/")
         public val  ENDRECO_PESSOAS=Uri.withAppendedPath(ENDRECO_BASE, Pessoas)
-        public val  ENDRECO_CATEGRIA=Uri.withAppendedPath(ENDRECO_BASE, Destrito)
+        public val  ENDRECO_DESTRITO=Uri.withAppendedPath(ENDRECO_BASE, Destrito)
         public val  ENDRECO_ENFERMEIRA=Uri.withAppendedPath(ENDRECO_BASE,Enfermeiro)
         public val  ENDRECO_VACINA=Uri.withAppendedPath(ENDRECO_BASE, Vacina)
 
