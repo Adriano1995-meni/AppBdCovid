@@ -7,14 +7,12 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import ar.adriano.apbdcovid2021.R.id
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -40,7 +38,7 @@ class ListaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
 
         LoaderManager.getInstance(this)
                 .initLoader(ID_LOADER_MANAGER_PESSOAS, null, this)
-        findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        findNavController().navigate(R.id.action_ListsEnfermeirosFragment_to_action_NovoEnfermeirosFragment)
    //     view.findViewById<Button>(R.id.button_first).setOnClickListener {
 
         }
@@ -112,6 +110,14 @@ class ListaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
         adapterEnfermeiros!!.cursor = data
     }
 
+
+    fun navegaNovoEnfermeiro(){
+
+        findNavController().navigate(R.id.action_ListsEnfermeirosFragment_to_action_NovoEnfermeirosFragment)
+    }
+
+
+
     /**
      * Called when a previously created loader is being reset, and thus
      * making its data unavailable.  The application should at this point
@@ -125,8 +131,6 @@ class ListaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
     override fun onLoaderReset(loader: Loader<Cursor>) {
         adapterEnfermeiros!!.cursor =null
     }
-
-
 
 
     fun processaOpcaoDeMenu(item: MenuItem): Boolean {
