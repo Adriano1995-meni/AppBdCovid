@@ -22,6 +22,7 @@ class ListaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+        DadosApp.listaEnfermeiroFragment=this
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_lista_enfermeiros, container, false)
     }
@@ -38,6 +39,7 @@ class ListaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
 
         LoaderManager.getInstance(this)
                 .initLoader(ID_LOADER_MANAGER_PESSOAS, null, this)
+
         findNavController().navigate(R.id.action_ListsEnfermeirosFragment_to_action_NovoEnfermeirosFragment)
    //     view.findViewById<Button>(R.id.button_first).setOnClickListener {
 
@@ -111,11 +113,17 @@ class ListaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
     }
 
 
+
     fun navegaNovoEnfermeiro(){
 
         findNavController().navigate(R.id.action_ListsEnfermeirosFragment_to_action_NovoEnfermeirosFragment)
     }
 
+    fun navegaAlterarEnfermeiro(){
+    }
+
+    fun navegaEliminarEnfermeiro(){
+    }
 
 
     /**
@@ -134,6 +142,16 @@ class ListaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
 
 
     fun processaOpcaoDeMenu(item: MenuItem): Boolean {
+
+        when(item.itemId) {
+
+            R.id.action_Novo -> navegaNovoEnfermeiro()
+            R.id.action_Alterar -> navegaAlterarEnfermeiro()
+            R.id.action_Eliminar -> navegaEliminarEnfermeiro()
+            else -> return false
+        }
+
+
 
         return true
     }
