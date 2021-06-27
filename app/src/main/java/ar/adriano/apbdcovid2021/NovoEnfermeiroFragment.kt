@@ -7,6 +7,8 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
+import android.widget.Spinner
 import androidx.navigation.fragment.findNavController
 
 /**
@@ -25,9 +27,25 @@ class NovoEnfermeiroFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_novo_enfermeiro, container, false)
     }
 
+
+    private lateinit var editTextNome: EditText
+    private lateinit var editTextMorada: EditText
+    private lateinit var editTextContacto: EditText
+    private lateinit var editTextMail: EditText
+    private lateinit var editTextSexo: EditText
+    private lateinit var editTextData: EditText
+    private lateinit var spinnerDestritos: Spinner
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        editTextNome = view.findViewById(R.id.editTextInputNome)
+        editTextMorada = view.findViewById(R.id.editTextInputMorada)
+        editTextContacto = view.findViewById(R.id.editTextInputContacto)
+        editTextMail = view.findViewById(R.id.editTextInputEmail)
+        editTextSexo = view.findViewById(R.id.editTextInputSexo)
+        editTextData = view.findViewById(R.id.editTextInputData)
+        spinnerDestritos = view.findViewById(R.id.spinnerDestritos)
 
         }
 

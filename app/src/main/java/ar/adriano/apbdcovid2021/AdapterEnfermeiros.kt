@@ -38,7 +38,7 @@ class AdapterEnfermeiros (val fragment: ListaEnfermeirosFragment) : RecyclerView
             textViewNome.text = enfermeiro.nome
             textViewSexo.text = enfermeiro.sexo
             textViewContacto.text = enfermeiro.contacto
-         //   textViewData.text = enfermeiro.data.toString()
+         //  textViewData.text = enfermeiro.data.toString()
             textViewMorada.text = enfermeiro.Morada
             textViewEmail.text = enfermeiro.Mail
             textViewDestrito.text = enfermeiro.nomeCategoria
