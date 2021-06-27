@@ -3,8 +3,13 @@ package ar.adriano.apbdcovid2021
 class DadosApp {
     companion object{
         lateinit var activity: MainActivity
-        lateinit var listaEnfermeiroFragment: ListaEnfermeirosFragment
+        var listaEnfermeiroFragment: ListaEnfermeirosFragment?=null
+        var novoEnfermeiroFragment:NovoEnfermeiroFragment?=null
+
         var enfermeiroSelecionado  : Enfermeiro?= null
+
+
+
 
     }
 }

@@ -11,6 +11,13 @@ class MainActivity : AppCompatActivity() {
 
     private  lateinit var menu: Menu
 
+    var menuAtual = R.menu.menu_lista_enfermeiro
+        set(value) {
+            field = value
+            invalidateOptionsMenu()
+        }
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,9 +33,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_lista_enfermeiro, menu)
+        menuInflater.inflate(menuAtual, menu)
         this.menu= menu
-        ActulizaMenusListaEnfermeiros(false)
+
+        if (menuAtual == R.menu.menu_lista_enfermeiro) {
+            ActulizaMenusListaEnfermeiros(false)
+        }
         return true
 
     }
@@ -39,7 +49,7 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings -> true
 
             else -> {
-                if( DadosApp.listaEnfermeiroFragment.processaOpcaoDeMenu(item)){
+                if( DadosApp.listaEnfermeiroFragment!!.processaOpcaoDeMenu(item)){
                     return true
                 }else
                     return super.onOptionsItemSelected(item)

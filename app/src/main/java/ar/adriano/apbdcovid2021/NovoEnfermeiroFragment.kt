@@ -11,12 +11,15 @@ import androidx.navigation.fragment.findNavController
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
-class NovoLivroFragment : Fragment() {
+class NovoEnfermeiroFragment : Fragment() {
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+        DadosApp.novoEnfermeiroFragment = this
+        (activity as MainActivity).menuAtual = R.menu.menu_novo_enfermeiro
+
 
         return inflater.inflate(R.layout.fragment_novo_enfermeiro, container, false)
     }
