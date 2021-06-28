@@ -15,7 +15,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margem_Campos"
-            android:hint="@string/nome" />
+            android:hint="@string/nome"
+            android:inputType="text" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -26,7 +27,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margem_Campos"
-                android:hint="@string/contacto" />
+                android:hint="@string/contacto"
+                android:inputType="phone" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -37,7 +39,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margem_Campos"
-                    android:hint="@string/data" />
+                    android:hint="@string/data"
+                    android:inputType="date" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -48,7 +51,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margem_Campos"
-                        android:hint="@string/sexo" />
+                        android:hint="@string/sexo"
+                        android:inputType="text" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
@@ -59,7 +63,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/margem_Campos"
-                            android:hint="@string/morad" />
+                            android:hint="@string/morad"
+                            android:inputType="text" />
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="match_parent"
@@ -70,7 +75,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/margem_Campos"
-                                android:hint="@string/email" />
+                                android:hint="@string/email"
+                                android:inputType="textWebEmailAddress" />
 
                             <TextView
                                 android:id="@+id/textViewDestritos"
