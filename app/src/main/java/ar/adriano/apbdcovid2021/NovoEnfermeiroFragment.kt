@@ -69,29 +69,35 @@ class NovoEnfermeiroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>
         val nome = editTextNome.text.toString()
         if (nome.isEmpty()) {
             editTextNome.setError(getString(R.string.preencha_titulo))
+            editTextNome.requestFocus()
+
             return
         }
         val morada = editTextMorada.text.toString()
         if (morada.isEmpty()) {
             editTextMorada.setError(getString(R.string.preencha_titulo))
+            editTextMorada.requestFocus()
             return
         }
 
         val contacto = editTextContacto.text.toString()
         if (contacto.isEmpty()) {
             editTextContacto.setError(getString(R.string.preencha_titulo))
+            editTextContacto.requestFocus()
             return
         }
 
         val sexo = editTextSexo.text.toString()
         if (sexo.isEmpty()) {
             editTextSexo.setError(getString(R.string.preencha_titulo))
+            editTextSexo.requestFocus()
             return
         }
 
         val data = editTextData.text.toString()
         if (data.isEmpty()) {
             editTextData.setError(getString(R.string.preencha_titulo))
+            editTextData.requestFocus()
             return
         }
 
@@ -99,6 +105,7 @@ class NovoEnfermeiroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>
         val mail = editTextMail.text.toString()
         if (mail.isEmpty()) {
             editTextMail.setError(getString(R.string.preencha_autor))
+            editTextMail.requestFocus()
             return
         }
 
