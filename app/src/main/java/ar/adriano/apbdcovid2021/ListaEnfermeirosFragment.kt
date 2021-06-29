@@ -126,6 +126,7 @@ class ListaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
     }
 
     fun navegaEliminarEnfermeiro(){
+        findNavController().navigate(R.id.action_listaEnfermeirosFragment_to_eliminaEnfermeirosFragment)
     }
 
 

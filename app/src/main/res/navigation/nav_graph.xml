@@ -18,11 +18,15 @@
             android:id="@+id/action_ListaEnfermeirosFragment_to_EditaEnfermeirosFragment"
             app:destination="@id/EditaEnfermeirosFragment" />
 
+        <action
+            android:id="@+id/action_listaEnfermeirosFragment_to_eliminaEnfermeirosFragment"
+            app:destination="@+id/eliminaEnfermeirosFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/NovoEnfermeirosFragment"
         android:name="ar.adriano.apbdcovid2021.NovoEnfermeiroFragment"
-        android:label="@string/Novo_Enfermeiros_fragment_label"
+        android:label="Novo_Enfermeiros_fragment_label"
         tools:layout="@layout/fragment_novo_enfermeiro">
 
         <action
@@ -33,11 +37,20 @@
         android:id="@+id/EditaEnfermeirosFragment"
         android:name="ar.adriano.apbdcovid2021.EditaEnfermeirosFragment"
         android:label="edita_enfermeiros_fragment_label"
-        tools:layout="@layout/fragment_edita_enfermeiro">
+        tools:layout="@layout/fragment_edita_enfermeiro"/>
+
         <action
             android:id="@+id/action_EditaEnfermeirosFragment_to_ListaEnfermeirosFragment"
             app:destination="@id/ListaEnfermeirosFragment" />
 
+        <fragment
+            android:id="@+id/eliminaEnfermeirosFragment"
+            android:name="ar.adriano.apbdcovid2021.EliminarEnfermeirosFragment"
+            android:label="elimina_enfermeiro_fragment_label"
+            tools:layout="@layout/fragment_elimina_enfermeiro" >
+            <action
+                android:id="@+id/action_eliminaEnfermeiroFragment_to_listaEnfermeiroFragment"
+                app:destination="@id/ListaEnfermeirosFragment" />
 
     </fragment>
 </navigation>
