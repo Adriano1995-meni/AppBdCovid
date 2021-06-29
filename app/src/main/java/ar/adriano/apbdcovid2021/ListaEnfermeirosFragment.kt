@@ -118,11 +118,11 @@ class ListaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
 
 
     fun navegaNovoEnfermeiro(){
-
-        findNavController().navigate(R.id.action_ListsEnfermeirosFragment_to_action_NovoEnfermeirosFragment)
+        findNavController().navigate(R.id.action_ListaEnfeiroFragment_to_NovoEnfermeiroFragment)
     }
 
     fun navegaAlterarEnfermeiro(){
+        findNavController().navigate(R.id.action_ListaEnfermeirosFragment_to_EditaEnfermeirosFragment)
     }
 
     fun navegaEliminarEnfermeiro(){
@@ -158,8 +158,6 @@ class ListaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
 
         return true
     }
-
-
 
     companion object {
         const val ID_LOADER_MANAGER_PESSOAS = 0
