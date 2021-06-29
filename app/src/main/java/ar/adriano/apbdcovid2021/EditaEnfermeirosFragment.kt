@@ -14,6 +14,7 @@ import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
+import ar.adriano.apbdcovid2021.NovoEnfermeiroFragment.Companion.ID_LOADER_MANAGER_DESTRITOS
 import com.google.android.material.snackbar.Snackbar
 import java.util.*
 
@@ -29,16 +30,6 @@ class EditaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
     private lateinit var spinnerDestritos: Spinner
 
 
-
-/*
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-*/
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -57,12 +48,21 @@ class EditaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
         editTextContacto = view.findViewById(R.id.editTextInputContacto)
         editTextMail = view.findViewById(R.id.editTextInputEmail)
         editTextSexo = view.findViewById(R.id.editTextInputSexo)
-        editTextData = view.findViewById(R.id.editTextInputData)
+       editTextData = view.findViewById(R.id.editTextInputData)
         spinnerDestritos = view.findViewById(R.id.spinnerDestritos)
 
 
         LoaderManager.getInstance(this)
                 .initLoader(NovoEnfermeiroFragment.ID_LOADER_MANAGER_DESTRITOS, null, this)
+
+
+        editTextNome.setText(DadosApp.enfermeiroSelecionado!!.nome)
+        editTextContacto.setText(DadosApp.enfermeiroSelecionado!!.contacto)
+        editTextMorada.setText(DadosApp.enfermeiroSelecionado!!.Morada)
+        editTextMail.setText(DadosApp.enfermeiroSelecionado!!.Mail)
+        editTextSexo.setText(DadosApp.enfermeiroSelecionado!!.sexo)
+       // editTextData.setText(DadosApp.enfermeiroSelecionado!!.data)
+
     }
 
 
@@ -226,6 +226,7 @@ class EditaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
      */
     override fun onLoaderReset(loader: Loader<Cursor>) {
         atualizaSpinnerDestritos(null)
+        atualizaDestritosSelecionada()
     }
 
     private fun atualizaSpinnerDestritos(data: Cursor?) {
@@ -238,6 +239,22 @@ class EditaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
                 0
         )
     }
+
+
+    private fun atualizaDestritosSelecionada() {
+        val idCategoria = DadosApp.enfermeiroSelecionado!!.idDestrito
+
+        val ultimaCategoria = spinnerDestritos.count - 1
+        for (i in 0..ultimaCategoria) {
+            if (idCategoria == spinnerDestritos.getItemIdAtPosition(i)) {
+                spinnerDestritos.setSelection(i)
+                return
+            }
+        }
+    }
+
+
+
 
     companion object {
         const val ID_LOADER_MANAGER_DESTRITOS = 0
