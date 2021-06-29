@@ -26,8 +26,15 @@
     <string name="eliminar_enfermeiro">eliminar_enfermeiro</string>
     <string name="versao">Enfermeiro v. 1.0</string>
 
-    <string name="preencha_titulo">Preencha o título</string>
-    <string name="preencha_autor">Preencha o autor</string>
-    <string name="erro_inserir_livro">Erro ao inserir livro</string>
+    <string name="preencha_Nome">Preencha o Nome</string>
+    <string name="preencha_Morada">Preencha o Morada</string>
+    <string name="preencha_sexo">Preencha o sexo</string>
+    <string name="preencha_Data">Preencha o Data</string>
+    <string name="preencha_Contacto">Preencha o Contacto</string>
+    <string name="preencha_Mail">Preencha o Mail</string>
+
+    <string name="erro_inserir_enfermeiro">Erro ao inserir enfermeiro</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="erro_alterar_enfermeiro">Erro ao alterar enfermeiro</string>
+    <string name="enfermeiro_guardado_sucesso">enfermeiro guardado com sucesso</string>
 </resources>

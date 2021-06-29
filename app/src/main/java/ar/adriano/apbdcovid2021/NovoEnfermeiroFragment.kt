@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.SimpleCursorAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
@@ -126,6 +127,11 @@ class NovoEnfermeiroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>
             ).show()
             return
         }
+        Toast.makeText(
+                requireContext(),
+                R.string.livro_guardado_sucesso,
+                Toast.LENGTH_LONG
+        ).show()
 
         navegaListaEnfermeiro()
     }
