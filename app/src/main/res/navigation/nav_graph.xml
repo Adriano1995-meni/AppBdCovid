@@ -14,6 +14,7 @@
         <action
             android:id="@+id/action_ListsEnfermeirosFragment_to_action_NovoEnfermeirosFragment"
             app:destination="@id/NovoEnfermeirosFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/NovoEnfermeirosFragment"
@@ -24,5 +25,16 @@
         <action
             android:id="@+id/action_NovoEnfermeirosFragment_to_action_ListaEnfermerosFragment"
             app:destination="@id/ListaEnfermeirosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editaenfermeirosFragment"
+        android:name="ar.adriano.apbdcovid2021.EditaEnfermeirosFragment"
+        android:label="edita_enfermeiros_fragment_label"
+        tools:layout="@layout/fragment_edita_enfermeiro">
+        <action
+            android:id="@+id/action_editaEnfermeirosFragment_to_listaEnfermeirosFragment"
+            app:destination="@id/ListaEnfermeirosFragment" />
+
+
     </fragment>
 </navigation>
