@@ -139,8 +139,8 @@ class EditaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
 
     fun processaOpcaoMenu(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_guardar_novo_enfermeiro-> guardar()
-            R.id.action_cancelar_novo_livro -> navegaListaEnfermeiro()
+            R.id.action_guardar_edita_enfermeiro -> guardar()
+            R.id.action_cancelar_edita_enfermiro -> navegaListaEnfermeiro()
             else -> return false
         }
 
