@@ -26,7 +26,7 @@ class NovoEnfermeiroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        DadosApp.novoEnfermeiroFragment = this
+        DadosApp.fragment = this
         (activity as MainActivity).menuAtual = R.menu.menu_novo_enfermeiro
 
 

@@ -24,7 +24,7 @@ class ListaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        DadosApp.listaEnfermeiroFragment=this
+        DadosApp.fragment=this
         (activity as MainActivity).menuAtual = R.menu.menu_lista_enfermeiro
 
         // Inflate the layout for this fragment
