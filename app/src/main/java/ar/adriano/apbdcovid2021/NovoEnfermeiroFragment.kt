@@ -139,7 +139,7 @@ class NovoEnfermeiroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>
     fun processaOpcaoMenu(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_guardar_novo_enfermeiro-> guardar()
-            R.id.action_cancelar_novo_livro -> navegaListaEnfermeiro()
+            R.id.action_cancelar_novo_enfermeiro -> navegaListaEnfermeiro()
             else -> return false
         }
 

@@ -1,6 +1,7 @@
 package ar.adriano.apbdcovid2021
 
 import android.database.Cursor
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.SimpleCursorAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
@@ -48,7 +50,7 @@ class EditaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
         editTextContacto = view.findViewById(R.id.editTextInputContacto)
         editTextMail = view.findViewById(R.id.editTextInputEmail)
         editTextSexo = view.findViewById(R.id.editTextInputSexo)
-       editTextData = view.findViewById(R.id.editTextInputData)
+        editTextData = view.findViewById(R.id.editTextInputData)
         spinnerDestritos = view.findViewById(R.id.spinnerDestritos)
 
 
@@ -61,7 +63,7 @@ class EditaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
         editTextMorada.setText(DadosApp.enfermeiroSelecionado!!.Morada)
         editTextMail.setText(DadosApp.enfermeiroSelecionado!!.Mail)
         editTextSexo.setText(DadosApp.enfermeiroSelecionado!!.sexo)
-       // editTextData.setText(DadosApp.enfermeiroSelecionado!!.data)
+        editTextData.setText(DadosApp.enfermeiroSelecionado!!.data.toString())
 
     }
 
@@ -118,24 +120,44 @@ class EditaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
 
         val idDestrito = spinnerDestritos.selectedItemId
 
-        val enfermeiros = Enfermeiro(nome = nome, Morada = morada, contacto = contacto,sexo = sexo,data = Date(data), Mail = mail,idDestrito = idDestrito)
+        val enfermeiro = DadosApp.enfermeiroSelecionado!!
+         enfermeiro.nome= nome
+        // enfermeiro.Morada = morada
+        enfermeiro.contacto = contacto
+        enfermeiro.sexo = sexo
+        enfermeiro.data = Date(data)
+        enfermeiro.Mail = mail
+        enfermeiro.idDestrito = idDestrito
 
-        val uri = activity?.contentResolver?.insert(
+        val uriEnfermeiro = Uri.withAppendedPath(
                 ContentProviderEnfermeiros.ENDRECO_ENFERMEIRA,
-                enfermeiros.toContentValues()
+                enfermeiro.id.toString()
         )
 
-        if (uri == null) {
-            Snackbar.make(
-                    editTextNome,
-                    getString(R.string.erro_inserir_enfermeiro),
-                    Snackbar.LENGTH_LONG
+        val registos = activity?.contentResolver?.update(
+                uriEnfermeiro,
+                enfermeiro.toContentValues(),
+                null,
+                null
+        )
+
+        if (registos != 1) {
+            Toast.makeText(
+                    requireContext(),
+                    R.string.erro_alterar_enfermeiro,
+                    Toast.LENGTH_LONG
             ).show()
             return
         }
 
+        Toast.makeText(
+                requireContext(),
+                R.string.enfermeiro_guardado_sucesso,
+                Toast.LENGTH_LONG
+        ).show()
         navegaListaEnfermeiro()
     }
+
 
     fun processaOpcaoMenu(item: MenuItem): Boolean {
         when (item.itemId) {

@@ -14,6 +14,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="@dimen/margem_Campos"
         android:layout_marginRight="@dimen/margem_Campos"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toBottomOf="@+id/textViewDestritos"
         app:layout_constraintEnd_toStartOf="@+id/textViewDestritos"
         app:layout_constraintHorizontal_bias="0.0"
@@ -41,18 +42,19 @@
 
     <TextView
         android:id="@+id/textViewEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="23dp"
+        android:layout_width="53dp"
+        android:layout_height="25dp"
         android:layout_marginTop="@dimen/margem_Campos"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/textViewContacto"
-        app:layout_constraintTop_toBottomOf="@+id/textViewContacto"
+        app:layout_constraintStart_toStartOf="@+id/textViewData"
+        app:layout_constraintTop_toBottomOf="@+id/textViewData"
         tools:text="Mail" />
 
     <TextView
         android:id="@+id/textViewSexo"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_width="40dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="@dimen/margem_Campos"
         app:layout_constraintStart_toStartOf="@+id/textViewEmail"
         app:layout_constraintTop_toBottomOf="@+id/textViewEmail"
         tools:text="Sexo" />
@@ -67,5 +69,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Destritos" />
+
+    <TextView
+        android:id="@+id/textViewData"
+        android:layout_width="59dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="@dimen/margem_Campos"
+        app:layout_constraintStart_toStartOf="@+id/textViewContacto"
+        app:layout_constraintTop_toBottomOf="@+id/textViewContacto"
+        tools:text="Data" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

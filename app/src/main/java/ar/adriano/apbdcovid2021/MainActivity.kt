@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
             else -> when(menuAtual) {
                 R.menu.menu_lista_enfermeiro -> (DadosApp.fragment as ListaEnfermeirosFragment).processaOpcaoDeMenu(item)
                 R.menu.menu_novo_enfermeiro ->( DadosApp.fragment as NovoEnfermeiroFragment).processaOpcaoMenu(item)
-                R.menu.menu_novo_enfermeiro ->(DadosApp.fragment as EditaEnfermeirosFragment).processaOpcaoMenu(item)
+                R.menu.menu_editar_enfermeiros->(DadosApp.fragment as EditaEnfermeirosFragment).processaOpcaoMenu(item)
                 else -> false
             }
         }
