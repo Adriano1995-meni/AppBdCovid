@@ -5,6 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import java.text.SimpleDateFormat
+import java.util.*
 
 class AdapterEnfermeiros (val fragment: ListaEnfermeirosFragment) : RecyclerView.Adapter<AdapterEnfermeiros.ViewHolderEnfermeiro>() {
    public  var cursor: Cursor? = null
@@ -31,14 +33,19 @@ class AdapterEnfermeiros (val fragment: ListaEnfermeirosFragment) : RecyclerView
             itemView.setOnClickListener(this)
         }
 
+
+
         fun atualizaEnfermeiros(enfermeiro: Enfermeiro) {
 
-            this.enfermeiro = enfermeiro
+            val DataHoje =  SimpleDateFormat("dd/mm/yyyy",Locale.getDefault())
 
+            val datahoje= DataHoje.format(enfermeiro.data)
+
+            this.enfermeiro = enfermeiro
             textViewNome.text = enfermeiro.nome
             textViewSexo.text = enfermeiro.sexo
             textViewContacto.text = enfermeiro.contacto
-          textViewData.text = enfermeiro.data.toString()
+            textViewData.text = datahoje.toString()
             textViewMorada.text = enfermeiro.Morada
             textViewEmail.text = enfermeiro.Mail
             textViewDestrito.text = enfermeiro.nomeCategoria
@@ -122,8 +129,8 @@ class AdapterEnfermeiros (val fragment: ListaEnfermeirosFragment) : RecyclerView
      */
     override fun onBindViewHolder(holder: ViewHolderEnfermeiro, position: Int) {
         cursor!!.moveToPosition(position)
-        val enfermeiro: Enfermeiro = Enfermeiro.fromCursor(cursor!!)
-        holder.atualizaEnfermeiros(enfermeiro)
+       // val enfermeiro: Enfermeiro = Enfermeiro.fromCursor(cursor!!)
+        holder.atualizaEnfermeiros(Enfermeiro.fromCursor(cursor!!))
     }
 
 

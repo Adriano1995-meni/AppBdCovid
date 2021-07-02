@@ -35,7 +35,13 @@
     <string name="preencha_Mail">Preencha o Mail</string>
 
     <string name="erro_inserir_enfermeiro">Erro ao inserir enfermeiro</string>
+    <string name="erro_eliminar_enfermeiro">Erro ao inserir enfermeiro</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="erro_alterar_enfermeiro">Erro ao alterar enfermeiro</string>
     <string name="enfermeiro_guardado_sucesso">enfermeiro guardado com sucesso</string>
+    <string name="nomes">Nome</string>
+    <string name="contactos">Contacto</string>
+    <string name="morada">Morada</string>
+    <string name="Email">Email</string>
+    <string name="Sexo">Sexo</string>
 </resources>

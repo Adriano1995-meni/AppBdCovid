@@ -18,6 +18,7 @@ import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
 import ar.adriano.apbdcovid2021.NovoEnfermeiroFragment.Companion.ID_LOADER_MANAGER_DESTRITOS
 import com.google.android.material.snackbar.Snackbar
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -57,20 +58,23 @@ class EditaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
         LoaderManager.getInstance(this)
                 .initLoader(NovoEnfermeiroFragment.ID_LOADER_MANAGER_DESTRITOS, null, this)
 
+        val DataHoje =  SimpleDateFormat("dd/mm/yyyy",Locale.getDefault())
+
+        val datahoje= DataHoje.format(DadosApp.enfermeiroSelecionado!!.data)
 
         editTextNome.setText(DadosApp.enfermeiroSelecionado!!.nome)
         editTextContacto.setText(DadosApp.enfermeiroSelecionado!!.contacto)
         editTextMorada.setText(DadosApp.enfermeiroSelecionado!!.Morada)
         editTextMail.setText(DadosApp.enfermeiroSelecionado!!.Mail)
         editTextSexo.setText(DadosApp.enfermeiroSelecionado!!.sexo)
-        editTextData.setText(DadosApp.enfermeiroSelecionado!!.data.toString())
+        editTextData.setText(datahoje.toString())
 
     }
 
 
     fun navegaListaEnfermeiro() {
 
-        findNavController().navigate(R.id.action_NovoEnfermeirosFragment_to_action_ListaEnfermerosFragment)
+        findNavController().navigate(R.id.action_EditaEnfermeirosFragment_to_ListaEnfermeirosFragment)
 
     }
 
@@ -96,12 +100,15 @@ class EditaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
             return
         }
 
+
         val sexo = editTextSexo.text.toString()
         if (sexo.isEmpty()) {
             editTextSexo.setError(getString(R.string.preencha_sexo))
             editTextSexo.requestFocus()
             return
         }
+
+
 
         val data = editTextData.text.toString()
         if (data.isEmpty()) {
@@ -122,12 +129,12 @@ class EditaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
 
         val enfermeiro = DadosApp.enfermeiroSelecionado!!
          enfermeiro.nome= nome
-        // enfermeiro.Morada = morada
-        enfermeiro.contacto = contacto
-        enfermeiro.sexo = sexo
-        enfermeiro.data = Date(data)
-        enfermeiro.Mail = mail
-        enfermeiro.idDestrito = idDestrito
+         enfermeiro.Morada = morada
+         enfermeiro.contacto = contacto
+         enfermeiro.sexo = sexo
+         enfermeiro.data = Date(data)
+         enfermeiro.Mail = mail
+         enfermeiro.idDestrito = idDestrito
 
         val uriEnfermeiro = Uri.withAppendedPath(
                 ContentProviderEnfermeiros.ENDRECO_ENFERMEIRA,
@@ -155,6 +162,7 @@ class EditaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
                 R.string.enfermeiro_guardado_sucesso,
                 Toast.LENGTH_LONG
         ).show()
+
         navegaListaEnfermeiro()
     }
 
@@ -234,6 +242,7 @@ class EditaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
      */
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
         atualizaSpinnerDestritos(data)
+        atualizaDestritosSelecionada()
     }
 
     /**
@@ -248,7 +257,7 @@ class EditaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
      */
     override fun onLoaderReset(loader: Loader<Cursor>) {
         atualizaSpinnerDestritos(null)
-        atualizaDestritosSelecionada()
+    //   atualizaDestritosSelecionada()
     }
 
     private fun atualizaSpinnerDestritos(data: Cursor?) {

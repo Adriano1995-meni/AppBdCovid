@@ -402,7 +402,7 @@ class ContentProviderEnfermeiros : ContentProvider() {
         private const val URI_DESTRITO_ESPECIFICA = 201
 
         private const val URI_ENFERMEIROS = 300
-        private const val URI_ENFERMEIRO_ESPECIFICO = 101
+        private const val URI_ENFERMEIRO_ESPECIFICO = 301
 
         private const val URI_VACINA = 500
         private const val URI_VACINA_ESPECIFICA = 501

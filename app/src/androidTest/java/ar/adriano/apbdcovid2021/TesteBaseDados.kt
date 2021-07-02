@@ -52,7 +52,6 @@ class TesteBaseDados {
         return id
     }
 
-
     private fun getDestritosBaseDados(tabela: TabelaDestrito, id: Long): Destritos {
         val cursor = tabela.query(
                 TabelaDestrito.TODAS_COLUNAS,
@@ -83,7 +82,6 @@ class TesteBaseDados {
     }
 
 
-
     private fun getPessoasBaseDados(tabela: TabelaPessoas, id: Long): Pessoas {
         val cursor = tabela.query(
                 TabelaPessoas.TODAS_COLUNAS,
@@ -112,10 +110,6 @@ class TesteBaseDados {
 
         return Vacinas.fromCursor(cursor)
     }
-
-
-
-
 
     @Before
     fun apagaBaseDados() {

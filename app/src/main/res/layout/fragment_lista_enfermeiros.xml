@@ -10,5 +10,5 @@
         android:id="@+id/recyclerViewEnfermeiro"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/margem_Ecran" />
+        android:layout_margin="@dimen/margem_ecran" />
 </FrameLayout>

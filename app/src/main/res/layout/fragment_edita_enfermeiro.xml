@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NovoEnfermeiroFragment" >
+    tools:context=".EditaEnfermeirosFragment" >
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
             android:id="@+id/editTextInputNome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margem_Campos"
+            android:layout_margin="@dimen/margem_campos"
             android:hint="@string/nome"
             android:inputType="text" />
 
@@ -26,7 +26,7 @@
                 android:id="@+id/editTextInputContacto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margem_Campos"
+                android:layout_marginTop="@dimen/margem_campos"
                 android:hint="@string/contacto"
                 android:inputType="phone" />
 
@@ -38,7 +38,7 @@
                     android:id="@+id/editTextInputData"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margem_Campos"
+                    android:layout_marginTop="@dimen/margem_campos"
                     android:hint="@string/data"
                     android:inputType="date" />
 
@@ -50,7 +50,7 @@
                         android:id="@+id/editTextInputSexo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margem_Campos"
+                        android:layout_marginTop="@dimen/margem_campos"
                         android:hint="@string/sexo"
                         android:inputType="text" />
 
@@ -62,7 +62,7 @@
                             android:id="@+id/editTextInputMorada"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/margem_Campos"
+                            android:layout_marginTop="@dimen/margem_campos"
                             android:hint="@string/morad"
                             android:inputType="text" />
 
@@ -74,7 +74,7 @@
                                 android:id="@+id/editTextInputEmail"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/margem_Campos"
+                                android:layout_marginTop="@dimen/margem_campos"
                                 android:hint="@string/email"
                                 android:inputType="textWebEmailAddress" />
 
@@ -82,14 +82,14 @@
                                 android:id="@+id/textViewDestritos"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/margem_Campos"
+                                android:layout_marginTop="@dimen/margem_campos"
                                 android:text="@string/destritos" />
 
                             <Spinner
                                 android:id="@+id/spinnerDestritos"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/margem_Campos" />
+                                android:layout_marginTop="@dimen/margem_campos" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </com.google.android.material.textfield.TextInputLayout>
                 </com.google.android.material.textfield.TextInputLayout>

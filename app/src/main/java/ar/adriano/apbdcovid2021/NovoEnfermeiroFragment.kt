@@ -23,6 +23,15 @@ import java.util.*
  */
 class NovoEnfermeiroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
+    private lateinit var editTextNome: EditText
+    private lateinit var editTextMorada: EditText
+    private lateinit var editTextContacto: EditText
+    private lateinit var editTextMail: EditText
+    private lateinit var editTextSexo: EditText
+    private lateinit var editTextData: EditText
+    private lateinit var spinnerDestritos: Spinner
+
+
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -35,13 +44,6 @@ class NovoEnfermeiroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>
     }
 
 
-    private lateinit var editTextNome: EditText
-    private lateinit var editTextMorada: EditText
-    private lateinit var editTextContacto: EditText
-    private lateinit var editTextMail: EditText
-    private lateinit var editTextSexo: EditText
-    private lateinit var editTextData: EditText
-    private lateinit var spinnerDestritos: Spinner
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

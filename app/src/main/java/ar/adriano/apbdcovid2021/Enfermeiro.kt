@@ -8,7 +8,7 @@ import java.util.*
 data class Enfermeiro (
     var id: Long = -1,
     var nome: String,
-    val Morada:String,
+    var Morada:String,
     var contacto: String,
     var sexo:String,
     var data: Date,

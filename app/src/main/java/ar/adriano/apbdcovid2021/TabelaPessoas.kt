@@ -66,11 +66,11 @@ class TabelaPessoas(db: SQLiteDatabase) {
         const val IDENFERMEIRO = "idEnfermeiro"
 
         val TODAS_COLUNAS = arrayOf(BaseColumns._ID,
-            NOME_PESSOA,
-            DATA, DATA_NASCIMENTO,
-            CONTACTO,
-             NUMERO_UTENTE,
-            SEXO,
+              NOME_PESSOA,
+              DATA, DATA_NASCIMENTO,
+              CONTACTO,
+              NUMERO_UTENTE,
+              SEXO,
                DATA,
                 MORADA,
                 CAMPO_ID_DESTRITO,

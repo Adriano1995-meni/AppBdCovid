@@ -53,9 +53,10 @@ class MainActivity : AppCompatActivity() {
             }
 
             else -> when(menuAtual) {
-                R.menu.menu_lista_enfermeiro -> (DadosApp.fragment as ListaEnfermeirosFragment).processaOpcaoDeMenu(item)
+                R.menu.menu_lista_enfermeiro -> (DadosApp.fragment as ListaEnfermeirosFragment).processaOpcaoMenu(item)
                 R.menu.menu_novo_enfermeiro ->( DadosApp.fragment as NovoEnfermeiroFragment).processaOpcaoMenu(item)
                 R.menu.menu_editar_enfermeiros->(DadosApp.fragment as EditaEnfermeirosFragment).processaOpcaoMenu(item)
+                R.menu.menu_eliminar_enfermeirros -> (DadosApp.fragment as EliminarEnfermeirosFragment).processaOpcaoMenu(item)
                 else -> false
             }
         }
@@ -65,6 +66,9 @@ class MainActivity : AppCompatActivity() {
 
         return if(opcaoProcessada) true else super.onOptionsItemSelected(item)
     }
+
+
+
 
     fun ActulizaMenusListaEnfermeiros(mostraBotoesAlterarEliminar:Boolean){
         menu.findItem(R.id.action_Alterar).setVisible(mostraBotoesAlterarEliminar)

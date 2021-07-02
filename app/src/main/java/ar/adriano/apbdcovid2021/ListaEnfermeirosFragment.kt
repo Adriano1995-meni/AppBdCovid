@@ -43,8 +43,6 @@ class ListaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
         LoaderManager.getInstance(this)
                 .initLoader(ID_LOADER_MANAGER_PESSOAS, null, this)
 
-       // findNavController().navigate(R.id.action_ListsEnfermeirosFragment_to_action_NovoEnfermeirosFragment)
-   //     view.findViewById<Button>(R.id.button_first).setOnClickListener {
 
         }
 
@@ -145,7 +143,7 @@ class ListaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
     }
 
 
-    fun processaOpcaoDeMenu(item: MenuItem): Boolean {
+    fun processaOpcaoMenu(item: MenuItem): Boolean {
 
         when(item.itemId) {
 
