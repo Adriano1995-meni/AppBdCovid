@@ -37,7 +37,7 @@ class AdapterEnfermeiros (val fragment: ListaEnfermeirosFragment) : RecyclerView
 
         fun atualizaEnfermeiros(enfermeiro: Enfermeiro) {
 
-            val DataHoje =  SimpleDateFormat("dd/mm/yyyy",Locale.getDefault())
+            val DataHoje =  SimpleDateFormat("dd/MM/YYYY",Locale.getDefault())
 
             val datahoje= DataHoje.format(enfermeiro.data)
 

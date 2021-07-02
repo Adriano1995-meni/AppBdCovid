@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="210dp"
     android:orientation="vertical">
 
     <TextView
@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="25dp"
         android:layout_margin="@dimen/margem_campos"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="@dimen/margem_campos"
         android:layout_marginRight="@dimen/margem_campos"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -26,7 +26,7 @@
         android:id="@+id/textViewMorada"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/margem_campos"
+        android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="@+id/textViewNome"
         app:layout_constraintTop_toBottomOf="@+id/textViewNome"
         tools:text="Morada" />
@@ -35,16 +35,16 @@
         android:id="@+id/textViewContacto"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/margem_campos"
+        android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="@+id/textViewMorada"
         app:layout_constraintTop_toBottomOf="@+id/textViewMorada"
         tools:text="Contacto" />
 
     <TextView
         android:id="@+id/textViewEmail"
-        android:layout_width="53dp"
+        android:layout_width="wrap_content"
         android:layout_height="25dp"
-        android:layout_marginTop="@dimen/margem_campos"
+        android:layout_marginTop="12dp"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/textViewData"
         app:layout_constraintTop_toBottomOf="@+id/textViewData"
@@ -54,7 +54,7 @@
         android:id="@+id/textViewSexo"
         android:layout_width="40dp"
         android:layout_height="20dp"
-        android:layout_marginTop="@dimen/margem_campos"
+        android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="@+id/textViewEmail"
         app:layout_constraintTop_toBottomOf="@+id/textViewEmail"
         tools:text="Sexo" />
@@ -66,15 +66,17 @@
         android:layout_marginTop="@dimen/margem_campos"
         android:layout_marginEnd="@dimen/margem_campos"
         android:layout_marginRight="@dimen/margem_campos"
+        android:textColor="#03A9F4"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Destritos" />
 
     <TextView
         android:id="@+id/textViewData"
-        android:layout_width="59dp"
+        android:layout_width="wrap_content"
         android:layout_height="21dp"
-        android:layout_marginTop="@dimen/margem_campos"
+        android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="@+id/textViewContacto"
         app:layout_constraintTop_toBottomOf="@+id/textViewContacto"
         tools:text="Data" />

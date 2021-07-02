@@ -58,7 +58,7 @@ class EditaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
         LoaderManager.getInstance(this)
                 .initLoader(NovoEnfermeiroFragment.ID_LOADER_MANAGER_DESTRITOS, null, this)
 
-        val DataHoje =  SimpleDateFormat("dd/mm/yyyy",Locale.getDefault())
+        val DataHoje =  SimpleDateFormat("dd/MM/YYYY",Locale.getDefault())
 
         val datahoje= DataHoje.format(DadosApp.enfermeiroSelecionado!!.data)
 
