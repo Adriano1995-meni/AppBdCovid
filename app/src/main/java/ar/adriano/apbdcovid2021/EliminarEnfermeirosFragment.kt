@@ -10,6 +10,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class EliminarEnfermeirosFragment :  Fragment() {
@@ -46,7 +48,15 @@ class EliminarEnfermeirosFragment :  Fragment() {
         textViewDestrito = view.findViewById(R.id.textViewDestrito)
 
 
+
+
+
+
         val enfermeiros = DadosApp.enfermeiroSelecionado!!
+
+        val DataHoje =  SimpleDateFormat("dd/MM/YYYY",Locale.getDefault())
+
+        val datahoje= DataHoje.format(enfermeiros.data)
         textViewNome.setText(enfermeiros.nome)
         textViewMorada.setText(enfermeiros.Morada)
 
@@ -54,8 +64,10 @@ class EliminarEnfermeirosFragment :  Fragment() {
         textViewContacto.setText(enfermeiros.contacto)
 
         textViewSexo.setText(enfermeiros.sexo)
-        textViewData.setText(enfermeiros.data.toString())
+        textViewData.text = datahoje.toString()
         textViewDestrito.setText(enfermeiros.nomeCategoria)
+
+
     }
 
     fun navegaListaEnfermeiros() {

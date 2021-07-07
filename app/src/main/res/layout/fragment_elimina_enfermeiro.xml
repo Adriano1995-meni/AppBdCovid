@@ -15,9 +15,9 @@
         android:layout_marginTop="@dimen/margem_ecran"
         android:layout_marginEnd="@dimen/margem_ecran"
         android:layout_marginRight="@dimen/margem_ecran"
+        android:text="@string/nome"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="@color/cor_selecao"
-        tools:text="Nome" />
+        android:textColor="@color/cor_selecao" />
 
     <TextView
         android:id="@+id/textViewNome"
@@ -40,9 +40,9 @@
         android:layout_marginTop="@dimen/margem_ecran"
         android:layout_marginEnd="@dimen/margem_ecran"
         android:layout_marginRight="@dimen/margem_ecran"
+        android:text="@string/contacto"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="@color/cor_selecao"
-        tools:text="Contacto" />
+        android:textColor="@color/cor_selecao" />
 
     <TextView
         android:id="@+id/textViewContacto"
@@ -118,9 +118,9 @@
         android:layout_marginTop="@dimen/margem_campos"
         android:layout_marginEnd="@dimen/margem_ecran"
         android:layout_marginRight="@dimen/margem_ecran"
+        android:text="@string/Sexo"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="@color/cor_selecao"
-        tools:text="Sexo" />
+        android:textColor="@color/cor_selecao" />
 
     <TextView
         android:id="@+id/textViewSexo"

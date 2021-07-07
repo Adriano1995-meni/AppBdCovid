@@ -113,7 +113,7 @@ class TesteBaseDados {
 
     @Before
     fun apagaBaseDados() {
-  //    getAppContext().deleteDatabase( BdRegistaPessoasOpenHelper.NOME_BASE_DADOS)
+    //  getAppContext().deleteDatabase( BdRegistaPessoasOpenHelper.NOME_BASE_DADOS)
     }
 
     @Test

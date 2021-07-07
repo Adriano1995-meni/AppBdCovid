@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ApBdCovid2021</string>
+    <string name="app_name">App para registar enfermeiros</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="Lista_Enfermeiros_fragment_label">Enfermeiros</string>
@@ -44,4 +44,5 @@
     <string name="morada">Morada</string>
     <string name="Email">Email</string>
     <string name="Sexo">Sexo</string>
+    <string name="novoenfermeiro">Novo Enfermeiro</string>
 </resources>

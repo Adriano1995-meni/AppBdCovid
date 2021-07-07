@@ -26,7 +26,7 @@
     <fragment
         android:id="@+id/NovoEnfermeirosFragment"
         android:name="ar.adriano.apbdcovid2021.NovoEnfermeiroFragment"
-        android:label="Novo_Enfermeiros_fragment_label"
+        android:label="@string/novoenfermeiro"
         tools:layout="@layout/fragment_novo_enfermeiro">
 
         <action
