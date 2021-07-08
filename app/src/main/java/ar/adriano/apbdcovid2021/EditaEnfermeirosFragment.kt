@@ -16,8 +16,6 @@ import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
-import ar.adriano.apbdcovid2021.NovoEnfermeiroFragment.Companion.ID_LOADER_MANAGER_DESTRITOS
-import com.google.android.material.snackbar.Snackbar
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -60,13 +58,13 @@ class EditaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
 
         val DataHoje =  SimpleDateFormat("dd/MM/YYYY",Locale.getDefault())
 
-        val datahoje= DataHoje.format(DadosApp.enfermeiroSelecionado!!.data)
+        val datahoje= DataHoje.format(DadosApp.EnfermeiroSelecionado!!.data)
 
-        editTextNome.setText(DadosApp.enfermeiroSelecionado!!.nome)
-        editTextContacto.setText(DadosApp.enfermeiroSelecionado!!.contacto)
-        editTextMorada.setText(DadosApp.enfermeiroSelecionado!!.Morada)
-        editTextMail.setText(DadosApp.enfermeiroSelecionado!!.Mail)
-        editTextSexo.setText(DadosApp.enfermeiroSelecionado!!.sexo)
+        editTextNome.setText(DadosApp.EnfermeiroSelecionado!!.nome)
+        editTextContacto.setText(DadosApp.EnfermeiroSelecionado!!.contacto)
+        editTextMorada.setText(DadosApp.EnfermeiroSelecionado!!.Morada)
+        editTextMail.setText(DadosApp.EnfermeiroSelecionado!!.Mail)
+        editTextSexo.setText(DadosApp.EnfermeiroSelecionado!!.sexo)
         editTextData.setText(datahoje.toString())
 
     }
@@ -127,7 +125,7 @@ class EditaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
 
         val idDestrito = spinnerDestritos.selectedItemId
 
-        val enfermeiro = DadosApp.enfermeiroSelecionado!!
+        val enfermeiro = DadosApp.EnfermeiroSelecionado!!
          enfermeiro.nome= nome
          enfermeiro.Morada = morada
          enfermeiro.contacto = contacto
@@ -273,7 +271,7 @@ class EditaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
 
 
     private fun atualizaDestritosSelecionada() {
-        val idCategoria = DadosApp.enfermeiroSelecionado!!.idDestrito
+        val idCategoria = DadosApp.EnfermeiroSelecionado!!.idDestrito
 
         val ultimaCategoria = spinnerDestritos.count - 1
         for (i in 0..ultimaCategoria) {

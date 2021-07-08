@@ -52,7 +52,7 @@ class EliminarEnfermeirosFragment :  Fragment() {
 
 
 
-        val enfermeiros = DadosApp.enfermeiroSelecionado!!
+        val enfermeiros = DadosApp.EnfermeiroSelecionado!!
 
         val DataHoje =  SimpleDateFormat("dd/MM/YYYY",Locale.getDefault())
 
@@ -77,7 +77,7 @@ class EliminarEnfermeirosFragment :  Fragment() {
     fun elimina() {
         val uriEnfermeiros = Uri.withAppendedPath(
                 ContentProviderEnfermeiros.ENDRECO_ENFERMEIRA,
-                DadosApp.enfermeiroSelecionado!!.id.toString()
+                DadosApp.EnfermeiroSelecionado!!.id.toString()
         )
 
         val registos = activity?.contentResolver?.delete(

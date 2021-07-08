@@ -35,7 +35,7 @@ class AdapterEnfermeiros (val fragment: ListaEnfermeirosFragment) : RecyclerView
 
 
 
-        fun atualizaEnfermeiros(enfermeiro: Enfermeiro) {
+        fun atualizaEnfermeiro(enfermeiro: Enfermeiro) {
 
             val DataHoje =  SimpleDateFormat("dd/MM/YYYY",Locale.getDefault())
 
@@ -59,8 +59,8 @@ class AdapterEnfermeiros (val fragment: ListaEnfermeirosFragment) : RecyclerView
         private fun seleciona() {
             selecionado = this
             itemView.setBackgroundResource(R.color.cor_selecao)
-            DadosApp.enfermeiroSelecionado = enfermeiro
-            DadosApp.activity.ActulizaMenusListaEnfermeiros(true)
+            DadosApp.EnfermeiroSelecionado = enfermeiro
+            DadosApp.activity.ActulizaMenusListaPessoas(true)
         }
 
         private fun desSeleciona() {
@@ -130,7 +130,7 @@ class AdapterEnfermeiros (val fragment: ListaEnfermeirosFragment) : RecyclerView
     override fun onBindViewHolder(holder: ViewHolderEnfermeiro, position: Int) {
         cursor!!.moveToPosition(position)
        // val enfermeiro: Enfermeiro = Enfermeiro.fromCursor(cursor!!)
-        holder.atualizaEnfermeiros(Enfermeiro.fromCursor(cursor!!))
+        holder.atualizaEnfermeiro(Enfermeiro.fromCursor(cursor!!))
     }
 
 

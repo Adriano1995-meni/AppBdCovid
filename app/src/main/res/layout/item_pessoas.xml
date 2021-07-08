@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/margem_campos"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textViewNome"
+        android:layout_width="wrap_content"
+        android:layout_height="27dp"
+        android:layout_margin="@dimen/margem_campos"
+        android:layout_marginEnd="@dimen/margem_campos"
+        android:layout_marginRight="@dimen/margem_campos"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewDestritos"
+        app:layout_constraintEnd_toStartOf="@+id/textViewDestritos"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Adriano Corria co" />
+
+    <TextView
+        android:id="@+id/textViewMorada"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margem_campos"
+        app:layout_constraintStart_toStartOf="@+id/textViewNome"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNome"
+        tools:text="Morada" />
+
+    <TextView
+        android:id="@+id/textViewContacto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margem_campos"
+        app:layout_constraintStart_toStartOf="@+id/textViewMorada"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMorada"
+        tools:text="Contacto" />
+
+    <TextView
+        android:id="@+id/textViewEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margem_campos"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/textViewData"
+        app:layout_constraintTop_toBottomOf="@+id/textViewData"
+        tools:text="Mail" />
+
+    <TextView
+        android:id="@+id/textViewSexo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margem_campos"
+        app:layout_constraintStart_toStartOf="@+id/textViewEmail"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEmail"
+        tools:text="Sexo" />
+
+    <TextView
+        android:id="@+id/textViewNumeroUtente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/textViewSexo"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSexo"
+        tools:text="Numero Utente" />
+
+    <TextView
+        android:id="@+id/textViewDataNascimento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/textViewNumeroUtente"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNumeroUtente"
+        tools:text="Data Nascimento" />
+
+    <TextView
+        android:id="@+id/textViewDestritos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margem_campos"
+        android:layout_marginEnd="@dimen/margem_campos"
+        android:layout_marginRight="@dimen/margem_campos"
+        android:textColor="#03A9F4"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Destritos" />
+
+
+    <TextView
+        android:id="@+id/textViewEnfermeiros"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="12dp"
+        android:textColor="#03A9F4"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/textViewDataNascimento"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDataNascimento"
+        tools:text="Enfermeiros" />
+
+    <TextView
+        android:id="@+id/textViewData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margem_campos"
+        app:layout_constraintStart_toStartOf="@+id/textViewContacto"
+        app:layout_constraintTop_toBottomOf="@+id/textViewContacto"
+        tools:text="Data" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         this.menu= menu
 
         if (menuAtual == R.menu.menu_lista_enfermeiro) {
-            ActulizaMenusListaEnfermeiros(false)
+            ActulizaMenusListaPessoas(false)
         }
         return true
 
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    fun ActulizaMenusListaEnfermeiros(mostraBotoesAlterarEliminar:Boolean){
+    fun ActulizaMenusListaPessoas(mostraBotoesAlterarEliminar:Boolean){
         menu.findItem(R.id.action_Alterar).setVisible(mostraBotoesAlterarEliminar)
         menu.findItem(R.id.action_Eliminar).setVisible(mostraBotoesAlterarEliminar)
 
