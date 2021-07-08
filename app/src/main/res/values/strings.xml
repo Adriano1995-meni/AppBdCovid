@@ -1,48 +1,48 @@
 <resources>
     <string name="app_name">App para registar enfermeiros</string>
-    <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="Lista_Enfermeiros_fragment_label">Enfermeiros</string>
-    <string name="Novo_Enfermeiros_fragment_label">Novo Enfermeiros</string>
-    <string name="edita_enfermeiro_fragment_label">Editar Enfermeiros</string>
-    <string name="elimina_enferneiro_fragment_label">Eliminar Enfermeiros?</string>
+    <string name="Novo_Enfermeiros_fragment_label">New Nurse</string>
+    <string name="edita_enfermeiro_fragment_label">Edit Nuse</string>
 
 
-    <string name="alterar_enfermeiro" />
-    <string name="eliminar_enfermeiros" />
-    <string name="novo_enfermeiro" />
-    <string name="action_novo_enfermeiro">Novo Enfermeiro</string>
-    <string name="action_alterar_enfermeiro">Alterar Enfermeiro</string>
-    <string name="action_eliminar_enfermeiro">Eliminar Enfermeiro</string>
-    <string name="editTextInputNome">Nome</string>
-    <string name="nome">Nome</string>
-    <string name="contacto">Contacto</string>
+    <string name="alterar_enfermeiro" translatable="false" />
+    <string name="eliminar_enfermeiros" translatable="false" />
+    <string name="novo_enfermeiro" translatable="false" />
+    <string name="action_eliminar_enfermeiro">"Delete Nurse "</string>
+    <string name="nome">Name</string>
+    <string name="contacto">Contact</string>
     <string name="data">Data</string>
-    <string name="sexo">sexo</string>
-    <string name="morad">Morad</string>
-    <string name="email">Email</string>
-    <string name="destritos">Destritos</string>
-    <string name="guardar">guardar</string>
-    <string name="cancelar">cancelar</string>
-    <string name="eliminar_enfermeiro">eliminar_enfermeiro</string>
-    <string name="versao">Enfermeiro v. 1.0</string>
+    <string name="sexo">sex</string>
+    <string name="guardar">save</string>
+    <string name="versao" translatable="false">Enfermeiro v. 1.0</string>
 
-    <string name="preencha_Nome">Preencha o Nome</string>
-    <string name="preencha_Morada">Preencha o Morada</string>
-    <string name="preencha_sexo">Preencha o sexo</string>
-    <string name="preencha_Data">Preencha o Data</string>
-    <string name="preencha_Contacto">Preencha o Contacto</string>
-    <string name="preencha_Mail">Preencha o Mail</string>
+    <string name="preencha_Morada">fill in the address</string>
 
-    <string name="erro_inserir_enfermeiro">Erro ao inserir enfermeiro</string>
-    <string name="erro_eliminar_enfermeiro">Erro ao inserir enfermeiro</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="erro_alterar_enfermeiro">Erro ao alterar enfermeiro</string>
-    <string name="enfermeiro_guardado_sucesso">enfermeiro guardado com sucesso</string>
-    <string name="nomes">Nome</string>
-    <string name="contactos">Contacto</string>
-    <string name="morada">Morada</string>
-    <string name="Email">Email</string>
-    <string name="Sexo">Sexo</string>
-    <string name="novoenfermeiro">Novo Enfermeiro</string>
+    <string name="erro_inserir_enfermeiro">Error entering nurse</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="erro_alterar_enfermeiro">Erro edit nurse</string>
+    <string name="nomes">Name</string>
+    <string name="Sexo">Sex</string>
+    <string name="novoenfermeiro">New Nurse</string>
+    <string name="action_settings">Settings</string>
+    <string name="Lista_Enfermeiros_fragment_label">Nurse</string>
+    <string name="elimina_enferneiro_fragment_label">Delete Nurse</string>
+    <string name="action_novo_enfermeiro">"New Nurse "</string>
+    <string name="action_alterar_enfermeiro">"edit Nurse "</string>
+    <string name="editTextInputNome">Name</string>
+    <string name="morad">address</string>
+    <string name="email">mail</string>
+    <string name="destritos">Destrits</string>
+    <string name="cancelar">cancel</string>
+    <string name="eliminar_enfermeiro">Delete Nurse</string>
+    <string name="preencha_Nome">fill in the name</string>
+    <string name="preencha_sexo">fill in the sexo</string>
+    <string name="preencha_Data">fill in the date</string>
+    <string name="preencha_Contacto">fill in the Contact</string>
+    <string name="preencha_Mail">fill in the Email</string>
+    <string name="erro_eliminar_enfermeiro">Error delet nurse</string>
+    <string name="enfermeiro_guardado_sucesso">Nurse save sucefull</string>
+    <string name="contactos">Contact</string>
+    <string name="morada">address</string>
+    <string name="Email">mail</string>
 </resources>
