@@ -25,6 +25,12 @@
             android:name=".ContentProviderEnfermeiros"
             android:exported="false"/>
 
+
+        <provider
+            android:authorities="ar.adriano.apbdcovid2021"
+            android:name=".ContentProviderPessoas"
+            android:exported="false"/>
+
     </application>
 
 </manifest>
