@@ -62,6 +62,7 @@ class ListaPessoasFragment:Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
                 null,null,
                 TabelaPessoas.NOME_PESSOA
         )
+
     }
 
     /**
