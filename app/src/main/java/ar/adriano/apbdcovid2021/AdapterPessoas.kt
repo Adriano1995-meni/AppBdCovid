@@ -63,7 +63,8 @@ class AdapterPessoas(val fragment: ListaPessoasFragment) : RecyclerView.Adapter<
         private fun seleciona() {
             selecionado = this
             itemView.setBackgroundResource(R.color.cor_selecao)
-            DadosApp.PessoasSelecionado = pessoas
+           // DadosApp.PessoasSelecionado = pessoas //              Nao deve ficar em Comentario
+
             DadosApp.activity.ActulizaMenusListaPessoas(true)
         }
 

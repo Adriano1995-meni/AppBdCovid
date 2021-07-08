@@ -45,4 +45,7 @@
     <string name="contactos">Contact</string>
     <string name="morada">address</string>
     <string name="Email">mail</string>
+    <string name="tabelaenfermerio">tabelaEnfermerio</string>
+    <string name="tabeladestritos">TabelaDestritos</string>
+    <string name="tabelapaciente">TabelaPaciente</string>
 </resources>
