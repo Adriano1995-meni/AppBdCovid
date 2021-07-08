@@ -2,10 +2,13 @@ package ar.adriano.apbdcovid2021
 
 import android.content.ContentProvider
 import android.content.ContentValues
+import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
+import android.provider.BaseColumns
 
 class ContentProviderPessoas: ContentProvider() {
+    private var bdPessoasOpenHelper : BdRegistaPessoasOpenHelper? = null
     /**
      * Implement this to handle requests to insert a new row. As a courtesy,
      * call
@@ -18,8 +21,25 @@ class ContentProviderPessoas: ContentProvider() {
      * @param values A set of column_name/value pairs to add to the database.
      * @return The URI for the newly inserted item.
      */
+
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
-        TODO("Not yet implemented")
+
+
+        val bd = bdPessoasOpenHelper!!.writableDatabase
+
+        val id = when (getUriMatcher().match(uri)) {
+            URI_ENFERMEIROS -> TabelaEnfermeiro(bd).insert(values!!)
+            URI_PESSOAS -> TabelaPessoas(bd).insert(values!!)
+            URI_DESTRITO -> TabelaDestrito(bd).insert(values!!)
+            URI_VACINA -> TabelaVacina(bd).insert(values!!)
+
+
+            else -> -1L
+        }
+
+        if (id == -1L) return null
+
+        return Uri.withAppendedPath(uri, id.toString())
     }
 
     /**
@@ -89,8 +109,99 @@ class ContentProviderPessoas: ContentProvider() {
      * If `null` then the provider is free to define the sort order.
      * @return a Cursor or `null`.
      */
-    override fun query(uri: Uri, projection: Array<out String>?, selection: String?, selectionArgs: Array<out String>?, sortOrder: String?): Cursor? {
-        TODO("Not yet implemented")
+    override fun query(
+            uri: Uri,
+            projection: Array<out String>?,
+            selection: String?,
+            selectionArgs: Array<out String>?,
+            sortOrder: String?
+    ): Cursor? {
+
+        val bd = bdPessoasOpenHelper!!.readableDatabase
+
+
+        //  retirei um ? na Frente de Array<String>?,
+
+        return when (getUriMatcher().match(uri)) {
+
+            URI_PESSOAS-> TabelaPessoas(bd).query(
+                    projection as Array<String>,
+                    selection,
+                    selectionArgs as Array<String>?,
+                    null,
+                    null,
+                    sortOrder
+            )
+
+            URI_PESSOA_ESPECIFICO -> TabelaEnfermeiro(bd).query(
+                    projection as Array<String>,
+                    "${BaseColumns._ID}=?",
+                    arrayOf(uri.lastPathSegment!!),
+                    null,
+                    null,
+                    null
+            )
+
+            URI_DESTRITO -> TabelaDestrito(bd).query(
+                    projection as Array<String>,
+                    selection,
+                    selectionArgs as Array<String>?,
+                    null,
+                    null,
+                    sortOrder
+            )
+
+            URI_DESTRITO_ESPECIFICA -> TabelaDestrito(bd).query(
+                    projection as Array<String>,
+                    "${BaseColumns._ID}=?",
+                    arrayOf(uri.lastPathSegment!!),
+                    null,
+                    null,
+                    null
+            )
+
+
+            URI_ENFERMEIROS -> TabelaEnfermeiro(bd).query(
+                    projection as Array<String>,
+                    selection,
+                    selectionArgs as Array<String>?,
+                    null,
+                    null,
+                    sortOrder
+            )
+
+            URI_ENFERMEIRO_ESPECIFICO -> TabelaEnfermeiro(bd).query(
+                    projection as Array<String>,
+                    "${BaseColumns._ID}=?",
+                    arrayOf(uri.lastPathSegment!!),
+                    null,
+                    null,
+                    null
+            )
+
+
+            //  retiramos um ? na Frente de Array<String>?,
+            URI_VACINA -> TabelaVacina(bd).query(
+                    projection as Array<String>,
+                    selection,
+                    selectionArgs as Array<String>,
+                    null,
+                    null,
+                    sortOrder
+            )
+
+            URI_VACINA_ESPECIFICA-> TabelaVacina(bd).query(
+                    projection as Array<String>,
+                    "${BaseColumns._ID}=?",
+                    arrayOf(uri.lastPathSegment!!),
+                    null,
+                    null,
+                    null
+            )
+
+            else -> null
+        }
+
     }
 
     /**
@@ -121,7 +232,9 @@ class ContentProviderPessoas: ContentProvider() {
      * @return true if the provider was successfully loaded, false otherwise
      */
     override fun onCreate(): Boolean {
-        TODO("Not yet implemented")
+        bdPessoasOpenHelper = BdRegistaPessoasOpenHelper(context)
+
+        return true
     }
 
     /**
@@ -139,10 +252,42 @@ class ContentProviderPessoas: ContentProvider() {
      * @param selection An optional filter to match rows to update.
      * @return the number of rows affected.
      */
-    override fun update(uri: Uri, values: ContentValues?, selection: String?, selectionArgs: Array<out String>?): Int {
-        TODO("Not yet implemented")
-    }
+    override fun update(
+            uri: Uri,
+            values: ContentValues?,
+            selection: String?,
+            selectionArgs: Array<out String>?
+    ): Int {
+        val bd = bdPessoasOpenHelper!!.writableDatabase
 
+        return when (getUriMatcher().match(uri)) {
+            URI_PESSOA_ESPECIFICO -> TabelaPessoas(bd).update(
+                    values!!,
+                    "${BaseColumns._ID}=?",
+                    arrayOf(uri.lastPathSegment!!)
+            )
+
+            URI_DESTRITO_ESPECIFICA -> TabelaDestrito(bd).update(
+                    values!!,
+                    "${BaseColumns._ID}=?",
+                    arrayOf(uri.lastPathSegment!!)
+            )
+
+            URI_ENFERMEIRO_ESPECIFICO-> TabelaEnfermeiro(bd).update(
+                    values!!,
+                    "${BaseColumns._ID}=?",
+                    arrayOf(uri.lastPathSegment!!)
+            )
+
+            URI_VACINA_ESPECIFICA-> TabelaVacina(bd).update(
+                    values!!,
+                    "${BaseColumns._ID}=?",
+                    arrayOf(uri.lastPathSegment!!)
+            )
+
+            else -> 0
+        }
+    }
     /**
      * Implement this to handle requests to delete one or more rows. The
      * implementation should apply the selection clause when performing
@@ -167,7 +312,38 @@ class ContentProviderPessoas: ContentProvider() {
      * @throws SQLException
      */
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<out String>?): Int {
-        TODO("Not yet implemented")
+
+        val bd = bdPessoasOpenHelper!!.writableDatabase
+
+        return when (getUriMatcher().match(uri)) {
+
+            URI_PESSOA_ESPECIFICO -> TabelaPessoas(bd).delete(
+                    "${BaseColumns._ID}=?",
+                    arrayOf(uri.lastPathSegment!!)
+            )
+
+            URI_DESTRITO_ESPECIFICA -> TabelaDestrito(bd).delete(
+
+                    "${BaseColumns._ID}=?",
+                    arrayOf(uri.lastPathSegment!!)
+            )
+
+            URI_ENFERMEIRO_ESPECIFICO-> TabelaEnfermeiro(bd).delete(
+
+                    "${BaseColumns._ID}=?",
+                    arrayOf(uri.lastPathSegment!!)
+            )
+
+            URI_VACINA_ESPECIFICA-> TabelaVacina(bd).delete(
+
+                    "${BaseColumns._ID}=?",
+                    arrayOf(uri.lastPathSegment!!)
+            )
+
+            else -> 0
+        }
+
+
     }
 
     /**
@@ -190,6 +366,80 @@ class ContentProviderPessoas: ContentProvider() {
      * @return a MIME type string, or `null` if there is no type.
      */
     override fun getType(uri: Uri): String? {
-        TODO("Not yet implemented")
+        return when (getUriMatcher().match(uri)) {
+
+            URI_ENFERMEIROS->"$MULTIPLOS_ITEMS/$Enfermeiro"
+            URI_ENFERMEIRO_ESPECIFICO -> "$UNICO_ITEM/$Enfermeiro"
+
+            URI_PESSOAS-> "$MULTIPLOS_ITEMS/$Pessoas"
+            URI_PESSOA_ESPECIFICO -> "$UNICO_ITEM/$Pessoas"
+
+            URI_DESTRITO ->"$MULTIPLOS_ITEMS/$Destrito"
+            URI_DESTRITO_ESPECIFICA -> "$UNICO_ITEM/$Destrito"
+
+            URI_VACINA->"$MULTIPLOS_ITEMS/$Vacina"
+            URI_VACINA_ESPECIFICA-> "$UNICO_ITEM/$Vacina"
+
+            else -> null
+        }
+
     }
+
+    companion object {
+
+
+        private const val AUTHORITY = "ar.adriano.apbdcovid2021"
+        private const val Pessoas = "Pessoas"
+        private const val Destrito = "destritos"
+        private const val Enfermeiro="enfermeiro"
+        private const val Vacina="Vacinas"
+
+
+        private const val URI_PESSOAS = 100
+        private const val URI_PESSOA_ESPECIFICO = 101
+
+        private const val URI_DESTRITO = 200
+        private const val URI_DESTRITO_ESPECIFICA = 201
+
+        private const val URI_ENFERMEIROS = 300
+        private const val URI_ENFERMEIRO_ESPECIFICO = 301
+
+        private const val URI_VACINA = 500
+        private const val URI_VACINA_ESPECIFICA = 501
+
+
+        private const val MULTIPLOS_ITEMS = "vnd.android.cursor.dir"
+        private const val UNICO_ITEM = "vnd.android.cursor.item"
+
+        public val  ENDRECO_BASE= Uri.parse("content://$AUTHORITY/")
+        public val  ENDRECO_PESSOAS=Uri.withAppendedPath(ENDRECO_BASE, Pessoas)
+        public val  ENDRECO_DESTRITO=Uri.withAppendedPath(ENDRECO_BASE, Destrito)
+        public val  ENDRECO_ENFERMEIRA=Uri.withAppendedPath(ENDRECO_BASE,Enfermeiro)
+        public val  ENDRECO_VACINA=Uri.withAppendedPath(ENDRECO_BASE, Vacina)
+
+
+        private fun getUriMatcher() : UriMatcher {
+            val uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
+
+            uriMatcher.addURI(AUTHORITY, Enfermeiro, URI_ENFERMEIROS)
+            uriMatcher.addURI(AUTHORITY, "$Enfermeiro/#", URI_ENFERMEIRO_ESPECIFICO)
+
+
+            uriMatcher.addURI(AUTHORITY, Pessoas, URI_PESSOAS)
+            uriMatcher.addURI(AUTHORITY, "$Pessoas/#", URI_PESSOA_ESPECIFICO)
+
+            uriMatcher.addURI(AUTHORITY, Destrito, URI_DESTRITO)
+            uriMatcher.addURI(AUTHORITY, "$Destrito/#", URI_DESTRITO_ESPECIFICA)
+
+
+            uriMatcher.addURI(AUTHORITY, Vacina, URI_VACINA)
+            uriMatcher.addURI(AUTHORITY, "$Vacina/#", URI_VACINA_ESPECIFICA)
+
+
+            return uriMatcher
+        }
+    }
+
+
+
 }
