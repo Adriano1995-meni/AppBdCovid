@@ -7,7 +7,7 @@ class DadosPessoasApp {
     object {
         lateinit var activity: MainActivity
         lateinit var fragment: Fragment
-        var PessoasSelecionado: Pessoas? = null
+        var pessoasSelecionado: Pessoas? = null
 
     }
 }

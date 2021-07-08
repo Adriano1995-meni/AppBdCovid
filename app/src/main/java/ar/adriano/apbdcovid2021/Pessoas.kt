@@ -8,12 +8,12 @@ import java.util.*
 data class Pessoas (
         var id: Long=-1,
         var nome:String,
-        val Morada:String,
-    var sexo: String,
+        var Morada:String,
+        var sexo: String,
 
-    var dataNascimento: Date,
-    var Contacto: String,
-    var NumeroUtente: String,
+        var dataNascimento: Date,
+        var Contacto: String,
+        var NumeroUtente: String,
         var data: Date,
         var idEnfermeio: Long,
         var idDestrito: Long
