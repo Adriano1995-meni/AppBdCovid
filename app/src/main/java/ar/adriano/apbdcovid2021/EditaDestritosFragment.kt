@@ -1,50 +1,118 @@
 package ar.adriano.apbdcovid2021
 
 import android.database.Cursor
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.SimpleCursorAdapter
+import android.widget.Spinner
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import java.text.SimpleDateFormat
+import java.util.*
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
-class ListaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
-    private var adapterEnfermeiros: AdapterEnfermeiros?=null
+class EditaDestritosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
+
+    private lateinit var editTextNome: EditText
+
+    private lateinit var spinnerDestritos: Spinner
+
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
-        DadosApp.fragment=this
-        (activity as MainActivity).menuAtual = R.menu.menu_lista_enfermeiro
 
+        DadosApp.fragment = this
+        (activity as MainActivity).menuAtual = R.menu.menu_editar_enfermeiros
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_lista_enfermeiros, container, false)
+        return inflater.inflate(R.layout.fragment_edita_enfermeiro, container, false)
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        editTextNome = view.findViewById(R.id.editTextInputNome)
 
-        val recyclerViewEnfermeiro=   view.findViewById<RecyclerView>(R.id.recyclerViewDestritos)
-        adapterEnfermeiros= AdapterEnfermeiros(this)
-        recyclerViewEnfermeiro.adapter = adapterEnfermeiros
-        recyclerViewEnfermeiro.layoutManager = LinearLayoutManager(requireContext())
 
         LoaderManager.getInstance(this)
-                .initLoader(ID_LOADER_MANAGER_PESSOAS, null, this)
+            .initLoader(NovoEnfermeiroFragment.ID_LOADER_MANAGER_DESTRITOS, null, this)
 
 
+        editTextNome.setText(DadosApp.EnfermeiroSelecionado!!.nome)
+
+
+    }
+
+
+    fun navegaListaDestrito() {
+
+        findNavController().navigate(R.id.action_EditaEnfermeirosFragment_to_ListaEnfermeirosFragment)
+
+    }
+
+    fun guardar() {
+        val nome = editTextNome.text.toString()
+        if (nome.isEmpty()) {
+            editTextNome.setError(getString(R.string.preencha_Nome))
+            editTextNome.requestFocus()
+
+            return
         }
+
+
+
+        val destritos = DadosDestritosApp.DestritoSelecionado!!
+        destritos.nome= nome
+
+
+        val uriDestrito = Uri.withAppendedPath(
+            ContentProviderDestritos.ENDRECO_DESTRITO,
+            destritos.id.toString()
+        )
+
+        val registos = activity?.contentResolver?.update(
+            uriDestrito,
+            destritos.toContentValues(),
+            null,
+            null
+        )
+
+        if (registos != 1) {
+            Toast.makeText(
+                requireContext(),
+                R.string.erro_alterar_enfermeiro,
+                Toast.LENGTH_LONG
+            ).show()
+            return
+        }
+
+        Toast.makeText(
+            requireContext(),
+            R.string.enfermeiro_guardado_sucesso,
+            Toast.LENGTH_LONG
+        ).show()
+
+        navegaListaDestrito()
+    }
+
+
+    fun processaOpcaoMenu(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_guardar_edita_enfermeiro -> guardar()
+            R.id.action_cancelar_edita_enfermiro -> navegaListaDestrito()
+            else -> return false
+        }
+
+        return true
+    }
 
     /**
      * Instantiate and return a new Loader for the given ID.
@@ -58,11 +126,11 @@ class ListaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
      */
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
         return CursorLoader(
-                requireContext(),
-                ContentProviderEnfermeiros.ENDRECO_ENFERMEIRA,
-                TabelaEnfermeiro.TODAS_COLUNAS,
-                null,null,
-                TabelaEnfermeiro.NOME_ENFERMEIRO
+            requireContext(),
+            ContentProviderDestritos.ENDRECO_DESTRITO,
+            TabelaDestrito.TODAS_COLUNAS,
+            null, null,
+            TabelaDestrito.CAMPO_NOME
         )
     }
 
@@ -110,23 +178,9 @@ class ListaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
      * @param data The data generated by the Loader.
      */
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
-        adapterEnfermeiros!!.cursor = data
+        atualizaSpinnerDestritos(data)
+  //      atualizaDestritosSelecionada()
     }
-
-
-
-    fun navegaNovoEnfermeiro(){
-        findNavController().navigate(R.id.action_ListaEnfeiroFragment_to_NovoEnfermeiroFragment)
-    }
-
-    fun navegaAlterarEnfermeiro(){
-        findNavController().navigate(R.id.action_ListaEnfermeirosFragment_to_EditaEnfermeirosFragment)
-    }
-
-    fun navegaEliminarEnfermeiro(){
-        findNavController().navigate(R.id.action_listaEnfermeirosFragment_to_eliminaEnfermeirosFragment)
-    }
-
 
     /**
      * Called when a previously created loader is being reset, and thus
@@ -139,26 +193,39 @@ class ListaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
      * @param loader The Loader that is being reset.
      */
     override fun onLoaderReset(loader: Loader<Cursor>) {
-        adapterEnfermeiros!!.cursor =null
+        atualizaSpinnerDestritos(null)
+        //   atualizaDestritosSelecionada()
     }
 
+    private fun atualizaSpinnerDestritos(data: Cursor?) {
+        spinnerDestritos.adapter = SimpleCursorAdapter(
+            requireContext(),
+            android.R.layout.simple_list_item_1,
+            data,
+            arrayOf(TabelaDestrito.CAMPO_NOME),
+            intArrayOf(android.R.id.text1),
+            0
+        )
+    }
 
-    fun processaOpcaoMenu(item: MenuItem): Boolean {
+/*
+    private fun atualizaDestritosSelecionada() {
+        val idCategoria = DadosDestritosApp.DestritoSelecionado!!.idDestrito
 
-        when(item.itemId) {
-
-            R.id.action_Novo -> navegaNovoEnfermeiro()
-            R.id.action_Alterar -> navegaAlterarEnfermeiro()
-            R.id.action_Eliminar -> navegaEliminarEnfermeiro()
-            else -> return false
+        val ultimaCategoria = spinnerDestritos.count - 1
+        for (i in 0..ultimaCategoria) {
+            if (idCategoria == spinnerDestritos.getItemIdAtPosition(i)) {
+                spinnerDestritos.setSelection(i)
+                return
+            }
         }
-
-
-
-        return true
     }
+
+*/
+
 
     companion object {
-        const val ID_LOADER_MANAGER_PESSOAS = 0
+        const val ID_LOADER_MANAGER_DESTRITOS = 0
     }
+
 }

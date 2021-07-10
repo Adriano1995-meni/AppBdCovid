@@ -22,7 +22,7 @@ class AdapterDestritos  (val fragment: ListaDestritosFragment) : RecyclerView.Ad
 
 
 
-        private lateinit var enfermeiro: Enfermeiro
+        private lateinit var destritos: Destritos
 
         init {
             itemView.setOnClickListener(this)
@@ -30,12 +30,12 @@ class AdapterDestritos  (val fragment: ListaDestritosFragment) : RecyclerView.Ad
 
 
 
-        fun atualizaDestrito(enfermeiro: Enfermeiro) {
+        fun atualizaDestrito(destrito: TabelaDestrito) {
 
 
 
-            this.enfermeiro = enfermeiro
-            textViewNome.text = enfermeiro.nome
+            this.destritos = destritos
+            textViewNome.text = destritos.nome
 
         }
 
@@ -47,8 +47,8 @@ class AdapterDestritos  (val fragment: ListaDestritosFragment) : RecyclerView.Ad
         private fun seleciona() {
             selecionado = this
             itemView.setBackgroundResource(R.color.cor_selecao)
-            DadosApp.EnfermeiroSelecionado = enfermeiro
-            DadosApp.activity.ActulizaMenusListaPessoas(true)
+            DadosDestritosApp.DestritoSelecionado= destritos
+            DadosDestritosApp.activity.ActulizaMenusListaPessoas(true)
         }
 
         private fun desSeleciona() {

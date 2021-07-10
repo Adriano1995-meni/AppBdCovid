@@ -21,9 +21,6 @@
         <action
             android:id="@+id/action_listaEnfermeirosFragment_to_eliminaEnfermeirosFragment"
             app:destination="@+id/eliminaEnfermeirosFragment" />
-        <action
-            android:id="@+id/action_ListaEnfermeirosFragment_to_listaPessoasFragment2"
-            app:destination="@id/listaPessoasFragment2" />
 
     </fragment>
     <fragment
@@ -58,12 +55,9 @@
         </fragment>
     <fragment
         android:id="@+id/listaPessoasFragment2"
-        android:name="ar.adriano.apbdcovid2021.ListaPessoasFragment2"
+        android:name="ar.adriano.apbdcovid2021.ListaPessoasFragment"
         android:label="fragment_lista_pessoas2"
         tools:layout="@layout/fragment_lista_pessoas2" >
-        <action
-            android:id="@+id/action_listaPessoasFragment2_to_ListaEnfermeirosFragment"
-            app:destination="@id/ListaEnfermeirosFragment" />
         <action
             android:id="@+id/action_listaPessoasFragment2_to_liminarPessoasFragment"
             app:destination="@id/liminarPessoasFragment" />
@@ -85,16 +79,16 @@
     </fragment>
     <fragment
         android:id="@+id/liminarPessoasFragment"
-        android:name="ar.adriano.apbdcovid2021.LiminarPessoasFragment"
+        android:name="ar.adriano.apbdcovid2021.EliminarPessoasFragment"
         android:label="fragment_liminar_pessoas"
-        tools:layout="@layout/fragment_liminar_pessoas" >
+        tools:layout="@layout/fragment_eliminar_pessoas" >
         <action
             android:id="@+id/action_liminarPessoasFragment_to_listaPessoasFragment2"
             app:destination="@id/listaPessoasFragment2" />
     </fragment>
     <fragment
         android:id="@+id/novaPssoaFragment"
-        android:name="ar.adriano.apbdcovid2021.NovaPssoaFragment"
+        android:name="ar.adriano.apbdcovid2021.NovaPessoaFragment"
         android:label="fragment_nova_pssoa"
         tools:layout="@layout/fragment_nova_pessoa" >
         <action
@@ -128,7 +122,7 @@
         android:id="@+id/novodestritos_Fragment"
         android:name="ar.adriano.apbdcovid2021.novodestritos_Fragment"
         android:label="fragment_novodestritos_"
-        tools:layout="@layout/fragment_novodestritos_" >
+        tools:layout="@layout/fragment_novo_destritos_" >
         <action
             android:id="@+id/action_novodestritos_Fragment_to_lista_destritos_Fragment"
             app:destination="@id/lista_destritos_Fragment" />
