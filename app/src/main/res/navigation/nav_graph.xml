@@ -101,4 +101,54 @@
             android:id="@+id/action_novaPssoaFragment_to_listaPessoasFragment2"
             app:destination="@id/listaPessoasFragment2" />
     </fragment>
+    <fragment
+        android:id="@+id/lista_destritos_Fragment"
+        android:name="ar.adriano.apbdcovid2021.lista_destritos_Fragment"
+        android:label="fragment_lista_destritos_"
+        tools:layout="@layout/fragment_lista_destritos_" >
+        <action
+            android:id="@+id/action_lista_destritos_Fragment_to_novodestritos_Fragment"
+            app:destination="@id/novodestritos_Fragment" />
+        <action
+            android:id="@+id/action_lista_destritos_Fragment_to_editarDestritosFragment"
+            app:destination="@id/editarDestritosFragment" >
+            <action
+                android:id="@+id/action_action_lista_destritos_Fragment_to_editarDestritosFragment_to_eliminarDestritos_Fragment"
+                app:destination="@id/eliminarDestritos_Fragment" >
+                <action
+                    android:id="@+id/action_action_action_lista_destritos_Fragment_to_editarDestritosFragment_to_eliminarDestritos_Fragment_to_eliminarDestritos_Fragment"
+                    app:destination="@id/eliminarDestritos_Fragment" />
+            </action>
+        </action>
+        <action
+            android:id="@+id/action_lista_destritos_Fragment_to_eliminarDestritos_Fragment"
+            app:destination="@id/eliminarDestritos_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/novodestritos_Fragment"
+        android:name="ar.adriano.apbdcovid2021.novodestritos_Fragment"
+        android:label="fragment_novodestritos_"
+        tools:layout="@layout/fragment_novodestritos_" >
+        <action
+            android:id="@+id/action_novodestritos_Fragment_to_lista_destritos_Fragment"
+            app:destination="@id/lista_destritos_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editarDestritosFragment"
+        android:name="ar.adriano.apbdcovid2021.editarDestritosFragment"
+        android:label="fragment_editar_destritos"
+        tools:layout="@layout/fragment_editar_destritos" >
+        <action
+            android:id="@+id/action_editarDestritosFragment_to_lista_destritos_Fragment"
+            app:destination="@id/lista_destritos_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/eliminarDestritos_Fragment"
+        android:name="ar.adriano.apbdcovid2021.eliminarDestritos_Fragment"
+        android:label="fragment_eliminar_destritos_"
+        tools:layout="@layout/fragment_eliminar_destritos_" >
+        <action
+            android:id="@+id/action_eliminarDestritos_Fragment_to_lista_destritos_Fragment"
+            app:destination="@id/lista_destritos_Fragment" />
+    </fragment>
 </navigation>
