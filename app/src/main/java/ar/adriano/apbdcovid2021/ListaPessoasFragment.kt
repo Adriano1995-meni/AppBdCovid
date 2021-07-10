@@ -23,10 +23,10 @@ class ListaPessoasFragment:Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             savedInstanceState: Bundle?
     ): View? {
         DadosApp.fragment=this
-        (activity as MainActivity).menuAtual = R.menu.menu_lista_enfermeiro
+        (activity as MainActivity).menuAtual = R.menu.menu_lista_pessoas
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_lista_enfermeiros, container, false)
+        return inflater.inflate(R.layout.fragment_lista_pessoas2, container, false)
     }
 
 
@@ -40,6 +40,9 @@ class ListaPessoasFragment:Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
         LoaderManager.getInstance(this)
                 .initLoader(ID_LOADER_MANAGER_PESSOAS, null, this)
+
+        LoaderManager.getInstance(this)
+                .initLoader( ID_LOADER_MANAGER_ENFERMEIRO, null, this)
 
 
     }
@@ -114,17 +117,21 @@ class ListaPessoasFragment:Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
 
 
-    fun navegaNovoEnfermeiro(){
-        findNavController().navigate(R.id.action_ListaEnfeiroFragment_to_NovoEnfermeiroFragment)
+
+
+    fun navegaNovoPessoas(){
+        findNavController().navigate(R.id.action_listaPessoasFragment2_to_novaPssoaFragment)
     }
 
-    fun navegaAlterarEnfermeiro(){
-        findNavController().navigate(R.id.action_ListaEnfermeirosFragment_to_EditaEnfermeirosFragment)
+    fun navegaAlterarPessoas(){
+        findNavController().navigate(R.id.action_listaPessoasFragment2_to_editaPessoasFragment)
     }
 
-    fun navegaEliminarEnfermeiro(){
-        findNavController().navigate(R.id.action_listaEnfermeirosFragment_to_eliminaEnfermeirosFragment)
+    fun navegaEliminarPessoas(){
+        findNavController().navigate(R.id.action_listaPessoasFragment2_to_liminarPessoasFragment)
     }
+
+
 
 
     /**
@@ -146,9 +153,9 @@ class ListaPessoasFragment:Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
         when(item.itemId) {
 
-            R.id.action_Novo -> navegaNovoEnfermeiro()
-            R.id.action_Alterar -> navegaAlterarEnfermeiro()
-            R.id.action_Eliminar -> navegaEliminarEnfermeiro()
+            R.id.action_Novo ->  navegaNovoPessoas()
+            R.id.action_Alterar -> navegaAlterarPessoas()
+            R.id.action_Eliminar ->navegaEliminarPessoas()
             else -> return false
         }
 
@@ -159,5 +166,7 @@ class ListaPessoasFragment:Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     companion object {
         const val ID_LOADER_MANAGER_PESSOAS = 0
+        const val ID_LOADER_MANAGER_ENFERMEIRO = 0
+
     }
 }

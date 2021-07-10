@@ -59,11 +59,11 @@ class EditarPessoasFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
         val datahoje= DataHoje.format(DadosApp.EnfermeiroSelecionado!!.data)
 
-        editTextNome.setText(DadosApp.EnfermeiroSelecionado!!.nome)
-        editTextContacto.setText(DadosApp.EnfermeiroSelecionado!!.contacto)
-        editTextMorada.setText(DadosApp.EnfermeiroSelecionado!!.Morada)
-        editTextMail.setText(DadosApp.EnfermeiroSelecionado!!.Mail)
-        editTextSexo.setText(DadosApp.EnfermeiroSelecionado!!.sexo)
+        editTextNome.setText(DadosPessoasApp.pessoasSelecionado!!.nome)
+        editTextContacto.setText(DadosPessoasApp.pessoasSelecionado!!.Contacto)
+        editTextMorada.setText(DadosPessoasApp.pessoasSelecionado!!.Morada)
+        editTextMail.setText(DadosPessoasApp.pessoasSelecionado!!.NumeroUtente)
+        editTextSexo.setText(DadosPessoasApp.pessoasSelecionado!!.sexo)
         editTextData.setText(datahoje.toString())
 
     }
@@ -128,7 +128,7 @@ class EditarPessoasFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         pessoas.Contacto = contacto
         pessoas.sexo = sexo
         pessoas.data = Date(data)
-    //    pessoas.dataNascimento = dataNascimento
+       pessoas.dataNascimento = Date(data)
         pessoas.idDestrito = idDestrito
 
         val uriEnfermeiro = Uri.withAppendedPath(

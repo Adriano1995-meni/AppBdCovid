@@ -27,8 +27,6 @@ class TabelaPessoas(db: SQLiteDatabase) {
 
     }
 
-
-
     fun insert(values: ContentValues): Long {
         return db.insert(NOME_TABELA, null, values)
     }
@@ -42,16 +40,53 @@ class TabelaPessoas(db: SQLiteDatabase) {
     }
 
     fun query(
-        columns: Array<String>,
-        selection: String?,
-        selectionArgs: Array<String>?,
-        groupBy: String?,
-        having: String?,
-        orderBy: String?
+            columns: Array<String>,
+            selection: String?,
+            selectionArgs: Array<String>?,
+            groupBy: String?,
+            having: String?,
+            orderBy: String?
     ): Cursor? {
-        return db.query(NOME_TABELA, columns, selection, selectionArgs, groupBy, having, orderBy)
-    }
+        val ultimaColuna = columns.size - 1
 
+        var posColNomeDestrito = -1 // -1 indica que a coluna não foi pedida
+        for (i in 0..ultimaColuna) {
+            if (columns[i] == TabelaEnfermeiro.CAMPO_EXTERNO_NOME_DESTRITO) {
+                posColNomeDestrito = i
+                break
+            }
+        }
+
+        if (posColNomeDestrito == -1) {
+            return db.query(TabelaEnfermeiro.NOME_TABELA, columns, selection, selectionArgs, groupBy, having, orderBy)
+        }
+
+        var colunas = ""
+        for (i in 0..ultimaColuna) {
+            if (i > 0) colunas += ","
+
+            colunas += if (i == posColNomeDestrito) {
+                "${TabelaDestrito.NOME_TABELA}.${TabelaDestrito.CAMPO_NOME} AS ${TabelaEnfermeiro.CAMPO_EXTERNO_NOME_DESTRITO}"
+            } else {
+                "${TabelaEnfermeiro.NOME_TABELA}.${columns[i]}"
+            }
+        }
+
+        val tabelas = "${TabelaEnfermeiro.NOME_TABELA} INNER JOIN ${TabelaDestrito.NOME_TABELA} ON ${TabelaDestrito.NOME_TABELA}.${BaseColumns._ID}=${TabelaEnfermeiro.CAMPO_ID_DESTRITO}"
+
+        var sql = "SELECT $colunas FROM $tabelas"
+
+        if (selection != null) sql += " WHERE $selection"
+
+        if (groupBy != null) {
+            sql += " GROUP BY $groupBy"
+            if (having != null) " HAVING $having"
+        }
+
+        if (orderBy != null) sql += " ORDER BY $orderBy"
+
+        return db.rawQuery(sql, selectionArgs)
+    }
 
     companion object {
         const val NOME_TABELA = "PESSOAS"
@@ -66,15 +101,15 @@ class TabelaPessoas(db: SQLiteDatabase) {
         const val IDENFERMEIRO = "idEnfermeiro"
 
         val TODAS_COLUNAS = arrayOf(BaseColumns._ID,
-              NOME_PESSOA,
-              DATA, DATA_NASCIMENTO,
-              CONTACTO,
-              NUMERO_UTENTE,
-              SEXO,
-               DATA,
-                MORADA,
-                CAMPO_ID_DESTRITO,
-                IDENFERMEIRO
+          NOME_PESSOA,
+          DATA, DATA_NASCIMENTO,
+          CONTACTO,
+          NUMERO_UTENTE,
+          SEXO,
+           DATA,
+            MORADA,
+            CAMPO_ID_DESTRITO,
+            IDENFERMEIRO
         )
 }
 

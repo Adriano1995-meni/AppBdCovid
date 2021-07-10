@@ -16,19 +16,20 @@ class MainActivity : AppCompatActivity() {
         set(value) {
             field = value
             invalidateOptionsMenu()
-        }
 
+
+        }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(findViewById(R.id.tablayout))
+        setSupportActionBar(findViewById(R.id.toolbar))
 
-        findViewById<FloatingActionButton>(R.id.tablayout).setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
+        //findViewById<FloatingActionButton>(R.id.toolbar).setOnClickListener { view ->
+          //  Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                  //  .setAction("Action", null).show()
+        //}
       DadosApp.activity=this
     }
 
@@ -52,7 +53,7 @@ class MainActivity : AppCompatActivity() {
                 true
             }
 
-            else -> when(menuAtual) {
+           else  -> when(menuAtual) {
                 R.menu.menu_lista_enfermeiro -> (DadosApp.fragment as ListaEnfermeirosFragment).processaOpcaoMenu(item)
                 R.menu.menu_novo_enfermeiro ->( DadosApp.fragment as NovoEnfermeiroFragment).processaOpcaoMenu(item)
                 R.menu.menu_editar_enfermeiros->(DadosApp.fragment as EditaEnfermeirosFragment).processaOpcaoMenu(item)
@@ -66,8 +67,6 @@ class MainActivity : AppCompatActivity() {
 
         return if(opcaoProcessada) true else super.onOptionsItemSelected(item)
     }
-
-
 
 
     fun ActulizaMenusListaPessoas(mostraBotoesAlterarEliminar:Boolean){

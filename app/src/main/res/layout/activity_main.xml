@@ -1,40 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".MainActivity">
 
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tablayout"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="67dp"
-        android:background="@color/cor_selecao">
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.ApBdCovid2021.NoActionBar">
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/TabelaEnfermeiros"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tabelaenfermerio" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/Theme.ApBdCovid2021" />
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/TabelaPessoas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tabelapaciente" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/TabelaDestritos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tabeladestritos" />
-    </com.google.android.material.tabs.TabLayout>
+    <include layout="@layout/content_main" />
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
