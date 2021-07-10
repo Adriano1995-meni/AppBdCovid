@@ -30,10 +30,10 @@ class NovoDestritoFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         savedInstanceState: Bundle?
     ): View? {
         DadosDestritosApp.fragment = this
-        (activity as MainActivity).menuAtual = R.menu.menu_novo_enfermeiro
+        (activity as MainActivity).menuAtual = R.menu.menu_novo_destrito
 
 
-        return inflater.inflate(R.layout.fragment_novo_enfermeiro, container, false)
+        return inflater.inflate(R.layout.fragment_novo_destritos_, container, false)
     }
 
 

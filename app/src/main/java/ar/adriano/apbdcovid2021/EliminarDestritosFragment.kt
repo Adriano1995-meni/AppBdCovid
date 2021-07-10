@@ -24,10 +24,10 @@ class EliminarDestritosFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         DadosDestritosApp.fragment = this
-        (activity as MainActivity).menuAtual = R.menu.menu_eliminar_enfermeirros
+        (activity as MainActivity).menuAtual = R.menu.menu_eliminar_destritos
 
 
-        return inflater.inflate(R.layout.fragment_elimina_enfermeiro, container, false)
+        return inflater.inflate(R.layout.fragment_eliminar_destritos_, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,7 +52,7 @@ class EliminarDestritosFragment: Fragment() {
     fun elimina() {
         val uriDestritos = Uri.withAppendedPath(
             ContentProviderDestritos.ENDRECO_DESTRITO,
-            DadosApp.EnfermeiroSelecionado!!.id.toString()
+            DadosDestritosApp.DestritoSelecionado!!.id.toString()
         )
 
         val registos = activity?.contentResolver?.delete(
