@@ -26,7 +26,7 @@ class ListaPessoasFragment:Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         (activity as MainActivity).menuAtual = R.menu.menu_lista_pessoas
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_lista_pessoas2, container, false)
+        return inflater.inflate(R.layout.fragment_lista_pessoas, container, false)
     }
 
 
