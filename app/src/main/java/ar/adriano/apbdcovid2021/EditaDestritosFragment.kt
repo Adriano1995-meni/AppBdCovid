@@ -8,20 +8,16 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.SimpleCursorAdapter
-import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
-import androidx.navigation.fragment.findNavController
-import java.text.SimpleDateFormat
-import java.util.*
 
 class EditaDestritosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     private lateinit var editTextNome: EditText
+    private  lateinit var listaDestritoFragment: ListaDestritosFragment
 
    // private lateinit var spinnerDestritos: Spinner
 
@@ -31,7 +27,7 @@ class EditaDestritosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>
         savedInstanceState: Bundle?
     ): View? {
 
-        DadosDestritosApp.fragment = this
+        DadosApp.fragment = this
         (activity as MainActivity).menuAtual = R.menu.menu_editar_destritos
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_editar_destritos, container, false)
@@ -46,7 +42,7 @@ class EditaDestritosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>
             .initLoader(NovoEnfermeiroFragment.ID_LOADER_MANAGER_DESTRITOS, null, this)
 
 
-        editTextNome.setText(DadosDestritosApp.DestritoSelecionado!!.nome)
+        editTextNome.setText(DadosApp.DestritoSelecionado!!.nome)
 
 
     }
@@ -54,8 +50,9 @@ class EditaDestritosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>
 
     fun navegaListaDestrito() {
 
-        findNavController().navigate(R.id.action_editarDestritosFragment_to_lista_destritos_Fragment)
-
+   //     findNavController().navigate(R.id.action_editarDestritosFragment_to_lista_destritos_Fragment)
+        listaDestritoFragment = ListaDestritosFragment()
+        DadosApp.activity.setFragment(listaDestritoFragment)
     }
 
     fun guardar() {
@@ -69,12 +66,12 @@ class EditaDestritosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>
 
 
 
-        val destritos = DadosDestritosApp.DestritoSelecionado!!
+        val destritos = DadosApp.DestritoSelecionado!!
         destritos.nome= nome
 
 
         val uriDestrito = Uri.withAppendedPath(
-            ContentProviderDestritos.ENDRECO_DESTRITO,
+            ContentProviderEnfermeiros.ENDRECO_DESTRITO,
             destritos.id.toString()
         )
 
@@ -106,8 +103,8 @@ class EditaDestritosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>
 
     fun processaOpcaoMenu(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_guardar_edita_enfermeiro -> guardar()
-            R.id.action_cancelar_edita_enfermiro -> navegaListaDestrito()
+            R.id.action_guardar_edita_Destritos -> guardar()
+            R.id.action_cancelar_edita_Destritos -> navegaListaDestrito()
             else -> return false
         }
 
@@ -127,7 +124,7 @@ class EditaDestritosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
         return CursorLoader(
             requireContext(),
-            ContentProviderDestritos.ENDRECO_DESTRITO,
+            ContentProviderEnfermeiros.ENDRECO_DESTRITO,
             TabelaDestrito.TODAS_COLUNAS,
             null, null,
             TabelaDestrito.CAMPO_NOME

@@ -17,13 +17,13 @@ class EliminarDestritosFragment: Fragment() {
 
 
     private lateinit var textViewNome: TextView
-
+    private  lateinit var listaDestritoFragment: ListaDestritosFragment
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        DadosDestritosApp.fragment = this
+        DadosApp.fragment = this
         (activity as MainActivity).menuAtual = R.menu.menu_eliminar_destritos
 
 
@@ -36,7 +36,7 @@ class EliminarDestritosFragment: Fragment() {
         textViewNome = view.findViewById(R.id.textViewNome)
 
 
-        val destritos =  DadosDestritosApp.DestritoSelecionado!!
+        val destritos =  DadosApp.DestritoSelecionado!!
 
 
         textViewNome.setText(destritos.nome)
@@ -46,13 +46,14 @@ class EliminarDestritosFragment: Fragment() {
     }
 
     fun navegaListaDestritos() {
-        findNavController().navigate(R.id.action_eliminarDestritos_Fragment_to_lista_destritos_Fragment)
+        listaDestritoFragment = ListaDestritosFragment()
+        DadosApp.activity.setFragment(listaDestritoFragment)
     }
 
     fun elimina() {
         val uriDestritos = Uri.withAppendedPath(
-            ContentProviderDestritos.ENDRECO_DESTRITO,
-            DadosDestritosApp.DestritoSelecionado!!.id.toString()
+            ContentProviderEnfermeiros.ENDRECO_DESTRITO,
+            DadosApp.DestritoSelecionado!!.id.toString()
         )
 
         val registos = activity?.contentResolver?.delete(
@@ -80,8 +81,8 @@ class EliminarDestritosFragment: Fragment() {
 
     fun processaOpcaoMenu(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_confirma_eliminar_enfermeiro -> elimina()
-            R.id.action_cancelar_eliminar_enfermeiro -> navegaListaDestritos()
+            R.id.action_confirma_eliminar_destritos -> elimina()
+            R.id.action_cancelar_eliminar_destritos -> navegaListaDestritos()
             else -> return false
         }
 

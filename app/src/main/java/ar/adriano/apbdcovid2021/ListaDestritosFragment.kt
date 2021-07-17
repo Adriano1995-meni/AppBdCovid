@@ -17,11 +17,15 @@ import androidx.recyclerview.widget.RecyclerView
 class ListaDestritosFragment :Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     private var adapterDestritos: AdapterDestritos?=null
 
+    private  lateinit var novoDestritoFragment: NovoDestritoFragment
+    private  lateinit var editaDestritoFragment: EditaDestritosFragment
+    private  lateinit var eliminarDestritosFragment: EliminarDestritosFragment
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        DadosDestritosApp.fragment=this
+        DadosApp.fragment=this
         (activity as MainActivity).menuAtual = R.menu.menu_lista_destritos
 
         // Inflate the layout for this fragment
@@ -56,7 +60,7 @@ class ListaDestritosFragment :Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
         return CursorLoader(
             requireContext(),
-            ContentProviderDestritos.ENDRECO_DESTRITO,
+            ContentProviderEnfermeiros.ENDRECO_DESTRITO,
             TabelaDestrito.TODAS_COLUNAS,
             null,null,
             TabelaDestrito.CAMPO_NOME
@@ -113,15 +117,25 @@ class ListaDestritosFragment :Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
 
 
     fun navegaNovoDestrito(){
-        findNavController().navigate(R.id.action_lista_destritos_Fragment_to_novodestritos_Fragment)
+     //   findNavController().navigate(R.id.action_lista_destritos_Fragment_to_novodestritos_Fragment)
+        novoDestritoFragment = NovoDestritoFragment()
+        //   setFragment(novoEnfermeirosFragment)
+        DadosApp.activity.setFragment(novoDestritoFragment)
     }
 
     fun navegaAlterarDestrito(){
-        findNavController().navigate(R.id.action_lista_destritos_Fragment_to_editarDestritosFragment)
+     //   findNavController().navigate(R.id.action_lista_destritos_Fragment_to_editarDestritosFragment)
+        editaDestritoFragment = EditaDestritosFragment()
+        //   setFragment(novoEnfermeirosFragment)
+        DadosApp.activity.setFragment( editaDestritoFragment)
+
     }
 
     fun navegaEliminarDestrito(){
-        findNavController().navigate(R.id.action_lista_destritos_Fragment_to_eliminarDestritos_Fragment)
+      //  findNavController().navigate(R.id.action_lista_destritos_Fragment_to_eliminarDestritos_Fragment)
+        eliminarDestritosFragment = EliminarDestritosFragment()
+        //   setFragment(novoEnfermeirosFragment)
+        DadosApp.activity.setFragment( eliminarDestritosFragment)
     }
 
 

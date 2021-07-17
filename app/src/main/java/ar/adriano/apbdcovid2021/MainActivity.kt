@@ -65,6 +65,9 @@ class MainActivity : AppCompatActivity(),View.OnClickListener{
         if (menuAtual == R.menu.menu_lista_enfermeiro) {
             ActulizaMenusListaPessoas(false)
         }
+        if (menuAtual == R.menu.menu_lista_destritos) {
+            ActulizaMenusListaPessoas(false)
+        }
         return true
 
     }
@@ -109,7 +112,6 @@ class MainActivity : AppCompatActivity(),View.OnClickListener{
     fun ActulizaMenusListaPessoas(mostraBotoesAlterarEliminar:Boolean){
         menu.findItem(R.id.action_Alterar).setVisible(mostraBotoesAlterarEliminar)
         menu.findItem(R.id.action_Eliminar).setVisible(mostraBotoesAlterarEliminar)
-
     }
 
 

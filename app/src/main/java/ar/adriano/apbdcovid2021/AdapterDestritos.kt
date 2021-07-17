@@ -22,7 +22,7 @@ class AdapterDestritos  (val fragment: ListaDestritosFragment) : RecyclerView.Ad
 
 
 
-        private lateinit var destritos: Destritos
+        private lateinit var destrito: Destritos
 
         init {
             itemView.setOnClickListener(this)
@@ -30,11 +30,11 @@ class AdapterDestritos  (val fragment: ListaDestritosFragment) : RecyclerView.Ad
 
 
 
-        fun atualizaDestrito(destrito: TabelaDestrito) {
+        fun atualizaDestrito(destritos:Destritos) {
 
 
 
-            this.destritos = destritos
+            this.destrito = destritos
             textViewNome.text = destritos.nome
 
         }
@@ -47,8 +47,8 @@ class AdapterDestritos  (val fragment: ListaDestritosFragment) : RecyclerView.Ad
         private fun seleciona() {
             selecionado = this
             itemView.setBackgroundResource(R.color.cor_selecao)
-            DadosDestritosApp.DestritoSelecionado= destritos
-            DadosDestritosApp.activity.ActulizaMenusListaPessoas(true)
+            DadosApp.DestritoSelecionado= destrito
+            DadosApp.activity.ActulizaMenusListaPessoas(true)
         }
 
         private fun desSeleciona() {
@@ -88,7 +88,7 @@ class AdapterDestritos  (val fragment: ListaDestritosFragment) : RecyclerView.Ad
      * @see .onBindViewHolder
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):ViewHolderDestiros {
-        val itemEnfermeiros = fragment.layoutInflater.inflate(R.layout.item_enfermeiros, parent, false)
+        val itemEnfermeiros = fragment.layoutInflater.inflate(R.layout.item_destrito, parent, false)
 
         return ViewHolderDestiros(itemEnfermeiros)
     }
@@ -153,8 +153,9 @@ class AdapterDestritos  (val fragment: ListaDestritosFragment) : RecyclerView.Ad
      */
     override fun onBindViewHolder(holder: AdapterDestritos.ViewHolderDestiros, position: Int) {
         cursor!!.moveToPosition(position)
-        // val enfermeiro: Enfermeiro = Enfermeiro.fromCursor(cursor!!)
-      //  holder.atualizaDestrito(Destritos.fromCursor(cursor!!))
+       // val enfermeiro: Enfermeiro = Enfermeiro.fromCursor(cursor!!)
+     holder.atualizaDestrito(Destritos.fromCursor(cursor!!))
+      //  holder.atualizaEnfermeiro(Enfermeiro.fromCursor(cursor!!))
     }
 
     /**

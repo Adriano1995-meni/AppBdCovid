@@ -9,11 +9,12 @@
 
     <TextView
         android:id="@+id/textViewNome"
-        android:layout_width="wrap_content"
-        android:layout_height="27dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_margin="@dimen/margem_campos"
         android:layout_marginEnd="@dimen/margem_campos"
         android:layout_marginRight="@dimen/margem_campos"
+        android:text="Guarda"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toBottomOf="@+id/textViewDestritos"
         app:layout_constraintEnd_toStartOf="@+id/textViewDestritos"
