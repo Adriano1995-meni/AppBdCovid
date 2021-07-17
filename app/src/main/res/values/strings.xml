@@ -48,4 +48,6 @@
     <string name="tabelaenfermerio" translatable="false">tabelaEnfermerio</string>
     <string name="tabeladestritos" translatable="false">TabelaDestritos</string>
     <string name="tabelapaciente" translatable="false">TabelaPaciente</string>
+    <string name="adriano" translatable="false">Adriano</string>
+    <string name="numero_utente" translatable="false">Numero_Utente</string>
 </resources>

@@ -3,7 +3,7 @@
     <item name="textViewSexo" type="id" />
     <item name="textViewDataTeste" type="id" />
     <item name="textViewContacto" type="id" />
-    <item name="textViewMorada" type="id" />
+    <item name="textViewNumeroUtente" type="id" />
     <item name="textViewEmail" type="id" />
     <item name="textViewDestrito" type="id" />
     <item name="textViewNome" type="id" />

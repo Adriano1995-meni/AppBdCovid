@@ -184,7 +184,7 @@ class ContentProviderEnfermeiros : ContentProvider() {
             URI_VACINA -> TabelaVacina(bd).query(
                     projection as Array<String>,
                     selection,
-                    selectionArgs as Array<String>,
+                    selectionArgs as Array<String>?,
                     null,
                     null,
                     sortOrder

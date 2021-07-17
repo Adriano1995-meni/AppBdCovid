@@ -85,10 +85,11 @@ class TesteBaseDados {
     private fun getPessoasBaseDados(tabela: TabelaPessoas, id: Long): Pessoas {
         val cursor = tabela.query(
                 TabelaPessoas.TODAS_COLUNAS,
-                "${BaseColumns._ID}=?",
+                "${TabelaPessoas.NOME_TABELA}.${BaseColumns._ID}=?",
                 arrayOf(id.toString()),
                 null, null, null
         )
+
 
         assertNotNull(cursor)
         assert(cursor!!.moveToNext())
@@ -113,7 +114,7 @@ class TesteBaseDados {
 
     @Before
     fun apagaBaseDados() {
-    //  getAppContext().deleteDatabase( BdRegistaPessoasOpenHelper.NOME_BASE_DADOS)
+     getAppContext().deleteDatabase( BdRegistaPessoasOpenHelper.NOME_BASE_DADOS)
     }
 
     @Test
@@ -377,10 +378,12 @@ class TesteBaseDados {
         val tabelaPessoas = TabelaPessoas(db)
         val pessoas =  Pessoas(
                 nome ="Junior Correia",
-                sexo ="Sexo :M",
-                Morada = "Ponta da Serra das Lajes",
+             //   sexo ="Sexo :M",
+                CampoExternoDestrito = destrito.nome,
+                CampoExternoEnfermeiro = enfermeiro.nome,
+               // Morada = "Ponta da Serra das Lajes",
                 NumeroUtente = "254789657",
-                dataNascimento =Date(1995,7,5),
+              //  dataNascimento =Date(1995,7,5),
                 Contacto="Contacto: " +
                         "925557788",
                 data =Date(2020,10,15),
@@ -426,10 +429,12 @@ class TesteBaseDados {
         val tabelaPessoas = TabelaPessoas(db)
         val pessoas =  Pessoas(
                 nome ="Junior Correia",
-                sexo ="Sexo :M",
-                Morada = "Ponta da Serra das Lajes",
+                //   sexo ="Sexo :M",
+                CampoExternoDestrito = destrito.nome,
+                CampoExternoEnfermeiro = enfermeiro.nome,
+                // Morada = "Ponta da Serra das Lajes",
                 NumeroUtente = "254789657",
-                dataNascimento =Date(1995,7,5),
+                //  dataNascimento =Date(1995,7,5),
                 Contacto="Contacto: " +
                         "925557788",
                 data =Date(2020,10,15),
@@ -442,7 +447,7 @@ class TesteBaseDados {
         pessoas.Contacto = "967557744"
         pessoas.idEnfermeio= enfermeiro.id
         pessoas.data=Date(2021,3,16)
-        pessoas.dataNascimento=Date(1987,7,18)
+      //  pessoas.dataNascimento=Date(1987,7,18)
 
 
         val AlteradosPessoas = tabelaPessoas.update(
@@ -484,10 +489,12 @@ class TesteBaseDados {
         val tabelaPessoas = TabelaPessoas(db)
         val pessoas =  Pessoas(
                 nome ="Junior Correia",
-                sexo ="Sexo :M",
-                Morada = "Ponta da Serra das Lajes",
+                //   sexo ="Sexo :M",
+                CampoExternoDestrito = destrito.nome,
+                CampoExternoEnfermeiro = enfermeiro.nome,
+                // Morada = "Ponta da Serra das Lajes",
                 NumeroUtente = "254789657",
-                dataNascimento =Date(1995,7,5),
+                //  dataNascimento =Date(1995,7,5),
                 Contacto="Contacto: " +
                         "925557788",
                 data =Date(2020,10,15),
@@ -540,10 +547,12 @@ class TesteBaseDados {
         val tabelaPessoas = TabelaPessoas(db)
         val pessoas =  Pessoas(
                 nome ="Junior Correia",
-                sexo ="Sexo :M",
-                Morada = "Ponta da Serra das Lajes",
+                //   sexo ="Sexo :M",
+                CampoExternoDestrito = destrito.nome,
+                CampoExternoEnfermeiro = enfermeiro.nome,
+                // Morada = "Ponta da Serra das Lajes",
                 NumeroUtente = "254789657",
-                dataNascimento =Date(1995,7,5),
+                //  dataNascimento =Date(1995,7,5),
                 Contacto="Contacto: " +
                         "925557788",
                 data =Date(2020,10,15),
@@ -551,10 +560,7 @@ class TesteBaseDados {
                 idEnfermeio =enfermeiro.id)
 
 
-
-
         pessoas.id= inserePessoas(tabelaPessoas,pessoas)
-
         assertEquals(pessoas, getPessoasBaseDados(tabelaPessoas, pessoas.id))
 
         db.close()
@@ -593,10 +599,12 @@ class TesteBaseDados {
         val tabelaPessoas = TabelaPessoas(db)
         val pessoas =  Pessoas(
                 nome ="Junior Correia",
-                sexo ="Sexo :M",
-                Morada = "Ponta da Serra das Lajes",
+                //   sexo ="Sexo :M",
+                CampoExternoDestrito = destrito.nome,
+                CampoExternoEnfermeiro = enfermeiro.nome,
+                // Morada = "Ponta da Serra das Lajes",
                 NumeroUtente = "254789657",
-                dataNascimento =Date(1995,7,5),
+                //  dataNascimento =Date(1995,7,5),
                 Contacto="Contacto: " +
                         "925557788",
                 data =Date(2020,10,15),
@@ -605,7 +613,6 @@ class TesteBaseDados {
 
 
         pessoas.id= inserePessoas(tabelaPessoas,pessoas)
-
         val tabelaVacina = TabelaVacina(db)
         val vacinas =  Vacinas(
                 nome ="AstraZeneca"
@@ -651,10 +658,12 @@ class TesteBaseDados {
         val tabelaPessoas = TabelaPessoas(db)
         val pessoas =  Pessoas(
                 nome ="Junior Correia",
-                sexo ="Sexo :M",
-                Morada = "Ponta da Serra das Lajes",
+                //   sexo ="Sexo :M",
+                CampoExternoDestrito = destrito.nome,
+                CampoExternoEnfermeiro = enfermeiro.nome,
+                // Morada = "Ponta da Serra das Lajes",
                 NumeroUtente = "254789657",
-                dataNascimento =Date(1995,7,5),
+                //  dataNascimento =Date(1995,7,5),
                 Contacto="Contacto: " +
                         "925557788",
                 data =Date(2020,10,15),
@@ -662,10 +671,7 @@ class TesteBaseDados {
                 idEnfermeio =enfermeiro.id)
 
 
-
-
         pessoas.id= inserePessoas(tabelaPessoas,pessoas)
-
         val tabelaVacina = TabelaVacina(db)
         val vacinas =  Vacinas(
                 nome ="AstraZeneca"
@@ -721,10 +727,12 @@ class TesteBaseDados {
         val tabelaPessoas = TabelaPessoas(db)
         val pessoas =  Pessoas(
                 nome ="Junior Correia",
-                sexo ="Sexo :M",
-                Morada = "Ponta da Serra das Lajes",
+                //   sexo ="Sexo :M",
+                CampoExternoDestrito = destrito.nome,
+                CampoExternoEnfermeiro = enfermeiro.nome,
+                // Morada = "Ponta da Serra das Lajes",
                 NumeroUtente = "254789657",
-                dataNascimento =Date(1995,7,5),
+                //  dataNascimento =Date(1995,7,5),
                 Contacto="Contacto: " +
                         "925557788",
                 data =Date(2020,10,15),
@@ -733,7 +741,6 @@ class TesteBaseDados {
 
 
         pessoas.id= inserePessoas(tabelaPessoas,pessoas)
-
         val tabelaVacina = TabelaVacina(db)
         val vacinas =  Vacinas(
                 nome ="AstraZeneca"
@@ -783,10 +790,12 @@ class TesteBaseDados {
         val tabelaPessoas = TabelaPessoas(db)
         val pessoas =  Pessoas(
                 nome ="Junior Correia",
-                sexo ="Sexo :M",
-                Morada = "Ponta da Serra das Lajes",
+                //   sexo ="Sexo :M",
+                CampoExternoDestrito = destrito.nome,
+                CampoExternoEnfermeiro = enfermeiro.nome,
+                // Morada = "Ponta da Serra das Lajes",
                 NumeroUtente = "254789657",
-                dataNascimento =Date(1995,7,5),
+                //  dataNascimento =Date(1995,7,5),
                 Contacto="Contacto: " +
                         "925557788",
                 data =Date(2020,10,15),
@@ -795,7 +804,6 @@ class TesteBaseDados {
 
 
         pessoas.id= inserePessoas(tabelaPessoas,pessoas)
-
         val tabelaVacina = TabelaVacina(db)
         val vacinas =  Vacinas(
                 nome ="AstraZeneca"

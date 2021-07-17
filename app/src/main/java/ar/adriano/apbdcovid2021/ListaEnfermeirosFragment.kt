@@ -2,14 +2,12 @@ package ar.adriano.apbdcovid2021
 
 import android.database.Cursor
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +18,11 @@ import androidx.recyclerview.widget.RecyclerView
 class ListaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     private var adapterEnfermeiros: AdapterEnfermeiros?=null
 
+
+
+    private  lateinit var novoEnfermeirosFragment: NovoEnfermeiroFragment
+    private  lateinit var editaEnfermeirosFragment: EditaEnfermeirosFragment
+    private  lateinit var eliminarEnfermeirosFragment: EliminarEnfermeirosFragment
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -28,6 +31,7 @@ class ListaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
         (activity as MainActivity).menuAtual = R.menu.menu_lista_enfermeiro
 
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_lista_enfermeiros, container, false)
     }
 
@@ -41,10 +45,12 @@ class ListaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
         recyclerViewEnfermeiro.layoutManager = LinearLayoutManager(requireContext())
 
         LoaderManager.getInstance(this)
-                .initLoader(ID_LOADER_MANAGER_PESSOAS, null, this)
+                .initLoader(ID_LOADER_MANAGER_ENFERMEIRO, null, this)
 
 
         }
+
+
 
     /**
      * Instantiate and return a new Loader for the given ID.
@@ -64,6 +70,7 @@ class ListaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
                 null,null,
                 TabelaEnfermeiro.NOME_ENFERMEIRO
         )
+       // findNavController().navigate(R.id.action_ListaEnfeiroFragment_to_NovoEnfermeiroFragment)
     }
 
     /**
@@ -116,15 +123,26 @@ class ListaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
 
 
     fun navegaNovoEnfermeiro(){
-        findNavController().navigate(R.id.action_ListaEnfeiroFragment_to_NovoEnfermeiroFragment)
+     //  findNavController().navigate(R.id.action_ListaEnfermeirosFragment_to_NovoEnfermeirosFragment)
+        novoEnfermeirosFragment = NovoEnfermeiroFragment()
+     //   setFragment(novoEnfermeirosFragment)
+        DadosApp.activity.setFragment(novoEnfermeirosFragment)
+
+
     }
 
     fun navegaAlterarEnfermeiro(){
-        findNavController().navigate(R.id.action_ListaEnfermeirosFragment_to_EditaEnfermeirosFragment)
+     //   findNavController().navigate(R.id.action_ListaEnfermeirosFragment_to_EditaEnfermeirosFragment)
+        editaEnfermeirosFragment = EditaEnfermeirosFragment()
+        //   setFragment(novoEnfermeirosFragment)
+        DadosApp.activity.setFragment( editaEnfermeirosFragment)
     }
 
     fun navegaEliminarEnfermeiro(){
-        findNavController().navigate(R.id.action_listaEnfermeirosFragment_to_eliminaEnfermeirosFragment)
+    //    findNavController().navigate(R.id.action_ListaEnfermeirosFragment_to_eliminaEnfermeirosFragment)
+        eliminarEnfermeirosFragment = EliminarEnfermeirosFragment()
+        //   setFragment(novoEnfermeirosFragment)
+        DadosApp.activity.setFragment( eliminarEnfermeirosFragment)
     }
 
 
@@ -146,7 +164,6 @@ class ListaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
     fun processaOpcaoMenu(item: MenuItem): Boolean {
 
         when(item.itemId) {
-
             R.id.action_Novo -> navegaNovoEnfermeiro()
             R.id.action_Alterar -> navegaAlterarEnfermeiro()
             R.id.action_Eliminar -> navegaEliminarEnfermeiro()
@@ -154,11 +171,10 @@ class ListaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
         }
 
 
-
         return true
     }
 
     companion object {
-        const val ID_LOADER_MANAGER_PESSOAS = 0
+        const val ID_LOADER_MANAGER_ENFERMEIRO = 0
     }
 }

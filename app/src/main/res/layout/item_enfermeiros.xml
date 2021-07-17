@@ -23,7 +23,7 @@
         tools:text="Adriano Corria co" />
 
     <TextView
-        android:id="@+id/textViewMorada"
+        android:id="@+id/textViewNumeroUtente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margem_campos"
@@ -36,8 +36,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margem_campos"
-        app:layout_constraintStart_toStartOf="@+id/textViewMorada"
-        app:layout_constraintTop_toBottomOf="@+id/textViewMorada"
+        app:layout_constraintStart_toStartOf="@+id/textViewNumeroUtente"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNumeroUtente"
         tools:text="Contacto" />
 
     <TextView

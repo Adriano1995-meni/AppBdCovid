@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/ListaEnfermeirosFragment">
-
     <fragment
         android:id="@+id/ListaEnfermeirosFragment"
         android:name="ar.adriano.apbdcovid2021.ListaEnfermeirosFragment"
@@ -12,93 +11,106 @@
         tools:layout="@layout/fragment_lista_enfermeiros">
 
         <action
-            android:id="@+id/action_ListaEnfeiroFragment_to_NovoEnfermeiroFragment"
-            app:destination="@id/NovoEnfermeirosFragment" />
-        <action
             android:id="@+id/action_ListaEnfermeirosFragment_to_EditaEnfermeirosFragment"
             app:destination="@id/EditaEnfermeirosFragment" />
 
         <action
-            android:id="@+id/action_listaEnfermeirosFragment_to_eliminaEnfermeirosFragment"
+            android:id="@+id/action_ListaEnfermeirosFragment_to_eliminaEnfermeirosFragment"
             app:destination="@+id/eliminaEnfermeirosFragment" />
+        <action
+            android:id="@+id/action_ListaEnfermeirosFragment_to_NovoEnfermeirosFragment"
+            app:destination="@id/NovoEnfermeirosFragment" />
 
     </fragment>
     <fragment
         android:id="@+id/NovoEnfermeirosFragment"
         android:name="ar.adriano.apbdcovid2021.NovoEnfermeiroFragment"
-        android:label="@string/novoenfermeiro"
+        android:label="Novo_Enfermeiros_fragment_label"
         tools:layout="@layout/fragment_novo_enfermeiro">
-
         <action
-            android:id="@+id/action_NovoEnfermeirosFragment_to_action_ListaEnfermerosFragment"
+            android:id="@+id/action_NovoEnfermeirosFragment_to_ListaEnfermeirosFragment"
             app:destination="@id/ListaEnfermeirosFragment" />
     </fragment>
     <fragment
         android:id="@+id/EditaEnfermeirosFragment"
         android:name="ar.adriano.apbdcovid2021.EditaEnfermeirosFragment"
         android:label="edita_enfermeiros_fragment_label"
-        tools:layout="@layout/fragment_edita_enfermeiro"/>
-
+        tools:layout="@layout/fragment_edita_enfermeiro">
         <action
             android:id="@+id/action_EditaEnfermeirosFragment_to_ListaEnfermeirosFragment"
             app:destination="@id/ListaEnfermeirosFragment" />
+    </fragment>
 
-        <fragment
-            android:id="@+id/eliminaEnfermeirosFragment"
-            android:name="ar.adriano.apbdcovid2021.EliminarEnfermeirosFragment"
-            android:label="elimina_enfermeiro_fragment_label"
-            tools:layout="@layout/fragment_elimina_enfermeiro" >
-            <action
-                android:id="@+id/action_eliminaEnfermeiroFragment_to_listaEnfermeiroFragment"
-                app:destination="@id/ListaEnfermeirosFragment" />
+    <action
+        android:id="@+id/action_EditaEnfermeirosFragment_to_ListaEnfermeirosFragment"
+        app:destination="@id/ListaEnfermeirosFragment" />
 
-        </fragment>
     <fragment
-        android:id="@+id/listaPessoasFragment2"
+        android:id="@+id/eliminaEnfermeirosFragment"
+        android:name="ar.adriano.apbdcovid2021.EliminarEnfermeirosFragment"
+        android:label="elimina_enfermeiro_fragment_label"
+        tools:layout="@layout/fragment_elimina_enfermeiro" >
+        <action
+            android:id="@+id/action_eliminaEnfermeiroFragment_to_ListaEnfermeirosFragment"
+            app:destination="@id/ListaEnfermeirosFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/listaPessoasFragment"
         android:name="ar.adriano.apbdcovid2021.ListaPessoasFragment"
-        android:label="fragment_lista_pessoas2"
-        tools:layout="@layout/fragment_lista_pessoas2" >
+        android:label="fragment_lista_pessoas"
+        tools:layout="@layout/fragment_lista_pessoas" >
         <action
-            android:id="@+id/action_listaPessoasFragment2_to_liminarPessoasFragment"
-            app:destination="@id/liminarPessoasFragment" />
+            android:id="@+id/action_listaPessoasFragment_to_liminarPessoasFragment"
+            app:destination="@id/eliminarPessoasFragment" />
         <action
-            android:id="@+id/action_listaPessoasFragment2_to_editaPessoasFragment"
+            android:id="@+id/action_listaPessoasFragment_to_editaPessoasFragment"
             app:destination="@id/editaPessoasFragment" />
+
         <action
-            android:id="@+id/action_listaPessoasFragment2_to_novaPssoaFragment"
-            app:destination="@id/novaPssoaFragment" />
+            android:id="@+id/action_listaPessoasFragment_to_novaPessoaFragment"
+            app:destination="@id/novaPessoaFragment" />
     </fragment>
     <fragment
         android:id="@+id/editaPessoasFragment"
         android:name="ar.adriano.apbdcovid2021.EditaDestritosFragment"
         android:label="fragment_edita_pessoas"
-        tools:layout="@layout/fragment_edita_pessoas" >
+        tools:layout="@layout/fragment_editar_pessoas" >
         <action
-            android:id="@+id/action_editaPessoasFragment_to_listaPessoasFragment2"
-            app:destination="@id/listaPessoasFragment2" />
+            android:id="@+id/action_editaPessoasFragment_to_listaPessoasFragment"
+            app:destination="@id/listaPessoasFragment" />
     </fragment>
     <fragment
-        android:id="@+id/liminarPessoasFragment"
+        android:id="@+id/eliminarPessoasFragment"
         android:name="ar.adriano.apbdcovid2021.EliminarPessoasFragment"
         android:label="fragment_liminar_pessoas"
         tools:layout="@layout/fragment_eliminar_pessoas" >
         <action
-            android:id="@+id/action_liminarPessoasFragment_to_listaPessoasFragment2"
-            app:destination="@id/listaPessoasFragment2" />
+            android:id="@+id/action_liminarPessoasFragment_to_listaPessoasFragment"
+            app:destination="@id/listaPessoasFragment" />
     </fragment>
     <fragment
-        android:id="@+id/novaPssoaFragment"
+        android:id="@+id/novaPessoaFragment"
         android:name="ar.adriano.apbdcovid2021.NovaPessoaFragment"
         android:label="fragment_nova_pssoa"
         tools:layout="@layout/fragment_nova_pessoa" >
         <action
-            android:id="@+id/action_novaPssoaFragment_to_listaPessoasFragment2"
-            app:destination="@id/listaPessoasFragment2" />
+            android:id="@+id/action_novaPessoaFragment_to_listaPessoasFragment"
+            app:destination="@id/listaPessoasFragment" >
+            <action
+                android:id="@+id/action_action_novaPessoaFragment_to_listaPessoasFragment"
+                app:destination="@id/listaPessoasFragment" />
+        </action>
+        <action
+            android:id="@+id/action_novaPessoaFragment_to_listaPessoasFragment2"
+            app:destination="@id/listaPessoasFragment" />
+        <action
+            android:id="@+id/action_novaPessoaFragment_to_listaPessoasFragment3"
+            app:destination="@id/listaPessoasFragment" />
     </fragment>
     <fragment
         android:id="@+id/lista_destritos_Fragment"
         android:name="ar.adriano.apbdcovid2021.ListaDestritosFragment"
-
         android:label="fragment_lista_destritos_"
         tools:layout="@layout/fragment_lista_destritos_" >
         <action
@@ -108,13 +120,14 @@
             android:id="@+id/action_lista_destritos_Fragment_to_editarDestritosFragment"
             app:destination="@id/editarDestritosFragment" >
             <action
-                android:id="@+id/action_action_lista_destritos_Fragment_to_editarDestritosFragment"
+                android:id="@+id/action_lista_destritos_Fragment_to_eliminarDestritos_Fragment"
                 app:destination="@id/eliminarDestritos_Fragment" />
 
         </action>
         <action
-            android:id="@+id/action_lista_destritos_Fragment_to_eliminarDestritos_Fragment"
+            android:id="@+id/action_lista_destritos_Fragment_to_eliminarDestritos_Fragment2"
             app:destination="@id/eliminarDestritos_Fragment" />
+
     </fragment>
     <fragment
         android:id="@+id/novodestritos_Fragment"
@@ -142,5 +155,6 @@
         <action
             android:id="@+id/action_eliminarDestritos_Fragment_to_lista_destritos_Fragment"
             app:destination="@id/lista_destritos_Fragment" />
+
     </fragment>
 </navigation>

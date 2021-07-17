@@ -6,35 +6,59 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.Button
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),View.OnClickListener{
 
     private  lateinit var menu: Menu
+   // var menuAtual = R.menu.menu_lista_enfermeiro
+    private  lateinit var BotaoEnserirEnfermeiro: Button
+    private  lateinit var BotaoEnserirDestritos:Button
+    private  lateinit var BotaoEnserirPessoas: Button
+
+
+    private  lateinit var listaEnfermeirosFragment: ListaEnfermeirosFragment
+    private  lateinit var listaPessoasFragment: ListaPessoasFragment
+    private  lateinit var listaDestritosFragment: ListaDestritosFragment
 
     var menuAtual = R.menu.menu_lista_enfermeiro
         set(value) {
             field = value
             invalidateOptionsMenu()
 
-
         }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(findViewById(R.id.toolbar))
 
-        //findViewById<FloatingActionButton>(R.id.toolbar).setOnClickListener { view ->
-          //  Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                  //  .setAction("Action", null).show()
-        //}
-      DadosApp.activity=this
+        BotaoEnserirEnfermeiro = findViewById(R.id.BotaoEnserirEnfermeiro)
+        BotaoEnserirEnfermeiro.setOnClickListener(this)
+
+        BotaoEnserirDestritos = findViewById(R.id.BotaoEnserirDestritos)
+        BotaoEnserirDestritos.setOnClickListener(this)
+
+        BotaoEnserirPessoas = findViewById(R.id.BotaoEnserirPessoas)
+        BotaoEnserirPessoas.setOnClickListener(this)
+
+        listaEnfermeirosFragment = ListaEnfermeirosFragment()
+        listaPessoasFragment=ListaPessoasFragment()
+        listaDestritosFragment= ListaDestritosFragment()
+       setFragment(listaEnfermeirosFragment)
+
+
+  setSupportActionBar(findViewById(R.id.toolbar))
+
+
+    DadosApp.activity=this
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
+
         menuInflater.inflate(menuAtual, menu)
         this.menu= menu
 
@@ -50,18 +74,31 @@ class MainActivity : AppCompatActivity() {
         val opcaoProcessada = when (item.itemId) {
             R.id.action_settings -> {
                 Toast.makeText(this, R.string.versao, Toast.LENGTH_LONG).show()
+
                 true
             }
 
+
            else  -> when(menuAtual) {
+
                 R.menu.menu_lista_enfermeiro -> (DadosApp.fragment as ListaEnfermeirosFragment).processaOpcaoMenu(item)
-                R.menu.menu_novo_enfermeiro ->( DadosApp.fragment as NovoEnfermeiroFragment).processaOpcaoMenu(item)
+                R.menu.menu_novo_enfermeiro ->(DadosApp.fragment as NovoEnfermeiroFragment).processaOpcaoMenu(item)
                 R.menu.menu_editar_enfermeiros->(DadosApp.fragment as EditaEnfermeirosFragment).processaOpcaoMenu(item)
-                R.menu.menu_eliminar_enfermeirros -> (DadosApp.fragment as EliminarEnfermeirosFragment).processaOpcaoMenu(item)
-                else -> false
+                R.menu.menu_eliminar_enfermeirros->(DadosApp.fragment as EliminarEnfermeirosFragment).processaOpcaoMenu(item)
+
+               R.menu.menu_lista_destritos->(DadosApp.fragment as ListaDestritosFragment).processaOpcaoMenu(item)
+               R.menu.menu_novo_destrito ->(DadosApp.fragment as NovoDestritoFragment).processaOpcaoMenu(item)
+               R.menu.menu_editar_destritos->(DadosApp.fragment as EditaDestritosFragment).processaOpcaoMenu(item)
+               R.menu.menu_eliminar_destritos->(DadosApp.fragment as EliminarDestritosFragment).processaOpcaoMenu(item)
+
+               R.menu.menu_lista_pessoas->(DadosApp.fragment as ListaPessoasFragment).processaOpcaoMenu(item)
+               R.menu.menu_nova_pessoa ->(DadosApp.fragment as NovaPessoaFragment).processaOpcaoMenu(item)
+               R.menu.menu_editar_pessoa->(DadosApp.fragment as EditarPessoasFragment).processaOpcaoMenu(item)
+               R.menu.menu_eliminar_pessoa->(DadosApp.fragment as EliminarPessoasFragment).processaOpcaoMenu(item)
+
+               else -> false
             }
         }
-
 
 
 
@@ -74,4 +111,54 @@ class MainActivity : AppCompatActivity() {
         menu.findItem(R.id.action_Eliminar).setVisible(mostraBotoesAlterarEliminar)
 
     }
+
+
+public fun setFragment(fragment:Fragment){
+
+    val fragmentTransient = supportFragmentManager.beginTransaction()
+        fragmentTransient.replace(R.id.frame_Fragmet,fragment)
+        //fragmentTransient.commit()
+    fragmentTransient.commitAllowingStateLoss ();
+
 }
+
+    override fun onClick(v: View) {
+        when (v.id) {
+
+            R.id.BotaoEnserirEnfermeiro -> {
+                setFragment(listaEnfermeirosFragment)
+
+
+            }
+
+            R.id.BotaoEnserirDestritos -> {
+                setFragment(listaDestritosFragment)
+            }
+
+            R.id.BotaoEnserirPessoas -> {
+                setFragment(listaPessoasFragment)
+
+            }
+        }
+
+    }
+
+}
+
+
+
+/*
+ private  lateinit var BotaoEnserirEnfermeiro: Button
+    private  lateinit var BotaoEnserirDestritos:Button
+    private  lateinit var BotaoEnserirPessoas: Button
+
+
+    private  lateinit var listaEnfermeirosFragment: ListaEnfermeirosFragment
+    private  lateinit var listaPessoasFragment: ListaPessoasFragment
+    private  lateinit var listaDestritosFragment: ListaDestritosFragment
+    }
+
+*/
+
+
+

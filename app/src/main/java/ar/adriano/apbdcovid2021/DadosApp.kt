@@ -6,7 +6,9 @@ class DadosApp {
     companion object{
         lateinit var activity: MainActivity
         lateinit var fragment: Fragment
-        var EnfermeiroSelecionado  : Enfermeiro?= null
+        var enfermeiroSelecionado  : Enfermeiro?= null
+        var DestritoSelecionado : Destritos? = null
+        var pessoasSelecionado : Pessoas?=null
 
     }
 }

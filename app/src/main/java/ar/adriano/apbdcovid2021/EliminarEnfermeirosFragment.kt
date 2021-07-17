@@ -16,7 +16,7 @@ import java.util.*
 
 class EliminarEnfermeirosFragment :  Fragment() {
 
-
+    private  lateinit var listaEnfermeirosFragment: ListaEnfermeirosFragment
     private lateinit var textViewNome: TextView
     private lateinit var textViewMorada: TextView
     private lateinit var textViewContacto: TextView
@@ -40,7 +40,7 @@ class EliminarEnfermeirosFragment :  Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         textViewNome = view.findViewById(R.id.textViewNome)
-        textViewMorada = view.findViewById(R.id.textViewMorada)
+        textViewMorada = view.findViewById(R.id.textViewNumeroUtente)
         textViewData = view.findViewById(R.id.textViewData)
         textViewContacto = view.findViewById(R.id.textViewContacto)
         textViewEmail = view.findViewById(R.id.textViewEmail)
@@ -52,7 +52,7 @@ class EliminarEnfermeirosFragment :  Fragment() {
 
 
 
-        val enfermeiros = DadosApp.EnfermeiroSelecionado!!
+        val enfermeiros = DadosApp.enfermeiroSelecionado!!
 
         val DataHoje =  SimpleDateFormat("dd/MM/YYYY",Locale.getDefault())
 
@@ -71,13 +71,15 @@ class EliminarEnfermeirosFragment :  Fragment() {
     }
 
     fun navegaListaEnfermeiros() {
-        findNavController().navigate(R.id.action_eliminaEnfermeiroFragment_to_listaEnfermeiroFragment)
+     //   findNavController().navigate(R.id.action_eliminaEnfermeiroFragment_to_ListaEnfermeirosFragment)
+        listaEnfermeirosFragment = ListaEnfermeirosFragment()
+        DadosApp.activity.setFragment(listaEnfermeirosFragment)
     }
 
     fun elimina() {
         val uriEnfermeiros = Uri.withAppendedPath(
                 ContentProviderEnfermeiros.ENDRECO_ENFERMEIRA,
-                DadosApp.EnfermeiroSelecionado!!.id.toString()
+                DadosApp.enfermeiroSelecionado!!.id.toString()
         )
 
         val registos = activity?.contentResolver?.delete(

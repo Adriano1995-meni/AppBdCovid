@@ -14,14 +14,16 @@ import android.widget.Toast
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import java.util.*
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
+
 class NovoEnfermeiroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
+
+    private  lateinit var listaEnfermeirosFragment: ListaEnfermeirosFragment
 
     private lateinit var editTextNome: EditText
     private lateinit var editTextMorada: EditText
@@ -39,15 +41,13 @@ class NovoEnfermeiroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>
         DadosApp.fragment = this
         (activity as MainActivity).menuAtual = R.menu.menu_novo_enfermeiro
 
-
         return inflater.inflate(R.layout.fragment_novo_enfermeiro, container, false)
     }
 
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         editTextNome = view.findViewById(R.id.editTextInputNome)
         editTextMorada = view.findViewById(R.id.editTextInputMorada)
         editTextContacto = view.findViewById(R.id.editTextInputContacto)
@@ -57,14 +57,17 @@ class NovoEnfermeiroFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>
         spinnerDestritos = view.findViewById(R.id.spinnerDestritos)
 
 
-        LoaderManager.getInstance(this)
+                 LoaderManager.getInstance(this)
                 .initLoader(ID_LOADER_MANAGER_DESTRITOS, null, this)
         }
 
 
     fun navegaListaEnfermeiro() {
 
-        findNavController().navigate(R.id.action_NovoEnfermeirosFragment_to_action_ListaEnfermerosFragment)
+       // findNavController().navigate(R.id.action_NovoEnfermeirosFragment_to_ListaEnfermeirosFragment)
+        listaEnfermeirosFragment = ListaEnfermeirosFragment()
+        DadosApp.activity.setFragment(listaEnfermeirosFragment)
+
 
     }
 

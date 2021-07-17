@@ -31,6 +31,12 @@
             android:name=".ContentProviderPessoas"
             android:exported="false"/>
 
+
+        <provider
+            android:authorities="ar.adriano.apbdcovid2021"
+            android:name=".ContentProviderDestritos"
+            android:exported="false"/>
+
     </application>
 
 </manifest>
