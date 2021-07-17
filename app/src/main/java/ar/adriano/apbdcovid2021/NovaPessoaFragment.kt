@@ -14,26 +14,28 @@ import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import java.util.*
 
 class NovaPessoaFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
+    private  lateinit var listaPessoasFragment: ListaPessoasFragment
+
     private lateinit var editTextNome: EditText
     private lateinit var editTextMorada: EditText
     private lateinit var editTextContacto: EditText
     private lateinit var editTextMail: EditText
-    private lateinit var editTextSexo: EditText
+    private lateinit var editTextNumeroUtente: EditText
     private lateinit var editTextData: EditText
     private lateinit var spinnerDestritos: Spinner
+    private lateinit var spinnerEnfermeiro:Spinner
 
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        DadosPessoasApp.fragment = this
+        DadosApp.fragment = this
         (activity as MainActivity).menuAtual = R.menu.menu_nova_pessoa
 
 
@@ -46,23 +48,29 @@ class NovaPessoaFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         editTextNome = view.findViewById(R.id.editTextInputNome)
-        editTextMorada = view.findViewById(R.id.editTextInputMorada)
+//        editTextMorada = view.findViewById(R.id.editTextInputMorada)
         editTextContacto = view.findViewById(R.id.editTextInputContacto)
-        editTextMail = view.findViewById(R.id.editTextInputEmail)
-        editTextSexo = view.findViewById(R.id.editTextInputSexo)
+      //  editTextMail = view.findViewById(R.id.editTextInputEmail)
+       editTextNumeroUtente = view.findViewById(R.id.editTextInputNumeroUtente)
         editTextData = view.findViewById(R.id.editTextInputData)
         spinnerDestritos = view.findViewById(R.id.spinnerDestritos)
+        spinnerEnfermeiro = view.findViewById(R.id.spinnerEnfermeiros)
 
 
         LoaderManager.getInstance(this)
                 .initLoader(ID_LOADER_MANAGER_DESTRITOS, null, this)
+
+        LoaderManager.getInstance(this)
+                .initLoader(ID_LOADER_MANAGER_ENFERMEIRO, null, this)
+
     }
 
 
     fun navegaListaEnfermeiro() {
 
-        findNavController().navigate(R.id.action_NovoEnfermeirosFragment_to_action_ListaEnfermerosFragment)
-
+       // findNavController().navigate(R.id.action_NovoEnfermeirosFragment_to_action_ListaEnfermerosFragment)
+        listaPessoasFragment = ListaPessoasFragment()
+        DadosApp.activity.setFragment(listaPessoasFragment)
     }
 
     fun guardar() {
@@ -73,12 +81,7 @@ class NovaPessoaFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
             return
         }
-        val morada = editTextMorada.text.toString()
-        if (morada.isEmpty()) {
-            editTextMorada.setError(getString(R.string.preencha_Morada))
-            editTextMorada.requestFocus()
-            return
-        }
+
 
         val contacto = editTextContacto.text.toString()
         if (contacto.isEmpty()) {
@@ -87,10 +90,10 @@ class NovaPessoaFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             return
         }
 
-        val sexo = editTextSexo.text.toString()
-        if (sexo.isEmpty()) {
-            editTextSexo.setError(getString(R.string.preencha_sexo))
-            editTextSexo.requestFocus()
+        val NumeroUtente = editTextNumeroUtente.text.toString()
+        if (NumeroUtente.isEmpty()) {
+            editTextNumeroUtente.setError(getString(R.string.preencha_sexo))
+            editTextNumeroUtente.requestFocus()
             return
         }
 
@@ -102,20 +105,16 @@ class NovaPessoaFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         }
 
 
-        val mail = editTextMail.text.toString()
-        if (mail.isEmpty()) {
-            editTextMail.setError(getString(R.string.preencha_Mail))
-            editTextMail.requestFocus()
-            return
-        }
+
 
         val idDestrito = spinnerDestritos.selectedItemId
+        val idEnfermeiro = spinnerEnfermeiro.selectedItemId
 
-        val enfermeiros = Enfermeiro(nome = nome, Morada = morada, contacto = contacto,sexo = sexo,data = Date(data), Mail = mail,idDestrito = idDestrito)
+        val pessoas = Pessoas(nome = nome, Contacto = contacto,NumeroUtente = NumeroUtente,data = Date(data),idDestrito = idDestrito,idEnfermeio = idEnfermeiro)
 
         val uri = activity?.contentResolver?.insert(
-                ContentProviderEnfermeiros.ENDRECO_ENFERMEIRA,
-                enfermeiros.toContentValues()
+                ContentProviderEnfermeiros.ENDRECO_PESSOAS,
+                pessoas.toContentValues()
         )
 
         if (uri == null) {
@@ -137,8 +136,8 @@ class NovaPessoaFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     fun processaOpcaoMenu(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_guardar_novo_enfermeiro-> guardar()
-            R.id.action_cancelar_novo_enfermeiro -> navegaListaEnfermeiro()
+            R.id.action_guardar_novo_pessoas-> guardar()
+            R.id.action_cancelar_novo_pessoas -> navegaListaEnfermeiro()
             else -> return false
         }
 
@@ -156,13 +155,30 @@ class NovaPessoaFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
      * @return Return a new Loader instance that is ready to start loading.
      */
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
-        return CursorLoader(
-                requireContext(),
-                ContentProviderPessoas.ENDRECO_DESTRITO,
-                TabelaDestrito.TODAS_COLUNAS,
-                null, null,
-                TabelaDestrito.CAMPO_NOME
-        )
+
+        if(id == ID_LOADER_MANAGER_DESTRITOS) {
+            return CursorLoader(
+                    requireContext(),
+                    ContentProviderEnfermeiros.ENDRECO_DESTRITO,
+                    TabelaDestrito.TODAS_COLUNAS,
+                    null, null,
+                    TabelaDestrito.CAMPO_NOME
+
+            )
+        }
+        else if(id== ID_LOADER_MANAGER_ENFERMEIRO){
+            return CursorLoader(
+                    requireContext(),
+                    ContentProviderEnfermeiros.ENDRECO_ENFERMEIRA,
+                    TabelaEnfermeiro.TODAS_COLUNAS,
+                    null, null,
+                    TabelaEnfermeiro.NOME_ENFERMEIRO
+
+            )
+        }
+
+        return null!!
+
     }
 
     /**
@@ -209,7 +225,16 @@ class NovaPessoaFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
      * @param data The data generated by the Loader.
      */
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
-        atualizaSpinnerDestritos(data)
+     //   atualizaSpinnerDestritos(data)
+
+        if(loader.id == ID_LOADER_MANAGER_DESTRITOS){
+            atualizaSpinnerDestritos(data)
+        }
+
+        else if(loader.id == ID_LOADER_MANAGER_ENFERMEIRO){
+            atualizaSpinnerEnfermeiro(data)
+        }
+
     }
 
     /**
@@ -224,20 +249,56 @@ class NovaPessoaFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
      */
     override fun onLoaderReset(loader: Loader<Cursor>) {
         atualizaSpinnerDestritos(null)
+        atualizaSpinnerEnfermeiro(null)
+
     }
 
-    private fun atualizaSpinnerDestritos(data: Cursor?) {
-        spinnerDestritos.adapter = SimpleCursorAdapter(
-                requireContext(),
-                android.R.layout.simple_list_item_1,
-                data,
-                arrayOf(TabelaDestrito.CAMPO_NOME),
-                intArrayOf(android.R.id.text1),
-                0
-        )
-    }
+
+
+    /**
+     * Called when a previously created loader is being reset, and thus
+     * making its data unavailable.  The application should at this point
+     * remove any references it has to the Loader's data.
+     *
+     *
+     * This will always be called from the process's main thread.
+     *
+     * @param loader The Loader that is being reset.
+     */
+
+
+private fun atualizaSpinnerDestritos(data: Cursor?) {
+    spinnerDestritos.adapter = SimpleCursorAdapter(
+            requireContext(),
+            android.R.layout.simple_list_item_1,
+            data,
+            arrayOf(TabelaDestrito.CAMPO_NOME),
+            intArrayOf(android.R.id.text1),
+            0
+    )
+}
+
+private fun atualizaSpinnerEnfermeiro(data: Cursor?) {
+    spinnerEnfermeiro.adapter = SimpleCursorAdapter(
+            requireContext(),
+            android.R.layout.simple_list_item_1,
+            data,
+            arrayOf(TabelaEnfermeiro.NOME_ENFERMEIRO),
+            intArrayOf(android.R.id.text1),
+            0
+    )
+}
+
+
+
+
 
     companion object {
-        const val ID_LOADER_MANAGER_DESTRITOS = 0
+        const val ID_LOADER_MANAGER_DESTRITOS = 1
+        const val ID_LOADER_MANAGER_ENFERMEIRO = 2
     }
+
+
+
 }
+

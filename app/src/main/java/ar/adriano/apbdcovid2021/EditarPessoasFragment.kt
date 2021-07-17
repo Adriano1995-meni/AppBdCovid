@@ -15,19 +15,20 @@ import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
-import androidx.navigation.fragment.findNavController
 import java.text.SimpleDateFormat
 import java.util.*
 
 class EditarPessoasFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
+    private  lateinit var listaPessoasFragment: ListaPessoasFragment
 
     private lateinit var editTextNome: EditText
-    private lateinit var editTextMorada: EditText
+    private lateinit var editTextNumeroUtente: EditText
     private lateinit var editTextContacto: EditText
-    private lateinit var editTextMail: EditText
-    private lateinit var editTextSexo: EditText
+   // private lateinit var editTextMail: EditText
+  //  private lateinit var editTextSexo: EditText
     private lateinit var editTextData: EditText
     private lateinit var spinnerDestritos: Spinner
+    private lateinit var spinnerEnfermeiro: Spinner
 
 
     override fun onCreateView(
@@ -44,33 +45,42 @@ class EditarPessoasFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         editTextNome = view.findViewById(R.id.editTextInputNome)
-        editTextMorada = view.findViewById(R.id.editTextInputMorada)
+        editTextNumeroUtente = view.findViewById(R.id.editTextInputEmail)
         editTextContacto = view.findViewById(R.id.editTextInputContacto)
-        editTextMail = view.findViewById(R.id.editTextInputEmail)
-        editTextSexo = view.findViewById(R.id.editTextInputSexo)
         editTextData = view.findViewById(R.id.editTextInputData)
         spinnerDestritos = view.findViewById(R.id.spinnerDestritos)
+        spinnerEnfermeiro = view.findViewById(R.id.spinnerEnfermeiros)
+       //  editTextMail = view.findViewById(R.id.editTextInputEmail)
+       // editTextSexo = view.findViewById(R.id.editTextInputSexo)
+
 
 
         LoaderManager.getInstance(this)
-                .initLoader(NovoEnfermeiroFragment.ID_LOADER_MANAGER_DESTRITOS, null, this)
+                .initLoader(ID_LOADER_MANAGER_DESTRITOS, null, this)
+        LoaderManager.getInstance(this)
+                .initLoader(ID_LOADER_MANAGER_ENFERMEIRO, null, this)
 
         val DataHoje =  SimpleDateFormat("dd/MM/YYYY", Locale.getDefault())
 
-        val datahoje= DataHoje.format(DadosApp.EnfermeiroSelecionado!!.data)
+        val datahoje= DataHoje.format(DadosApp.pessoasSelecionado!!.data)
 
-        editTextNome.setText(DadosPessoasApp.pessoasSelecionado!!.nome)
-        editTextContacto.setText(DadosPessoasApp.pessoasSelecionado!!.Contacto)
-        editTextMorada.setText(DadosPessoasApp.pessoasSelecionado!!.Morada)
-        editTextMail.setText(DadosPessoasApp.pessoasSelecionado!!.NumeroUtente)
-        editTextSexo.setText(DadosPessoasApp.pessoasSelecionado!!.sexo)
+        editTextNome.setText(DadosApp.pessoasSelecionado!!.nome)
+        editTextContacto.setText(DadosApp.pessoasSelecionado!!.Contacto)
+        editTextNumeroUtente.setText(DadosApp.pessoasSelecionado!!.NumeroUtente)
         editTextData.setText(datahoje.toString())
+
+       // editTextMorada.setText(DadosApp.pessoasSelecionado!!.Morada)
+       // editTextMail.setText(DadosApp.pessoasSelecionado!!.NumeroUtente)
+     //   editTextSexo.setText(DadosApp.pessoasSelecionado!!.sexo)
+
 
     }
 
-    fun navegaListaEnfermeiro() {
+    fun navegaListaPessoas() {
 
-        findNavController().navigate(R.id.action_EditaEnfermeirosFragment_to_ListaEnfermeirosFragment)
+    //   findNavController().navigate(R.id.action_editaPessoasFragment_to_listaPessoasFragment)
+        listaPessoasFragment = ListaPessoasFragment()
+        DadosApp.activity.setFragment(listaPessoasFragment)
     }
 
     fun guardar() {
@@ -81,25 +91,12 @@ class EditarPessoasFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
             return
         }
-        val morada = editTextMorada.text.toString()
-        if (morada.isEmpty()) {
-            editTextMorada.setError(getString(R.string.preencha_Morada))
-            editTextMorada.requestFocus()
-            return
-        }
+
 
         val contacto = editTextContacto.text.toString()
         if (contacto.isEmpty()) {
             editTextContacto.setError(getString(R.string.preencha_Contacto))
             editTextContacto.requestFocus()
-            return
-        }
-
-
-        val sexo = editTextSexo.text.toString()
-        if (sexo.isEmpty()) {
-            editTextSexo.setError(getString(R.string.preencha_sexo))
-            editTextSexo.requestFocus()
             return
         }
 
@@ -113,31 +110,32 @@ class EditarPessoasFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         }
 
 
-        val mail = editTextMail.text.toString()
-        if (mail.isEmpty()) {
-            editTextMail.setError(getString(R.string.preencha_Mail))
-            editTextMail.requestFocus()
+        val Numero_Utente = editTextNumeroUtente.text.toString()
+        if (Numero_Utente.isEmpty()) {
+            editTextNumeroUtente.setError(getString(R.string.preencha_Mail))
+            editTextNumeroUtente.requestFocus()
             return
         }
 
         val idDestrito = spinnerDestritos.selectedItemId
 
-        val pessoas = DadosPessoasApp.pessoasSelecionado
+        val pessoas = DadosApp.pessoasSelecionado
         pessoas!!.nome= nome
-        pessoas.Morada = morada
+        //pessoas.Morada = morada
         pessoas.Contacto = contacto
-        pessoas.sexo = sexo
+     //   pessoas.sexo = sexo
         pessoas.data = Date(data)
-       pessoas.dataNascimento = Date(data)
+    //   pessoas.dataNascimento = Date(data)
+        pessoas.NumeroUtente = Numero_Utente
         pessoas.idDestrito = idDestrito
 
-        val uriEnfermeiro = Uri.withAppendedPath(
-                ContentProviderEnfermeiros.ENDRECO_ENFERMEIRA,
+        val uriPessoas = Uri.withAppendedPath(
+                ContentProviderEnfermeiros.ENDRECO_PESSOAS,
                 pessoas.id.toString()
         )
 
         val registos = activity?.contentResolver?.update(
-                uriEnfermeiro,
+                uriPessoas,
                 pessoas.toContentValues(),
                 null,
                 null
@@ -158,14 +156,14 @@ class EditarPessoasFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
                 Toast.LENGTH_LONG
         ).show()
 
-        navegaListaEnfermeiro()
+        navegaListaPessoas()
     }
 
 
     fun processaOpcaoMenu(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_guardar_edita_enfermeiro -> guardar()
-            R.id.action_cancelar_edita_enfermiro -> navegaListaEnfermeiro()
+            R.id.action_guardar_edita_pessoas -> guardar()
+            R.id.action_cancelar_edita_pessoas ->  navegaListaPessoas()
             else -> return false
         }
 
@@ -183,13 +181,29 @@ class EditarPessoasFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
      * @return Return a new Loader instance that is ready to start loading.
      */
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
-        return CursorLoader(
-                requireContext(),
-                ContentProviderPessoas.ENDRECO_DESTRITO,
-                TabelaDestrito.TODAS_COLUNAS,
-                null, null,
-                TabelaDestrito.CAMPO_NOME
-        )
+        if(id == NovaPessoaFragment.ID_LOADER_MANAGER_DESTRITOS) {
+            return CursorLoader(
+                    requireContext(),
+                    ContentProviderEnfermeiros.ENDRECO_DESTRITO,
+                    TabelaDestrito.TODAS_COLUNAS,
+                    null, null,
+                    TabelaDestrito.CAMPO_NOME
+
+            )
+        }
+        else if(id==ID_LOADER_MANAGER_ENFERMEIRO){
+            return CursorLoader(
+                    requireContext(),
+                    ContentProviderEnfermeiros.ENDRECO_ENFERMEIRA,
+                    TabelaEnfermeiro.TODAS_COLUNAS,
+                    null, null,
+                    TabelaEnfermeiro.NOME_ENFERMEIRO
+
+            )
+        }
+
+        return null!!
+
     }
 
     /**
@@ -236,8 +250,16 @@ class EditarPessoasFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
      * @param data The data generated by the Loader.
      */
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
-        atualizaSpinnerDestritos(data)
-        atualizaDestritosSelecionada()
+        if(loader.id == ID_LOADER_MANAGER_DESTRITOS){
+            atualizaSpinnerDestrito(data)
+        }
+
+        else if(loader.id == ID_LOADER_MANAGER_ENFERMEIRO){
+            atualizaSpinnerEnfermeiro(data)
+        }
+
+        atualizaPessoasSelecionada()
+
     }
 
     /**
@@ -251,11 +273,12 @@ class EditarPessoasFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
      * @param loader The Loader that is being reset.
      */
     override fun onLoaderReset(loader: Loader<Cursor>) {
-        atualizaSpinnerDestritos(null)
-        //   atualizaDestritosSelecionada()
+        atualizaSpinnerDestrito(null)
+        atualizaSpinnerEnfermeiro(null)
+
     }
 
-    private fun atualizaSpinnerDestritos(data: Cursor?) {
+    private fun atualizaSpinnerDestrito(data: Cursor?) {
         spinnerDestritos.adapter = SimpleCursorAdapter(
                 requireContext(),
                 android.R.layout.simple_list_item_1,
@@ -266,24 +289,43 @@ class EditarPessoasFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         )
     }
 
+    private fun atualizaSpinnerEnfermeiro(data: Cursor?) {
+        spinnerEnfermeiro.adapter = SimpleCursorAdapter(
+                requireContext(),
+                android.R.layout.simple_list_item_1,
+                data,
+                arrayOf(TabelaEnfermeiro.NOME_ENFERMEIRO),
+                intArrayOf(android.R.id.text1),
+                0
+        )
+    }
 
-    private fun atualizaDestritosSelecionada() {
-        val idCategoria = DadosPessoasApp.pessoasSelecionado!!.idDestrito
 
-        val ultimaCategoria = spinnerDestritos.count - 1
-        for (i in 0..ultimaCategoria) {
-            if (idCategoria == spinnerDestritos.getItemIdAtPosition(i)) {
+
+    private fun atualizaPessoasSelecionada() {
+        val idDestrito = DadosApp.pessoasSelecionado!!.idDestrito
+        val idEnfermeiro = DadosApp.pessoasSelecionado!!.idEnfermeio
+
+        val ultimoDestrito = spinnerDestritos.count - 1
+        val ultimaEnfermeiro = spinnerEnfermeiro.count - 1
+        for (i in 0..ultimoDestrito){
+            if(idDestrito == spinnerDestritos.getItemIdAtPosition(i)){
                 spinnerDestritos.setSelection(i)
+                return
+            }
+        }
+
+        for (i in 0..ultimaEnfermeiro){
+            if(idEnfermeiro == spinnerEnfermeiro.getItemIdAtPosition(i)){
+                spinnerEnfermeiro.setSelection(i)
                 return
             }
         }
     }
 
-
-
-
-    companion object {
-        const val ID_LOADER_MANAGER_DESTRITOS = 0
+            companion object {
+        const val ID_LOADER_MANAGER_DESTRITOS = 1
+        const val ID_LOADER_MANAGER_ENFERMEIRO = 2
     }
 
 }

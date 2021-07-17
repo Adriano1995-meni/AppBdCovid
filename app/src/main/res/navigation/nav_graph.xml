@@ -58,8 +58,8 @@
     <fragment
         android:id="@+id/listaPessoasFragment"
         android:name="ar.adriano.apbdcovid2021.ListaPessoasFragment"
-        android:label="fragment_lista_pessoas"
-        tools:layout="@layout/fragment_lista_pessoas" >
+        android:label="@string/lista_pessoas"
+        tools:layout="@layout/fragment_lista_pessoas">
         <action
             android:id="@+id/action_listaPessoasFragment_to_liminarPessoasFragment"
             app:destination="@id/eliminarPessoasFragment" />

@@ -8,10 +8,11 @@ import java.util.*
 data class Pessoas (
         var id: Long=-1,
         var nome:String,
-        var Morada:String,
-        var sexo: String,
-
-        var dataNascimento: Date,
+      //  var Morada:String,
+      //  var sexo: String,
+        var CampoExternoEnfermeiro:String? = null,
+        var CampoExternoDestrito:String? = null,
+        //var dataNascimento: Date,
         var Contacto: String,
         var NumeroUtente: String,
         var data: Date,
@@ -22,10 +23,10 @@ data class Pessoas (
      fun toContentValues(): ContentValues {
          val valores = ContentValues()
          valores.put(TabelaPessoas.NOME_PESSOA,nome)
-         valores.put(TabelaPessoas.SEXO,sexo)
-        valores.put(TabelaPessoas.MORADA,Morada)
+        // valores.put(TabelaPessoas.SEXO,sexo)
+       // valores.put(TabelaPessoas.MORADA,Morada)
          valores.put(TabelaPessoas.NUMERO_UTENTE,NumeroUtente)
-         valores.put(TabelaPessoas.DATA_NASCIMENTO,dataNascimento.time)
+         //valores.put(TabelaPessoas.DATA_NASCIMENTO,dataNascimento.time)
          valores.put(TabelaPessoas.CONTACTO,Contacto)
          valores.put(TabelaPessoas.DATA,data.time)
          valores.put(TabelaPessoas.IDENFERMEIRO,idEnfermeio)
@@ -39,21 +40,25 @@ data class Pessoas (
          fun fromCursor(cursor: Cursor): Pessoas {
              val CorId = cursor.getColumnIndex(BaseColumns._ID)
              val CorNome = cursor.getColumnIndex(TabelaPessoas.NOME_PESSOA)
-             val CorSexo = cursor.getColumnIndex(TabelaPessoas.SEXO)
-             val  CorMorada = cursor.getColumnIndex(TabelaPessoas.MORADA)
+             //val CorSexo = cursor.getColumnIndex(TabelaPessoas.SEXO)
+            // val  CorMorada = cursor.getColumnIndex(TabelaPessoas.MORADA)
             val CorNif = cursor.getColumnIndex(TabelaPessoas.NUMERO_UTENTE)
-            val  CorDNac = cursor.getColumnIndex(TabelaPessoas.DATA_NASCIMENTO)
+          //  val  CorDNac = cursor.getColumnIndex(TabelaPessoas.DATA_NASCIMENTO)
              val  CorCont = cursor.getColumnIndex(TabelaPessoas.CONTACTO)
              val  CorData = cursor.getColumnIndex(TabelaPessoas.DATA)
              val  CampId = cursor.getColumnIndex(TabelaPessoas.IDENFERMEIRO)
+             val campoExterno_Enfermeiro = cursor.getColumnIndex(TabelaPessoas.CAMPO_EXTERNO_NOME_ENFERMEIRO)
+             val campoExterno_Destrito = cursor.getColumnIndex(TabelaPessoas.CAMPO_EXTERNO_NOME_DESTRITO)
              val CampoIdCidade = cursor.getColumnIndex(TabelaPessoas.CAMPO_ID_DESTRITO)
 
              val id = cursor.getLong(CorId)
              val Nome = cursor.getString(CorNome)
-             val Morada = cursor.getString(CorMorada)
-             val Sexo = cursor.getString(CorSexo)
+             //val Morada = cursor.getString(CorMorada)
+             val C_externoEnfermeiro = if (campoExterno_Enfermeiro !=-1) cursor.getString(campoExterno_Enfermeiro)else null
+             val C_externoDestrito =  if (campoExterno_Destrito!=-1)cursor.getString(campoExterno_Destrito) else null
+            // val Sexo = cursor.getString(CorSexo)
              val NifId = cursor.getString(CorNif)
-             val Born = cursor.getLong(CorDNac)
+            // val Born = cursor.getLong(CorDNac)
              val contacto = cursor.getString(CorCont)
              val C_Data = cursor.getLong(CorData)
              val CidEnfermeio = cursor.getLong(CampId)
@@ -61,9 +66,12 @@ data class Pessoas (
 
 
              return Pessoas(id,
-                 Nome ,Morada,
-                 Sexo ,
-                 Date(Born)  ,
+                 Nome ,
+                     //Morada,
+                     C_externoEnfermeiro.toString(),
+                     C_externoDestrito,
+                // Sexo ,
+                //Date(Born),
                  contacto,
                  NifId,
                     Date(C_Data) ,

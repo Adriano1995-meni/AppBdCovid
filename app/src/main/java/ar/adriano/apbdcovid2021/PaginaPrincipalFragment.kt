@@ -1,4 +1,6 @@
 package ar.adriano.apbdcovid2021
 
-class PaginaPrincipalFragment {
+import androidx.fragment.app.Fragment
+
+class PaginaPrincipalFragment :Fragment() {
 }

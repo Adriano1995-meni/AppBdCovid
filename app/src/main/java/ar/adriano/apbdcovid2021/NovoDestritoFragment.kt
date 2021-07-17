@@ -23,13 +23,13 @@ class NovoDestritoFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     private lateinit var editTextNome: EditText
 
    // private lateinit var spinnerDestritos: Spinner
-
+   private  lateinit var listaDestritosFragment: ListaDestritosFragment
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        DadosDestritosApp.fragment = this
+        DadosApp.fragment = this
         (activity as MainActivity).menuAtual = R.menu.menu_novo_destrito
 
 
@@ -53,8 +53,9 @@ class NovoDestritoFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     fun navegaListaDestrito() {
 
-        findNavController().navigate(R.id.action_novodestritos_Fragment_to_lista_destritos_Fragment)
-
+       // findNavController().navigate(R.id.action_novodestritos_Fragment_to_lista_destritos_Fragment)
+        listaDestritosFragment = ListaDestritosFragment()
+        DadosApp.activity.setFragment(listaDestritosFragment)
     }
 
     fun guardar() {
@@ -72,7 +73,7 @@ class NovoDestritoFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         val destritos= Destritos(nome = nome)
 
         val uri = activity?.contentResolver?.insert(
-            ContentProviderDestritos.ENDRECO_DESTRITO,
+            ContentProviderEnfermeiros.ENDRECO_DESTRITO,
             destritos.toContentValues()
         )
 
@@ -116,7 +117,7 @@ class NovoDestritoFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
         return CursorLoader(
             requireContext(),
-            ContentProviderDestritos.ENDRECO_DESTRITO,
+            ContentProviderEnfermeiros.ENDRECO_DESTRITO,
             TabelaDestrito.TODAS_COLUNAS,
             null, null,
             TabelaDestrito.CAMPO_NOME

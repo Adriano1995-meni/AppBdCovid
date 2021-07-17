@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NovoEnfermeiroFragment">
+    tools:context=".NovaPessoaFragment" >
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -17,7 +17,6 @@
             android:layout_margin="@dimen/margem_campos"
             android:hint="@string/nome"
             android:inputType="text" />
-
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -48,45 +47,12 @@
                     android:layout_height="match_parent">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/editTextInputSexo"
+                        android:id="@+id/editTextInputNumeroUtente"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margem_campos"
-                        android:hint="@string/sexo"
+                        android:hint="@string/numero_utente"
                         android:inputType="text" />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/editTextInputMorada"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/margem_campos"
-                            android:hint="@string/morad"
-                            android:inputType="text" />
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/editTextInputEmail"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/margem_campos"
-                                android:hint="@string/email"
-                                android:inputType="textWebEmailAddress" />
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/editTextInputUtentes"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/margem_campos"
-                                android:hint="@string/email"
-                                android:inputType="textWebEmailAddress" />
-
 
 
                             <TextView
@@ -102,33 +68,22 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/margem_campos" />
 
-                            <TextView
-                                android:id="@+id/textViewEnfermeiros"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/margem_campos"
-                                android:text="Enfermeiros" />
 
-                            <Spinner
-                                android:id="@+id/spinnerEnfermeiros"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/margem_campos" />
+                    <TextView
+                        android:id="@+id/textViewEnfermeiros"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margem_campos"
+                        android:text="Enfermeiro" />
 
+                    <Spinner
+                        android:id="@+id/spinnerEnfermeiros"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margem_campos" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </com.google.android.material.textfield.TextInputLayout>
                 </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="hint" />
-                </com.google.android.material.textfield.TextInputLayout>
             </com.google.android.material.textfield.TextInputLayout>
-        </com.google.android.material.textfield.TextInputLayout>
-    </com.google.android.material.textfield.TextInputLayout>
+
 </LinearLayout>

@@ -19,11 +19,11 @@ class AdapterPessoas(val fragment: ListaPessoasFragment) : RecyclerView.Adapter<
 
     class ViewHolderPessoas(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         private val textViewNome = itemView.findViewById<TextView>(R.id.textViewNome)
-        private val textViewSexo = itemView.findViewById<TextView>(R.id.textViewSexo)
-        private val textViewMorada = itemView.findViewById<TextView>(R.id.textViewMorada)
+        //private val textViewSexo = itemView.findViewById<TextView>(R.id.textViewSexo)
+      //  private val textViewMorada = itemView.findViewById<TextView>(R.id.textViewMorada)
         private val textViewContacto = itemView.findViewById<TextView>(R.id.textViewContacto)
         private val textViewData = itemView.findViewById<TextView>(R.id.textViewData)
-        private var textViewDataNascimento=itemView.findViewById<TextView>(R.id.textViewDataNascimento)
+      //  private var textViewDataNascimento=itemView.findViewById<TextView>(R.id.textViewDataNascimento)
         private var textViewNumeroUtente = itemView.findViewById<TextView>(R.id.textViewNumeroUtente)
         private var textViewEnfermeiros = itemView.findViewById<TextView>(R.id.textViewEnfermeiros)
         private val textViewDestrito = itemView.findViewById<TextView>(R.id.textViewDestritos)
@@ -45,14 +45,14 @@ class AdapterPessoas(val fragment: ListaPessoasFragment) : RecyclerView.Adapter<
 
             this.pessoas = pessoas
             textViewNome.text = pessoas.nome
-            textViewSexo.text = pessoas.sexo
+           // textViewSexo.text = pessoas.sexo
             textViewContacto.text = pessoas.Contacto
             textViewData.text = datahoje.toString()
-            textViewMorada.text = pessoas.Morada
-            textViewDataNascimento.text = pessoas.dataNascimento.toString()
+          //  textViewMorada.text = pessoas.Morada
+          //  textViewDataNascimento.text = pessoas.dataNascimento.toString()
             textViewNumeroUtente.text = pessoas.NumeroUtente
-            textViewDestrito.text = pessoas.idDestrito.toString()
-            textViewEnfermeiros.text = pessoas.idEnfermeio.toString()
+            textViewDestrito.text = pessoas.CampoExternoDestrito.toString()
+            textViewEnfermeiros.text = pessoas.CampoExternoEnfermeiro.toString()
         }
 
         override fun onClick(v: View?) {
@@ -63,8 +63,7 @@ class AdapterPessoas(val fragment: ListaPessoasFragment) : RecyclerView.Adapter<
         private fun seleciona() {
             selecionado = this
             itemView.setBackgroundResource(R.color.cor_selecao)
-            DadosPessoasApp.pessoasSelecionado = pessoas //              Nao deve ficar em Comentario
-
+            DadosApp.pessoasSelecionado = pessoas //              Nao deve ficar em Comentario
             DadosApp.activity.ActulizaMenusListaPessoas(true)
         }
 
@@ -193,7 +192,7 @@ class AdapterPessoas(val fragment: ListaPessoasFragment) : RecyclerView.Adapter<
      */
     override fun onBindViewHolder(holder: ViewHolderPessoas, position: Int) {
         cursor!!.moveToPosition(position)
-        // val enfermeiro: Enfermeiro = Enfermeiro.fromCursor(cursor!!)
+        //val enfermeiro: Enfermeiro = Enfermeiro.fromCursor(cursor!!)
         holder.atualizaPessoas(Pessoas.fromCursor(cursor!!))
     }
 

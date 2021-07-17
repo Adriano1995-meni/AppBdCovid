@@ -18,6 +18,11 @@ import androidx.recyclerview.widget.RecyclerView
 class ListaPessoasFragment:Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     private var adapterPessoas: AdapterPessoas?=null
 
+
+    private  lateinit var novaPessoaFragment: NovaPessoaFragment
+    private  lateinit var editaPessoasFragment: EditarPessoasFragment
+    private  lateinit var eliminarPessoasFragment: EliminarPessoasFragment
+
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -60,7 +65,7 @@ class ListaPessoasFragment:Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
         return CursorLoader(
                 requireContext(),
-                ContentProviderPessoas.ENDRECO_PESSOAS,
+                ContentProviderEnfermeiros.ENDRECO_PESSOAS,
                 TabelaPessoas.TODAS_COLUNAS,
                 null,null,
                 TabelaPessoas.NOME_PESSOA
@@ -120,15 +125,24 @@ class ListaPessoasFragment:Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
 
     fun navegaNovoPessoas(){
-        findNavController().navigate(R.id.action_listaPessoasFragment2_to_novaPssoaFragment)
+        novaPessoaFragment = NovaPessoaFragment()
+        //   setFragment(novoEnfermeirosFragment)
+        DadosApp.activity.setFragment( novaPessoaFragment)
+
     }
 
     fun navegaAlterarPessoas(){
-        findNavController().navigate(R.id.action_listaPessoasFragment2_to_editaPessoasFragment)
+      //  findNavController().navigate(R.id.action_listaPessoasFragment_to_editaPessoasFragment)
+        editaPessoasFragment = EditarPessoasFragment()
+        //   setFragment(novoEnfermeirosFragment)
+        DadosApp.activity.setFragment(editaPessoasFragment)
     }
 
     fun navegaEliminarPessoas(){
-        findNavController().navigate(R.id.action_listaPessoasFragment2_to_liminarPessoasFragment)
+    //    findNavController().navigate(R.id.action_listaPessoasFragment_to_liminarPessoasFragment)
+        eliminarPessoasFragment = EliminarPessoasFragment()
+        //   setFragment(novoEnfermeirosFragment)
+        DadosApp.activity.setFragment(eliminarPessoasFragment )
     }
 
 
@@ -166,7 +180,7 @@ class ListaPessoasFragment:Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     companion object {
         const val ID_LOADER_MANAGER_PESSOAS = 0
-        const val ID_LOADER_MANAGER_ENFERMEIRO = 0
+        const val ID_LOADER_MANAGER_ENFERMEIRO =1
 
     }
 }

@@ -15,13 +15,14 @@ import java.util.*
 
 class EliminarPessoasFragment :  Fragment() {
 
+    private  lateinit var listaPessoasFragment: ListaPessoasFragment
 
     private lateinit var textViewNome: TextView
     private lateinit var textViewMorada: TextView
     private lateinit var textViewContacto: TextView
     private lateinit var textViewSexo: TextView
     private lateinit var textViewData: TextView
-    private lateinit var textViewEmail: TextView
+    private lateinit var textViewNumeroUtente: TextView
     private lateinit var textViewDestrito: TextView
 
     override fun onCreateView(
@@ -29,7 +30,7 @@ class EliminarPessoasFragment :  Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         DadosApp.fragment = this
-        (activity as MainActivity).menuAtual = R.menu.menu_eliminar_enfermeirros
+        (activity as MainActivity).menuAtual = R.menu.menu_eliminar_pessoa
 
 
         return inflater.inflate(R.layout.fragment_elimina_enfermeiro, container, false)
@@ -39,10 +40,10 @@ class EliminarPessoasFragment :  Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         textViewNome = view.findViewById(R.id.textViewNome)
-        textViewMorada = view.findViewById(R.id.textViewMorada)
+        textViewMorada = view.findViewById(R.id.textViewNumeroUtente)
         textViewData = view.findViewById(R.id.textViewData)
         textViewContacto = view.findViewById(R.id.textViewContacto)
-        textViewEmail = view.findViewById(R.id.textViewEmail)
+        textViewNumeroUtente = view.findViewById(R.id.textViewEmail)
         textViewSexo = view.findViewById(R.id.textViewSexo)
         textViewDestrito = view.findViewById(R.id.textViewDestrito)
 
@@ -51,32 +52,33 @@ class EliminarPessoasFragment :  Fragment() {
 
 
 
-        val pessoas = DadosPessoasApp.pessoasSelecionado!!
+        val pessoas = DadosApp.pessoasSelecionado!!
 
         val DataHoje =  SimpleDateFormat("dd/MM/YYYY", Locale.getDefault())
 
         val datahoje= DataHoje.format(pessoas.data)
         textViewNome.setText(pessoas.nome)
-        textViewMorada.setText(pessoas.Morada)
+       // textViewMorada.setText(pessoas.Morada)
 
-        textViewEmail.setText(pessoas.NumeroUtente)
+        textViewNumeroUtente.setText(pessoas.NumeroUtente)
         textViewContacto.setText(pessoas.Contacto)
 
-        textViewSexo.setText(pessoas.sexo)
+       // textViewSexo.setText(pessoas.sexo)
         textViewData.text = datahoje.toString()
         textViewDestrito.setText(pessoas.idDestrito.toString())
-
 
     }
 
     fun navegaListaEnfermeiros() {
-        findNavController().navigate(R.id.action_eliminaEnfermeiroFragment_to_listaEnfermeiroFragment)
+       // findNavController().navigate(R.id.action_liminarPessoasFragment_to_listaPessoasFragment)
+        listaPessoasFragment = ListaPessoasFragment()
+        DadosApp.activity.setFragment(listaPessoasFragment)
     }
 
     fun elimina() {
         val uriEnfermeiros = Uri.withAppendedPath(
-                ContentProviderEnfermeiros.ENDRECO_ENFERMEIRA,
-                DadosApp.EnfermeiroSelecionado!!.id.toString()
+                ContentProviderEnfermeiros.ENDRECO_PESSOAS,
+                DadosApp.pessoasSelecionado!!.id.toString()
         )
 
         val registos = activity?.contentResolver?.delete(
@@ -104,8 +106,8 @@ class EliminarPessoasFragment :  Fragment() {
 
     fun processaOpcaoMenu(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_confirma_eliminar_enfermeiro -> elimina()
-            R.id.action_cancelar_eliminar_enfermeiro -> navegaListaEnfermeiros()
+            R.id.action_confirma_eliminar_pessoas -> elimina()
+            R.id.action_cancelar_eliminar_pessoas -> navegaListaEnfermeiros()
             else -> return false
         }
 
