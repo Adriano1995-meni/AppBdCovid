@@ -18,19 +18,19 @@ class EliminarVacinasFragment:  Fragment() {
 
     private lateinit var textViewNomeVacinas: TextView
     private lateinit var textViewNomeFabricante: TextView
-    private lateinit var textViewDataValidacao: TextView
-    private lateinit var textViewDestrito: TextView
-    private lateinit var textViewPessoas: TextView
+   // private lateinit var textViewDataValidacao: TextView
+ //   private lateinit var textViewDestrito: TextView
+   // private lateinit var textViewPessoas: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         DadosApp.fragment = this
-        (activity as MainActivity).menuAtual = R.menu.menu_eliminar_pessoa
+        (activity as MainActivity).menuAtual = R.menu.menu_eliminar_vacina
 
 
-        return inflater.inflate(R.layout.fragment_elimina_enfermeiro, container, false)
+        return inflater.inflate(R.layout.fragment_eliminar_vacina, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,9 +38,9 @@ class EliminarVacinasFragment:  Fragment() {
 
         textViewNomeVacinas = view.findViewById(R.id.textViewNome_Vacina)
         textViewNomeFabricante = view.findViewById(R.id.textViewNome_Fabricante)
-        textViewDataValidacao= view.findViewById(R.id.textViewData_Validacao)
-        textViewPessoas = view.findViewById(R.id.textViewPessoas)
-        textViewDestrito = view.findViewById(R.id.textViewDestrito)
+      //  textViewDataValidacao= view.findViewById(R.id.textViewData_Validacao)
+    //    textViewPessoas = view.findViewById(R.id.textViewPessoas)
+   //     textViewDestrito = view.findViewById(R.id.textViewDestrito)
 
 
         val vacinas = DadosApp.vacinasSelecionado!!
@@ -52,8 +52,8 @@ class EliminarVacinasFragment:  Fragment() {
         textViewNomeVacinas.setText(vacinas.nome)
         textViewNomeFabricante.setText(vacinas.nome_frabricante)
         //textViewDataValidacao.text = dataValidade.toString()
-        textViewDestrito.setText(vacinas.idDestrito.toString())
-        textViewPessoas.setText(vacinas.idPaciente.toString())
+    //    textViewDestrito.setText(vacinas.idDestrito.toString())
+      //  textViewPessoas.setText(vacinas.idPaciente.toString())
 
 
     }
@@ -95,8 +95,8 @@ class EliminarVacinasFragment:  Fragment() {
 
     fun processaOpcaoMenu(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_confirma_eliminar_pessoas -> elimina()
-            R.id.action_cancelar_eliminar_pessoas -> navegaListaVacinas()
+            R.id.action_confirma_eliminar_vacina -> elimina()
+            R.id.action_cancelar_eliminar_vacina -> navegaListaVacinas()
             else -> return false
         }
 

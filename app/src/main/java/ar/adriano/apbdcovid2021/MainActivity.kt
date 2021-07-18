@@ -172,18 +172,7 @@ public fun setFragment(fragment:Fragment){
 
 
 
-/*
- private  lateinit var BotaoEnserirEnfermeiro: Button
-    private  lateinit var BotaoEnserirDestritos:Button
-    private  lateinit var BotaoEnserirPessoas: Button
 
-
-    private  lateinit var listaEnfermeirosFragment: ListaEnfermeirosFragment
-    private  lateinit var listaPessoasFragment: ListaPessoasFragment
-    private  lateinit var listaDestritosFragment: ListaDestritosFragment
-    }
-
-*/
 
 
 

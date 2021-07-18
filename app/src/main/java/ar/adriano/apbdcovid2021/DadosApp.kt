@@ -9,6 +9,7 @@ class DadosApp {
         var enfermeiroSelecionado  : Enfermeiro?= null
         var DestritoSelecionado : Destritos? = null
         var pessoasSelecionado : Pessoas?=null
+        var vacinasSelecionado : Vacinas?=null
 
     }
 }

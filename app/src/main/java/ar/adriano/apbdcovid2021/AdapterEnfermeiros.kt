@@ -18,11 +18,11 @@ class AdapterEnfermeiros (val fragment: ListaEnfermeirosFragment) : RecyclerView
 
 
     class ViewHolderEnfermeiro(itemView: View) : RecyclerView.ViewHolder(itemView),View.OnClickListener {
-        private val textViewNome = itemView.findViewById<TextView>(R.id.textViewNome)
+        private val textViewNome = itemView.findViewById<TextView>(R.id.textViewNomeVacina)
         private val textViewSexo = itemView.findViewById<TextView>(R.id.textViewSexo)
         private val textViewMorada = itemView.findViewById<TextView>(R.id.textViewNumeroUtente)
         private val textViewContacto = itemView.findViewById<TextView>(R.id.textViewContacto)
-        private val textViewData = itemView.findViewById<TextView>(R.id.textViewData)
+        private val textViewData = itemView.findViewById<TextView>(R.id.textViewDataSegundaDoce)
         private var textViewEmail=itemView.findViewById<TextView>(R.id.textViewEmail)
         private val textViewDestrito = itemView.findViewById<TextView>(R.id.textViewDestritos)
 

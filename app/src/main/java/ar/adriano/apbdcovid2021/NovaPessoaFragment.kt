@@ -22,9 +22,9 @@ class NovaPessoaFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     private  lateinit var listaPessoasFragment: ListaPessoasFragment
 
     private lateinit var editTextNome: EditText
-    private lateinit var editTextMorada: EditText
+  //  private lateinit var editTextMorada: EditText
     private lateinit var editTextContacto: EditText
-    private lateinit var editTextMail: EditText
+ //   private lateinit var editTextMail: EditText
     private lateinit var editTextNumeroUtente: EditText
     private lateinit var editTextData: EditText
     private lateinit var spinnerDestritos: Spinner
@@ -47,7 +47,7 @@ class NovaPessoaFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        editTextNome = view.findViewById(R.id.editTextInputNome)
+        editTextNome = view.findViewById(R.id.editTextInputNomeVacina)
 //        editTextMorada = view.findViewById(R.id.editTextInputMorada)
         editTextContacto = view.findViewById(R.id.editTextInputContacto)
       //  editTextMail = view.findViewById(R.id.editTextInputEmail)

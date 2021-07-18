@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextInputNome"
+            android:id="@+id/editTextInputNomeVacina"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margem_campos"
@@ -55,22 +55,22 @@
                         android:inputType="text" />
 
 
-                            <TextView
-                                android:id="@+id/textViewDestritos"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/margem_campos"
-                                android:text="@string/destritos" />
+                    <TextView
+                        android:id="@+id/textViewDestritos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margem_campos"
+                        android:text="@string/destritos" />
 
-                            <Spinner
-                                android:id="@+id/spinnerDestritos"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/margem_campos" />
+                    <Spinner
+                        android:id="@+id/spinnerDestritos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margem_campos" />
 
 
                     <TextView
-                        android:id="@+id/textViewEnfermeiros"
+                        android:id="@+id/textViewPessoas"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margem_campos"
@@ -81,9 +81,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/margem_campos" />
-                        </com.google.android.material.textfield.TextInputLayout>
-                    </com.google.android.material.textfield.TextInputLayout>
                 </com.google.android.material.textfield.TextInputLayout>
             </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
 </LinearLayout>

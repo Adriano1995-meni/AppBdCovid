@@ -57,31 +57,4 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margem_ecran"
-        android:layout_marginLeft="@dimen/margem_ecran"
-        android:layout_marginTop="@dimen/margem_ecran"
-        android:layout_marginEnd="@dimen/margem_ecran"
-        android:layout_marginRight="@dimen/margem_ecran"
-        android:text="@string/fabrica_ao"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="@color/cor_selecao" />
-
-    <TextView
-        android:id="@+id/textViewData_Validacao"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margem_ecran"
-        android:layout_marginLeft="@dimen/margem_ecran"
-        android:layout_marginTop="@dimen/margem_campos"
-        android:layout_marginEnd="@dimen/margem_ecran"
-        android:layout_marginRight="@dimen/margem_ecran"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        tools:text="Validacao" />
-
-
-
 </LinearLayout>

@@ -6,5 +6,5 @@
     <item name="textViewNumeroUtente" type="id" />
     <item name="textViewEmail" type="id" />
     <item name="textViewDestrito" type="id" />
-    <item name="textViewNome" type="id" />
+    <item name="textViewNomeVacina" type="id" />
 </resources>

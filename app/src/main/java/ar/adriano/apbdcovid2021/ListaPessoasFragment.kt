@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -38,13 +37,13 @@ class ListaPessoasFragment:Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerViewPessoas=   view.findViewById<RecyclerView>(R.id.recyclerViewDestritos)
+        val recyclerViewPessoas=   view.findViewById<RecyclerView>(R.id.recyclerViewVacinas)
         adapterPessoas= AdapterPessoas(this)
         recyclerViewPessoas.adapter = adapterPessoas
         recyclerViewPessoas.layoutManager = LinearLayoutManager(requireContext())
 
         LoaderManager.getInstance(this)
-                .initLoader(ID_LOADER_MANAGER_PESSOAS, null, this)
+                .initLoader(ID_LOADER_MANAGER_DESTRITOS, null, this)/// Alterei
 
         LoaderManager.getInstance(this)
                 .initLoader( ID_LOADER_MANAGER_ENFERMEIRO, null, this)
@@ -179,7 +178,7 @@ class ListaPessoasFragment:Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     companion object {
-        const val ID_LOADER_MANAGER_PESSOAS = 0
+        const val ID_LOADER_MANAGER_DESTRITOS = 0
         const val ID_LOADER_MANAGER_ENFERMEIRO =1
 
     }

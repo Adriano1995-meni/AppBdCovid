@@ -9,9 +9,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import java.text.SimpleDateFormat
-import java.util.*
 
 class EliminarDestritosFragment: Fragment() {
 
@@ -33,7 +30,7 @@ class EliminarDestritosFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        textViewNome = view.findViewById(R.id.textViewNome)
+        textViewNome = view.findViewById(R.id.textViewNomeVacina)
 
 
         val destritos =  DadosApp.DestritoSelecionado!!

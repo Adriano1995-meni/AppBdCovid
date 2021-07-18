@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name"> Nurses</string>
+    <string name="app_name">Nurses</string>
     <!-- Strings used for fragments for navigation -->
     <string name="Novo_Enfermeiros_fragment_label">New Nurse</string>
     <string name="edita_enfermeiro_fragment_label">Edit Nuse</string>
@@ -50,12 +50,12 @@
     <string name="tabelapaciente" translatable="false">TabelaPaciente</string>
     <string name="adriano" translatable="false">Adriano</string>
     <string name="numero_utente" translatable="false">Numero_Utente</string>
-    <string name="lista_pessoas">Lista de pessoas</string>
-    <string name="enfermeiros">Enfermeiros</string>
-    <string name="nome_da_vacina">nome da Vacina</string>
-    <string name="nome_de_fabricante">Nome de Fabricante</string>
-    <string name="data_de_validacao">data de validacao</string>
-    <string name="pessoas">Pessoas</string>
-    <string name="fabricante">fabricante</string>
-    <string name="fabrica_ao">Fabricaçao</string>
+    <string name="lista_pessoas" translatable="false">Lista de pessoas</string>
+    <string name="enfermeiros" translatable="false">Enfermeiros</string>
+    <string name="nome_da_vacina" translatable="false">nome da Vacina</string>
+    <string name="nome_de_fabricante" translatable="false">Nome de Fabricante</string>
+    <string name="data_de_validacao" translatable="false">data de validacao</string>
+    <string name="pessoas" translatable="false">Pessoas</string>
+    <string name="fabricante" translatable="false">fabricante</string>
+    <string name="fabrica_ao" translatable="false">Fabricacao</string>
 </resources>

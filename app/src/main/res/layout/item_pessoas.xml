@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textViewNome"
+        android:id="@+id/textViewNomeVacina"
         android:layout_width="wrap_content"
         android:layout_height="27dp"
         android:layout_margin="@dimen/margem_campos"
@@ -26,8 +26,8 @@
         android:id="@+id/textViewContacto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@+id/textViewNome"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNome"
+        app:layout_constraintStart_toStartOf="@+id/textViewNomeVacina"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNomeVacina"
         tools:text="Contacto" />
 
     <TextView
@@ -35,8 +35,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="@+id/textViewData"
-        app:layout_constraintTop_toBottomOf="@+id/textViewData"
+        app:layout_constraintStart_toStartOf="@+id/textViewDataSegundaDoce"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDataSegundaDoce"
         tools:text="Numero Utente" />
 
     <TextView
@@ -54,7 +54,7 @@
 
 
     <TextView
-        android:id="@+id/textViewEnfermeiros"
+        android:id="@+id/textViewPessoas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -68,10 +68,12 @@
         tools:text="Enfermeiros" />
 
     <TextView
-        android:id="@+id/textViewData"
+        android:id="@+id/textViewDataSegundaDoce"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margem_campos"
+
+        android:inputType="textPersonName|text"
         app:layout_constraintStart_toStartOf="@+id/textViewContacto"
         app:layout_constraintTop_toBottomOf="@+id/textViewContacto"
         tools:text="Data" />

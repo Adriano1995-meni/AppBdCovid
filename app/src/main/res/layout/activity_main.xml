@@ -34,11 +34,12 @@
         <Button
             android:id="@+id/BotaoEnserirEnfermeiro"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Enfermeiros"
+            android:text="enfermeiros"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/black"
+            android:textSize="10sp"
             app:backgroundTint="@android:color/white" />
 
         <Button
@@ -49,6 +50,7 @@
             android:text="Destritos"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/black"
+            android:textSize="10sp"
             app:backgroundTint="@android:color/white" />
 
         <Button
@@ -59,6 +61,19 @@
             android:text="Pessoas"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/black"
+            android:textSize="10sp"
+            app:backgroundTint="@android:color/white" />
+
+
+        <Button
+            android:id="@+id/BotaoEnserirVacinas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Vacinas"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            android:textSize="10sp"
             app:backgroundTint="@android:color/white" />
 
 
@@ -69,7 +84,12 @@
         android:id="@+id/frame_Fragmet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/ll_Butoom">
+        android:layout_below="@id/ll_Butoom"
+
+        android:layout_alignParentBottom="true"
+
+        android:layout_marginTop="-5dp"
+        android:layout_marginBottom="5dp">
 
     </FrameLayout>
 

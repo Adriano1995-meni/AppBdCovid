@@ -23,7 +23,7 @@ class NovaVacinaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
 
     private lateinit var editTextNomeVacina: EditText
     private lateinit var editTextFabricante: EditText
-    private lateinit var editTextValidade: EditText
+   // private lateinit var editTextValidade: EditText
     private lateinit var spinnerDestritos: Spinner
     private lateinit var spinnerPessoas: Spinner
 
@@ -33,10 +33,10 @@ class NovaVacinaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
         savedInstanceState: Bundle?
     ): View? {
         DadosApp.fragment = this
-        (activity as MainActivity).menuAtual = R.menu.menu_nova_pessoa
+        (activity as MainActivity).menuAtual = R.menu.menu_nova_vacina
 
 
-        return inflater.inflate(R.layout.fragment_nova_pessoa, container, false)
+        return inflater.inflate(R.layout.fragment_nova_vacina, container, false)
     }
 
 
@@ -45,7 +45,7 @@ class NovaVacinaFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         editTextNomeVacina = view.findViewById(R.id.editTextInputNomeVacina)
-        editTextFabricante = view.findViewById(R.id.editTextInputNomeFabricante)
+       editTextFabricante = view.findViewById(R.id.editTextInputNomeFabricante)
        // editTextValidade = view.findViewById(R.id.editTextInputDataValidacao)
         spinnerDestritos = view.findViewById(R.id.spinnerDestritos)
         spinnerPessoas = view.findViewById(R.id.spinnerPessoas)

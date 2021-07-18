@@ -18,9 +18,9 @@ class AdapterVacinas(val fragment: ListaVacinasFragment) : RecyclerView.Adapter<
 
 
     class ViewHolderVacinas(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-        private val textViewNomeVacinas = itemView.findViewById<TextView>(R.id.editTextInputNomeVacina)
+        private val textViewNome = itemView.findViewById<TextView>(R.id.textViewNomeVacina)
         //private val textViewDatavalidacao = itemView.findViewById<TextView>(R.id.textViewDataSegundaDoce)
-        private var textViewFabricante = itemView.findViewById<TextView>(R.id.textViewNumeroUtente)
+        private var textViewFabricante = itemView.findViewById<TextView>(R.id.textViewNome_Fabricante)
         private var textViewPessoas = itemView.findViewById<TextView>(R.id.textViewPessoas)
         private val textViewDestrito = itemView.findViewById<TextView>(R.id.textViewDestritos)
 
@@ -35,16 +35,16 @@ class AdapterVacinas(val fragment: ListaVacinasFragment) : RecyclerView.Adapter<
 
         fun atualizaVacinas(vacinas: Vacinas) {
 
-            val DataHoje =  SimpleDateFormat("dd/MM/YYYY", Locale.getDefault())
+            //val DataHoje =  SimpleDateFormat("dd/MM/YYYY", Locale.getDefault())
 
            // val datahoje= DataHoje.format(vacinas.data_Validade)
 
             this.vacinas =vacinas
-            textViewNomeVacinas.text = vacinas.nome
-       //     textViewDatavalidacao.text = datahoje.toString()
+            textViewNome.text = vacinas.nome
             textViewFabricante.text = vacinas.nome_frabricante
-            textViewDestrito.text = vacinas.CampoExternoDestrito.toString()
-            textViewPessoas.text = vacinas.CampoExternoPessoas.toString()
+            textViewDestrito.text = vacinas.CampoExternoDestrito
+            textViewPessoas.text = vacinas.CampoExternoPessoas
+            //     textViewDatavalidacao.text = datahoje.toString()
         }
 
         override fun onClick(v: View?) {
@@ -183,13 +183,10 @@ class AdapterVacinas(val fragment: ListaVacinasFragment) : RecyclerView.Adapter<
      * @param position The position of the item within the adapter's data set.
      */
 
-
-
     override fun onBindViewHolder(holder: ViewHolderVacinas, position: Int) {
-        TODO("Not yet implemented")
         cursor!!.moveToPosition(position)
-
         holder.atualizaVacinas(Vacinas.fromCursor(cursor!!))
+
     }
 
     /**

@@ -5,8 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import java.text.SimpleDateFormat
-import java.util.*
 
 class AdapterDestritos  (val fragment: ListaDestritosFragment) : RecyclerView.Adapter<AdapterDestritos.ViewHolderDestiros>() {
     public  var cursor: Cursor? = null
@@ -18,7 +16,7 @@ class AdapterDestritos  (val fragment: ListaDestritosFragment) : RecyclerView.Ad
 
 
     class ViewHolderDestiros(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-        private val textViewNome = itemView.findViewById<TextView>(R.id.textViewNome)
+        private val textViewNome = itemView.findViewById<TextView>(R.id.textViewNomeVacina)
 
 
 

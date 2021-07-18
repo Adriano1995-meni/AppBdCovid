@@ -44,7 +44,7 @@ class EditarPessoasFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        editTextNome = view.findViewById(R.id.editTextInputNome)
+        editTextNome = view.findViewById(R.id.editTextInputNomeVacina)
         editTextNumeroUtente = view.findViewById(R.id.editTextInputEmail)
         editTextContacto = view.findViewById(R.id.editTextInputContacto)
         editTextData = view.findViewById(R.id.editTextInputData)

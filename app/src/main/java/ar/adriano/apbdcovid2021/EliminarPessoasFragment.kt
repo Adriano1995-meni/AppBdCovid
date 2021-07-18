@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -18,9 +17,9 @@ class EliminarPessoasFragment :  Fragment() {
     private  lateinit var listaPessoasFragment: ListaPessoasFragment
 
     private lateinit var textViewNome: TextView
-    private lateinit var textViewMorada: TextView
+    //private lateinit var textViewMorada: TextView
     private lateinit var textViewContacto: TextView
-    private lateinit var textViewSexo: TextView
+   // private lateinit var textViewSexo: TextView
     private lateinit var textViewData: TextView
     private lateinit var textViewNumeroUtente: TextView
     private lateinit var textViewDestrito: TextView
@@ -39,12 +38,12 @@ class EliminarPessoasFragment :  Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        textViewNome = view.findViewById(R.id.textViewNome)
-        textViewMorada = view.findViewById(R.id.textViewNumeroUtente)
-        textViewData = view.findViewById(R.id.textViewData)
+        textViewNome = view.findViewById(R.id.textViewNomeVacina)
+    //    textViewMorada = view.findViewById(R.id.textViewNumeroUtente)
+        textViewData = view.findViewById(R.id.textViewDataSegundaDoce)
         textViewContacto = view.findViewById(R.id.textViewContacto)
         textViewNumeroUtente = view.findViewById(R.id.textViewEmail)
-        textViewSexo = view.findViewById(R.id.textViewSexo)
+        //textViewSexo = view.findViewById(R.id.textViewSexo)
         textViewDestrito = view.findViewById(R.id.textViewDestrito)
 
 
@@ -65,7 +64,7 @@ class EliminarPessoasFragment :  Fragment() {
 
        // textViewSexo.setText(pessoas.sexo)
         textViewData.text = datahoje.toString()
-        textViewDestrito.setText(pessoas.idDestrito.toString())
+        textViewDestrito.setText(pessoas.CampoExternoDestrito)
 
     }
 

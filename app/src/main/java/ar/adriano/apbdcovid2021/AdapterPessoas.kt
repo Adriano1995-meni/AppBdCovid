@@ -18,14 +18,13 @@ class AdapterPessoas(val fragment: ListaPessoasFragment) : RecyclerView.Adapter<
 
 
     class ViewHolderPessoas(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-        private val textViewNome = itemView.findViewById<TextView>(R.id.textViewNome)
-        //private val textViewSexo = itemView.findViewById<TextView>(R.id.textViewSexo)
-      //  private val textViewMorada = itemView.findViewById<TextView>(R.id.textViewMorada)
+        private val textViewNome = itemView.findViewById<TextView>(R.id.textViewNomeVacina)
+
         private val textViewContacto = itemView.findViewById<TextView>(R.id.textViewContacto)
-        private val textViewData = itemView.findViewById<TextView>(R.id.textViewData)
-      //  private var textViewDataNascimento=itemView.findViewById<TextView>(R.id.textViewDataNascimento)
+        private val textViewData = itemView.findViewById<TextView>(R.id.textViewDataSegundaDoce)
+
         private var textViewNumeroUtente = itemView.findViewById<TextView>(R.id.textViewNumeroUtente)
-        private var textViewEnfermeiros = itemView.findViewById<TextView>(R.id.textViewEnfermeiros)
+        private var textViewEnfermeiros = itemView.findViewById<TextView>(R.id.textViewPessoas)
         private val textViewDestrito = itemView.findViewById<TextView>(R.id.textViewDestritos)
 
 
@@ -45,11 +44,8 @@ class AdapterPessoas(val fragment: ListaPessoasFragment) : RecyclerView.Adapter<
 
             this.pessoas = pessoas
             textViewNome.text = pessoas.nome
-           // textViewSexo.text = pessoas.sexo
             textViewContacto.text = pessoas.Contacto
             textViewData.text = datahoje.toString()
-          //  textViewMorada.text = pessoas.Morada
-          //  textViewDataNascimento.text = pessoas.dataNascimento.toString()
             textViewNumeroUtente.text = pessoas.NumeroUtente
             textViewDestrito.text = pessoas.CampoExternoDestrito.toString()
             textViewEnfermeiros.text = pessoas.CampoExternoEnfermeiro.toString()

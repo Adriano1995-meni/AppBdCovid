@@ -34,7 +34,7 @@ class EditarVacinasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
     ): View? {
 
         DadosApp.fragment = this
-        (activity as MainActivity).menuAtual = R.menu.menu_editar_pessoa
+        (activity as MainActivity).menuAtual = R.menu.menu_editar_vacinas
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_editar_vacinas, container, false)
     }
@@ -43,9 +43,9 @@ class EditarVacinasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
         super.onViewCreated(view, savedInstanceState)
         editTextNomeVacina = view.findViewById(R.id.editTextInputNomeVacina)
         editTextFabricante = view.findViewById(R.id.editTextInputNomeFabricante)
-        editTextValidade = view.findViewById(R.id.editTextInputDataValidacao)
+       // editTextValidade = view.findViewById(R.id.editTextInputDataValidacao)
         spinnerDestritos = view.findViewById(R.id.spinnerDestritos)
-        spinnerPessoas = view.findViewById(R.id.spinnerPessoas)
+        spinnerPessoas = view.findViewById(R.id.spinnerEnfermeiros)
 
 
 
@@ -54,14 +54,14 @@ class EditarVacinasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
         LoaderManager.getInstance(this)
             .initLoader(ID_LOADER_MANAGER_PESSOAS, null, this)
 
-        val DataHoje =  SimpleDateFormat("dd/MM/YYYY", Locale.getDefault())
+      //  val DataHoje =  SimpleDateFormat("dd/MM/YYYY", Locale.getDefault())
 
-        val datahoje= DataHoje.format(DadosApp.pessoasSelecionado!!.data)
+//        val datahoje= DataHoje.format(DadosApp.pessoasSelecionado!!.data)
 
         editTextNomeVacina.setText(DadosApp.vacinasSelecionado!!.nome)
         editTextFabricante.setText(DadosApp.vacinasSelecionado!!.nome_frabricante)
         //editTextValidade.setText(DadosApp.vacinasSelecionado!!.data_Validade.toString())
-        editTextValidade.setText(datahoje.toString())
+        //editTextValidade.setText(datahoje.toString())
 
 
 
@@ -92,7 +92,7 @@ class EditarVacinasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
         }
 
 
-
+/*
         val data = editTextValidade.text.toString()
         if (data.isEmpty()) {
             editTextValidade.setError(getString(R.string.preencha_Data))
@@ -100,7 +100,7 @@ class EditarVacinasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
             return
         }
 
-
+*/
 
         val idDestrito = spinnerDestritos.selectedItemId
 
@@ -143,8 +143,8 @@ class EditarVacinasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
 
     fun processaOpcaoMenu(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_guardar_edita_pessoas -> guardar()
-            R.id.action_cancelar_edita_pessoas ->  navegaListaVacinas()
+            R.id.action_guardar_edita_vacinas -> guardar()
+            R.id.action_cancelar_edita_vacinas ->  navegaListaVacinas()
             else -> return false
         }
 
@@ -284,8 +284,8 @@ class EditarVacinasFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
 
 
     private fun atualizaPessoasSelecionada() {
-        val idDestrito = DadosApp.pessoasSelecionado!!.idDestrito
-        val idEnfermeiro = DadosApp.pessoasSelecionado!!.idEnfermeio
+        val idDestrito = DadosApp.vacinasSelecionado!!.idDestrito
+        val idEnfermeiro = DadosApp.vacinasSelecionado!!.idPaciente
 
         val ultimoDestrito = spinnerDestritos.count - 1
         val ultimaPessoa = spinnerPessoas.count - 1

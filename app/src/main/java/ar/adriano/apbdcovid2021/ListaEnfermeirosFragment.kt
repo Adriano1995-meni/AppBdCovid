@@ -7,8 +7,6 @@ import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -39,7 +37,7 @@ class ListaEnfermeirosFragment : Fragment(), LoaderManager.LoaderCallbacks<Curso
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerViewEnfermeiro=   view.findViewById<RecyclerView>(R.id.recyclerViewDestritos)
+        val recyclerViewEnfermeiro=   view.findViewById<RecyclerView>(R.id.recyclerViewVacinas)
         adapterEnfermeiros= AdapterEnfermeiros(this)
         recyclerViewEnfermeiro.adapter = adapterEnfermeiros
         recyclerViewEnfermeiro.layoutManager = LinearLayoutManager(requireContext())

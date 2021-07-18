@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -36,7 +35,7 @@ class ListaDestritosFragment :Fragment(), LoaderManager.LoaderCallbacks<Cursor> 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerViewDestritos=   view.findViewById<RecyclerView>(R.id.recyclerViewDestritos)
+        val recyclerViewDestritos=   view.findViewById<RecyclerView>(R.id.recyclerViewVacinas)
         adapterDestritos= AdapterDestritos(this)
         recyclerViewDestritos.adapter = adapterDestritos
         recyclerViewDestritos.layoutManager = LinearLayoutManager(requireContext())

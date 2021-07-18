@@ -35,7 +35,7 @@ class EditaDestritosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        editTextNome = view.findViewById(R.id.editTextInputNome)
+        editTextNome = view.findViewById(R.id.editTextInputNomeVacina)
 
 
         LoaderManager.getInstance(this)

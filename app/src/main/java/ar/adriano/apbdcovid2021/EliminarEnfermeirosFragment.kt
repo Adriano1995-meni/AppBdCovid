@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -39,9 +38,9 @@ class EliminarEnfermeirosFragment :  Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        textViewNome = view.findViewById(R.id.textViewNome)
+        textViewNome = view.findViewById(R.id.textViewNomeVacina)
         textViewMorada = view.findViewById(R.id.textViewNumeroUtente)
-        textViewData = view.findViewById(R.id.textViewData)
+        textViewData = view.findViewById(R.id.textViewDataSegundaDoce)
         textViewContacto = view.findViewById(R.id.textViewContacto)
         textViewEmail = view.findViewById(R.id.textViewEmail)
         textViewSexo = view.findViewById(R.id.textViewSexo)
