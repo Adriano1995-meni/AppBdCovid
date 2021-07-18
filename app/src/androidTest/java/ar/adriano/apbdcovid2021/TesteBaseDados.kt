@@ -100,11 +100,12 @@ class TesteBaseDados {
 
     private fun getVacinaBaseDados(tabela: TabelaVacina, id: Long): Vacinas {
         val cursor = tabela.query(
-                TabelaVacina.TODAS_COLUNAS,
-                "${BaseColumns._ID}=?",
-                arrayOf(id.toString()),
-                null, null, null
+            TabelaVacina.TODAS_COLUNAS,
+            "${TabelaVacina.NOME_TABELA}.${BaseColumns._ID}=?",
+            arrayOf(id.toString()),
+            null, null, null
         )
+
 
         assertNotNull(cursor)
         assert(cursor!!.moveToNext())
@@ -139,7 +140,6 @@ class TesteBaseDados {
 
 
 
-
     @Test
     fun ConsegueAlterarDestritos() {
 
@@ -165,7 +165,6 @@ class TesteBaseDados {
     }
 
 
-
     @Test
     fun ConsegueEliminarDestritos() {
 
@@ -185,7 +184,6 @@ class TesteBaseDados {
         db.close()
     }
 
-
     @Test
     fun consegueLerDestritos() {
         val db = getBdPessoasOpenHelper().writableDatabase
@@ -197,8 +195,6 @@ class TesteBaseDados {
 
         db.close()
     }
-
-
 
 
     @Test
@@ -610,16 +606,18 @@ class TesteBaseDados {
                 data =Date(2020,10,15),
                 idDestrito = destrito.id,
                 idEnfermeio =enfermeiro.id)
-
-
         pessoas.id= inserePessoas(tabelaPessoas,pessoas)
+
         val tabelaVacina = TabelaVacina(db)
         val vacinas =  Vacinas(
-                nome ="AstraZeneca"
-                ,data_da_Proxima_Doce =Date(2021,4,5),
-                //,data_Validade = Date(2024,4,5)
-                idDestrito = destrito.id,
-                idPaciente = pessoas.id
+            nome ="AstraZeneca",
+            CampoExternoDestrito = destrito.nome,
+            CampoExternoPessoas = pessoas.nome,
+            // ,data_da_Proxima_Doce =Date(2021,4,5),
+           // data_Validade = Date(2024,4,5),
+            nome_frabricante = "AstraZeneca & Oxford",
+            idDestrito = destrito.id,
+            idPaciente = pessoas.id
         )
         vacinas.id= insereVacina(tabelaVacina,vacinas)
         assertEquals(vacinas, getVacinaBaseDados(tabelaVacina,vacinas.id))
@@ -672,18 +670,22 @@ class TesteBaseDados {
 
 
         pessoas.id= inserePessoas(tabelaPessoas,pessoas)
+
         val tabelaVacina = TabelaVacina(db)
         val vacinas =  Vacinas(
-                nome ="AstraZeneca"
-                ,data_da_Proxima_Doce =Date(2021,4,5),
-                //,data_Validade = Date(2024,4,5)
-                idDestrito = destrito.id,
-                idPaciente = pessoas.id
+            nome ="AstraZeneca",
+            CampoExternoDestrito = destrito.nome,
+            CampoExternoPessoas = pessoas.nome,
+            // ,data_da_Proxima_Doce =Date(2021,4,5),
+          //  data_Validade = Date(2024,4,5),
+            nome_frabricante = "AstraZeneca & Oxford",
+            idDestrito = destrito.id,
+            idPaciente = pessoas.id
         )
         vacinas.id= insereVacina(tabelaVacina,vacinas)
 
         vacinas.idPaciente = pessoas.id
-        vacinas.data_da_Proxima_Doce=Date(2020,7,15)
+      //  vacinas.data_da_Proxima_Doce=Date(2020,7,15)
 
 
 
@@ -741,13 +743,17 @@ class TesteBaseDados {
 
 
         pessoas.id= inserePessoas(tabelaPessoas,pessoas)
+
         val tabelaVacina = TabelaVacina(db)
         val vacinas =  Vacinas(
-                nome ="AstraZeneca"
-                ,data_da_Proxima_Doce =Date(2021,4,5),
-                //,data_Validade = Date(2024,4,5)
-                idDestrito = destrito.id,
-                idPaciente = pessoas.id
+            nome ="AstraZeneca",
+            CampoExternoDestrito = destrito.nome,
+            CampoExternoPessoas = pessoas.nome,
+            // ,data_da_Proxima_Doce =Date(2021,4,5),
+            //  data_Validade = Date(2024,4,5),
+            nome_frabricante = "AstraZeneca & Oxford",
+            idDestrito = destrito.id,
+            idPaciente = pessoas.id
         )
         vacinas.id= insereVacina(tabelaVacina,vacinas)
 
@@ -804,15 +810,21 @@ class TesteBaseDados {
 
 
         pessoas.id= inserePessoas(tabelaPessoas,pessoas)
+
+
         val tabelaVacina = TabelaVacina(db)
         val vacinas =  Vacinas(
-                nome ="AstraZeneca"
-                ,data_da_Proxima_Doce =Date(2021,4,5),
-                //,data_Validade = Date(2024,4,5)
-                idDestrito = destrito.id,
-                idPaciente = pessoas.id
+            nome ="AstraZeneca",
+            CampoExternoDestrito = destrito.nome,
+            CampoExternoPessoas = pessoas.nome,
+            // ,data_da_Proxima_Doce =Date(2021,4,5),
+          //  data_Validade = Date(2024,4,5),
+            nome_frabricante = "AstraZeneca & Oxford",
+            idDestrito = destrito.id,
+            idPaciente = pessoas.id
         )
         vacinas.id= insereVacina(tabelaVacina,vacinas)
+
         assertEquals(vacinas, getVacinaBaseDados(tabelaVacina,vacinas.id))
 
 

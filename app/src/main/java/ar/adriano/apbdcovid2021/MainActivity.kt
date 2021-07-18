@@ -18,11 +18,13 @@ class MainActivity : AppCompatActivity(),View.OnClickListener{
     private  lateinit var BotaoEnserirEnfermeiro: Button
     private  lateinit var BotaoEnserirDestritos:Button
     private  lateinit var BotaoEnserirPessoas: Button
+    private  lateinit var BotaoEnserirVacinas: Button
 
 
     private  lateinit var listaEnfermeirosFragment: ListaEnfermeirosFragment
     private  lateinit var listaPessoasFragment: ListaPessoasFragment
     private  lateinit var listaDestritosFragment: ListaDestritosFragment
+    private  lateinit var listaVacinasFragment: ListaVacinasFragment
 
     var menuAtual = R.menu.menu_lista_enfermeiro
         set(value) {
@@ -44,9 +46,14 @@ class MainActivity : AppCompatActivity(),View.OnClickListener{
         BotaoEnserirPessoas = findViewById(R.id.BotaoEnserirPessoas)
         BotaoEnserirPessoas.setOnClickListener(this)
 
+        BotaoEnserirVacinas = findViewById(R.id.BotaoEnserirVacinas)
+        BotaoEnserirVacinas.setOnClickListener(this)
+
+
         listaEnfermeirosFragment = ListaEnfermeirosFragment()
         listaPessoasFragment=ListaPessoasFragment()
         listaDestritosFragment= ListaDestritosFragment()
+        listaVacinasFragment= ListaVacinasFragment()
        setFragment(listaEnfermeirosFragment)
 
 
@@ -66,6 +73,10 @@ class MainActivity : AppCompatActivity(),View.OnClickListener{
             ActulizaMenusListaPessoas(false)
         }
         if (menuAtual == R.menu.menu_lista_destritos) {
+            ActulizaMenusListaPessoas(false)
+        }
+
+        if (menuAtual == R.menu.menu_lista_pessoas) {
             ActulizaMenusListaPessoas(false)
         }
         return true
@@ -98,6 +109,11 @@ class MainActivity : AppCompatActivity(),View.OnClickListener{
                R.menu.menu_nova_pessoa ->(DadosApp.fragment as NovaPessoaFragment).processaOpcaoMenu(item)
                R.menu.menu_editar_pessoa->(DadosApp.fragment as EditarPessoasFragment).processaOpcaoMenu(item)
                R.menu.menu_eliminar_pessoa->(DadosApp.fragment as EliminarPessoasFragment).processaOpcaoMenu(item)
+
+               R.menu.menu_lista_vacinas->(DadosApp.fragment as ListaVacinasFragment).processaOpcaoMenu(item)
+               R.menu.menu_nova_vacina ->(DadosApp.fragment as NovaVacinaFragment).processaOpcaoMenu(item)
+               R.menu.menu_editar_vacinas->(DadosApp.fragment as EditarVacinasFragment).processaOpcaoMenu(item)
+               R.menu.menu_eliminar_vacina->(DadosApp.fragment as EliminarVacinasFragment).processaOpcaoMenu(item)
 
                else -> false
             }
@@ -141,6 +157,13 @@ public fun setFragment(fragment:Fragment){
                 setFragment(listaPessoasFragment)
 
             }
+
+            R.id.BotaoEnserirVacinas -> {
+                setFragment(listaVacinasFragment)
+
+            }
+
+
         }
 
     }

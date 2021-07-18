@@ -51,4 +51,11 @@
     <string name="adriano" translatable="false">Adriano</string>
     <string name="numero_utente" translatable="false">Numero_Utente</string>
     <string name="lista_pessoas">Lista de pessoas</string>
+    <string name="enfermeiros">Enfermeiros</string>
+    <string name="nome_da_vacina">nome da Vacina</string>
+    <string name="nome_de_fabricante">Nome de Fabricante</string>
+    <string name="data_de_validacao">data de validacao</string>
+    <string name="pessoas">Pessoas</string>
+    <string name="fabricante">fabricante</string>
+    <string name="fabrica_ao">Fabricaçao</string>
 </resources>
