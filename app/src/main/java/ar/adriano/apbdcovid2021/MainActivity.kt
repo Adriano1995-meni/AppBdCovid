@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity(),View.OnClickListener{
         BotaoEnserirVacinas = findViewById(R.id.BotaoEnserirVacinas)
         BotaoEnserirVacinas.setOnClickListener(this)
 
-
+     //   val pb = findViewById<R.id.>()
         listaEnfermeirosFragment = ListaEnfermeirosFragment()
         listaPessoasFragment=ListaPessoasFragment()
         listaDestritosFragment= ListaDestritosFragment()

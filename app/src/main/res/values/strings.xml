@@ -58,4 +58,30 @@
     <string name="pessoas" translatable="false">Pessoas</string>
     <string name="fabricante" translatable="false">fabricante</string>
     <string name="fabrica_ao" translatable="false">Fabricacao</string>
+
+    <string name="erro_inserir_destritos" >Erro ao inserir destritos</string>
+    <string name="erro_eliminar_destritos" >erro eliminar destritos</string>
+    <string name="erro_alterar_destritos">Erro ao alterar destritos</string>
+
+
+    <string name="erro_inserir_pessoa" >Erro ao inserir pessoa</string>
+    <string name="erro_eliminar_pessoa" >erro eliminar pessoa</string>
+    <string name="erro_alterar_pessoa">Erro ao alterar pessoa</string>
+
+
+    <string name="erro_inserir_vacina" >Erro ao inserir vacina</string>
+    <string name="erro_eliminar_vacina" >erro eliminar vacina</string>
+    <string name="erro_alterar_vacina" >Erro ao alterar vacina</string>
+
+
+
+    <string name="Destrito_guardado_sucesso" >Destrito guardado com sucesso</string>
+    <string name="Pessoa_guardado_sucesso" >Pessoa guardado com sucesso</string>
+    <string name="Destrito_Elimindo_sucesso" >Destrito Elimindo com sucesso</string>
+    <string name="Pessoa_Elimindo_sucesso" >Pessoa Elimindo com sucesso</string>
+    <string name="Vacina_Elimindo_sucesso" >Vacina Elimindo com sucesso</string>
+    <string name="Vacina_guardado_sucesso" >Vacina guardado com sucesso</string>
+    <string name="enfermeiro_Elimindo_sucesso" translatable="false">enfermeiro Elimindo com sucesso</string>
+
+
 </resources>

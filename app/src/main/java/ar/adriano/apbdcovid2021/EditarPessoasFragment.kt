@@ -144,7 +144,7 @@ class EditarPessoasFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         if (registos != 1) {
             Toast.makeText(
                     requireContext(),
-                    R.string.erro_alterar_enfermeiro,
+                    R.string.erro_alterar_pessoa,
                     Toast.LENGTH_LONG
             ).show()
             return
@@ -152,7 +152,7 @@ class EditarPessoasFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
         Toast.makeText(
                 requireContext(),
-                R.string.enfermeiro_guardado_sucesso,
+                R.string.Pessoa_guardado_sucesso,
                 Toast.LENGTH_LONG
         ).show()
 

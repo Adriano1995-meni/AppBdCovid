@@ -70,7 +70,7 @@ class EliminarDestritosFragment: Fragment() {
 
         Toast.makeText(
             requireContext(),
-            R.string.enfermeiro_guardado_sucesso,
+            R.string.Destrito_Elimindo_sucesso,
             Toast.LENGTH_LONG
         ).show()
         navegaListaDestritos()

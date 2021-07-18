@@ -26,6 +26,7 @@
         android:id="@+id/textViewContacto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="@+id/textViewNomeVacina"
         app:layout_constraintTop_toBottomOf="@+id/textViewNomeVacina"
         tools:text="Contacto" />
@@ -34,7 +35,7 @@
         android:id="@+id/textViewNumeroUtente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="@+id/textViewDataSegundaDoce"
         app:layout_constraintTop_toBottomOf="@+id/textViewDataSegundaDoce"
         tools:text="Numero Utente" />
@@ -59,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="@string/adriano"
         android:textColor="#03A9F4"
         android:textSize="16sp"

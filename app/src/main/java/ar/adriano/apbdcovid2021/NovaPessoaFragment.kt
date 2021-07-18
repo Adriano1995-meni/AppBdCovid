@@ -120,14 +120,14 @@ class NovaPessoaFragment: Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         if (uri == null) {
             Snackbar.make(
                     editTextNome,
-                    getString(R.string.erro_inserir_enfermeiro),
+                    getString(R.string.erro_inserir_pessoa),
                     Snackbar.LENGTH_LONG
             ).show()
             return
         }
         Toast.makeText(
                 requireContext(),
-                R.string.enfermeiro_guardado_sucesso,
+                R.string.Pessoa_guardado_sucesso,
                 Toast.LENGTH_LONG
         ).show()
 

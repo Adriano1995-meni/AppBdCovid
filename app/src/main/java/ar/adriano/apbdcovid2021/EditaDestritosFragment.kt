@@ -85,7 +85,7 @@ class EditaDestritosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>
         if (registos != 1) {
             Toast.makeText(
                 requireContext(),
-                R.string.erro_alterar_enfermeiro,
+                R.string.erro_alterar_destritos,
                 Toast.LENGTH_LONG
             ).show()
             return
@@ -93,7 +93,7 @@ class EditaDestritosFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>
 
         Toast.makeText(
             requireContext(),
-            R.string.enfermeiro_guardado_sucesso,
+            R.string.Destrito_guardado_sucesso,
             Toast.LENGTH_LONG
         ).show()
 

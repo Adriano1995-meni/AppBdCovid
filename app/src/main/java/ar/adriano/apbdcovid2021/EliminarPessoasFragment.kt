@@ -89,7 +89,7 @@ class EliminarPessoasFragment :  Fragment() {
         if (registos != 1) {
             Toast.makeText(
                     requireContext(),
-                    R.string.erro_eliminar_enfermeiro,
+                    R.string.erro_eliminar_pessoa,
                     Toast.LENGTH_LONG
             ).show()
             return
@@ -97,7 +97,7 @@ class EliminarPessoasFragment :  Fragment() {
 
         Toast.makeText(
                 requireContext(),
-                R.string.enfermeiro_guardado_sucesso,
+                R.string.Pessoa_Elimindo_sucesso,
                 Toast.LENGTH_LONG
         ).show()
         navegaListaEnfermeiros()

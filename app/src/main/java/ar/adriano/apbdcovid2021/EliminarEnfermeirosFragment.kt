@@ -98,7 +98,7 @@ class EliminarEnfermeirosFragment :  Fragment() {
 
         Toast.makeText(
                 requireContext(),
-                R.string.enfermeiro_guardado_sucesso,
+                R.string.enfermeiro_Elimindo_sucesso,
                 Toast.LENGTH_LONG
         ).show()
         navegaListaEnfermeiros()
