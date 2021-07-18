@@ -79,6 +79,9 @@ class MainActivity : AppCompatActivity(),View.OnClickListener{
         if (menuAtual == R.menu.menu_lista_pessoas) {
             ActulizaMenusListaPessoas(false)
         }
+        if (menuAtual == R.menu.menu_lista_vacinas) {
+            ActulizaMenusListaPessoas(false)
+        }
         return true
 
     }
