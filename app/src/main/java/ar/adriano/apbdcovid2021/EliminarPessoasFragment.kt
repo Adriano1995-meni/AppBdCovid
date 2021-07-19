@@ -32,7 +32,7 @@ class EliminarPessoasFragment :  Fragment() {
         (activity as MainActivity).menuAtual = R.menu.menu_eliminar_pessoa
 
 
-        return inflater.inflate(R.layout.fragment_elimina_enfermeiro, container, false)
+        return inflater.inflate(R.layout.fragment_eliminar_pessoas, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,7 +42,7 @@ class EliminarPessoasFragment :  Fragment() {
     //    textViewMorada = view.findViewById(R.id.textViewNumeroUtente)
         textViewData = view.findViewById(R.id.textViewDataSegundaDoce)
         textViewContacto = view.findViewById(R.id.textViewContacto)
-        textViewNumeroUtente = view.findViewById(R.id.textViewEmail)
+        textViewNumeroUtente = view.findViewById(R.id.textViewNumeroUtente)
         //textViewSexo = view.findViewById(R.id.textViewSexo)
         textViewDestrito = view.findViewById(R.id.textViewDestrito)
 

@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment
 class MainActivity : AppCompatActivity(),View.OnClickListener{
 
     private  lateinit var menu: Menu
-   // var menuAtual = R.menu.menu_lista_enfermeiro
     private  lateinit var BotaoEnserirEnfermeiro: Button
     private  lateinit var BotaoEnserirDestritos:Button
     private  lateinit var BotaoEnserirPessoas: Button
@@ -49,13 +48,12 @@ class MainActivity : AppCompatActivity(),View.OnClickListener{
         BotaoEnserirVacinas = findViewById(R.id.BotaoEnserirVacinas)
         BotaoEnserirVacinas.setOnClickListener(this)
 
-     //   val pb = findViewById<R.id.>()
+
         listaEnfermeirosFragment = ListaEnfermeirosFragment()
         listaPessoasFragment=ListaPessoasFragment()
         listaDestritosFragment= ListaDestritosFragment()
         listaVacinasFragment= ListaVacinasFragment()
        setFragment(listaEnfermeirosFragment)
-
 
   setSupportActionBar(findViewById(R.id.toolbar))
 
@@ -170,7 +168,19 @@ public fun setFragment(fragment:Fragment){
         }
 
     }
+/*
+   private fun pisca(){
 
+        if (BotaoEnserirDestritos.callOnClick()==true){
+
+            BotaoEnserirDestritos.setBackgroundResource(R.color.cor_selecao)
+
+
+        }else{
+            BotaoEnserirDestritos.setBackgroundResource(android.R.color.white)
+        }
+    }
+*/
 }
 
 

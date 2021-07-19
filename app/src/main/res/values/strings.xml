@@ -1,10 +1,9 @@
 <resources>
-    <string name="app_name">Nurses</string>
+ <string name="app_name">Nurses</string>
     <!-- Strings used for fragments for navigation -->
     <string name="Novo_Enfermeiros_fragment_label">New Nurse</string>
     <string name="edita_enfermeiro_fragment_label">Edit Nuse</string>
-
-
+    <string name="alterar_enfermeiro_fragment_label" translatable="false">Alterar Nuse</string>
     <string name="alterar_enfermeiro" translatable="false" />
     <string name="eliminar_enfermeiros" translatable="false" />
     <string name="novo_enfermeiro" translatable="false" />
