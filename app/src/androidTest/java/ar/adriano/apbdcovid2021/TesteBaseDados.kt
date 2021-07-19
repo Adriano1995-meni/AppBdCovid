@@ -115,7 +115,7 @@ class TesteBaseDados {
 
     @Before
     fun apagaBaseDados() {
-   //  getAppContext().deleteDatabase( BdRegistaPessoasOpenHelper.NOME_BASE_DADOS)
+    getAppContext().deleteDatabase( BdRegistaPessoasOpenHelper.NOME_BASE_DADOS)
     }
 
     @Test
@@ -610,12 +610,12 @@ class TesteBaseDados {
 
         val tabelaVacina = TabelaVacina(db)
         val vacinas =  Vacinas(
-            nome ="AstraZeneca",
+            nome ="Nome: AstraZeneca",
             CampoExternoDestrito = destrito.nome,
             CampoExternoPessoas = pessoas.nome,
             // ,data_da_Proxima_Doce =Date(2021,4,5),
            // data_Validade = Date(2024,4,5),
-            nome_frabricante = "AstraZeneca & Oxford",
+            nome_frabricante = "Fabricante: AstraZeneca & Oxford",
             idDestrito = destrito.id,
             idPaciente = pessoas.id
         )

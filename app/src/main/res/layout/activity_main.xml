@@ -28,52 +28,50 @@
         android:layout_height="78dp"
         android:layout_marginTop="60dp"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:padding="10dp">
 
 
         <Button
             android:id="@+id/BotaoEnserirEnfermeiro"
-            android:layout_width="99dp"
-            android:layout_height="63dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Enfermeiros"
+            android:text="Nurses"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/black"
-            android:textSize="10sp"
+            android:textSize="12sp"
             app:backgroundTint="@android:color/white" />
 
         <Button
             android:id="@+id/BotaoEnserirDestritos"
             android:layout_width="wrap_content"
-            android:layout_height="62dp"
-            android:layout_weight="1"
-            android:text="Destritos"
+            android:layout_height="wrap_content"
+            android:text="Destrit"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/black"
-            android:textSize="10sp"
+            android:textSize="12sp"
             app:backgroundTint="@android:color/white" />
 
         <Button
             android:id="@+id/BotaoEnserirPessoas"
             android:layout_width="wrap_content"
-            android:layout_height="59dp"
-            android:layout_weight="1"
-            android:text="Pessoas"
+            android:layout_height="wrap_content"
+            android:text="People"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/black"
-            android:textSize="10sp"
+            android:textSize="12sp"
             app:backgroundTint="@android:color/white" />
 
 
         <Button
             android:id="@+id/BotaoEnserirVacinas"
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Vacinas"
+            android:text="Vaccines"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/black"
-            android:textSize="10sp"
+            android:textSize="12sp"
             app:backgroundTint="@android:color/white" />
 
 
@@ -89,7 +87,7 @@
         android:layout_alignParentStart="true"
 
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="-1dp"
         android:layout_marginBottom="5dp">
 
     </FrameLayout>

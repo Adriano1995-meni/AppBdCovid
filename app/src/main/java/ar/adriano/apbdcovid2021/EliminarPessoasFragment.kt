@@ -68,7 +68,7 @@ class EliminarPessoasFragment :  Fragment() {
 
     }
 
-    fun navegaListaEnfermeiros() {
+    fun navegaListaPessoas() {
        // findNavController().navigate(R.id.action_liminarPessoasFragment_to_listaPessoasFragment)
         listaPessoasFragment = ListaPessoasFragment()
         DadosApp.activity.setFragment(listaPessoasFragment)
@@ -100,13 +100,13 @@ class EliminarPessoasFragment :  Fragment() {
                 R.string.Pessoa_Elimindo_sucesso,
                 Toast.LENGTH_LONG
         ).show()
-        navegaListaEnfermeiros()
+        navegaListaPessoas()
     }
 
     fun processaOpcaoMenu(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_confirma_eliminar_pessoas -> elimina()
-            R.id.action_cancelar_eliminar_pessoas -> navegaListaEnfermeiros()
+            R.id.action_cancelar_eliminar_pessoas -> navegaListaPessoas()
             else -> return false
         }
 
